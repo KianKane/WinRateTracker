@@ -41,6 +41,7 @@
             this.recordMatchLabel = new System.Windows.Forms.Label();
             this.statisticsTab = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.winsAndLossesLabel = new System.Windows.Forms.Label();
             this.winRateLabel = new System.Windows.Forms.Label();
             this.recordMatchResultsButton = new System.Windows.Forms.Button();
             this.statisticsVersusLabel = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@
             this.editDeckListsLabel = new System.Windows.Forms.Label();
             this.editArchetypesTab = new System.Windows.Forms.TabPage();
             this.editArchetypesLabel = new System.Windows.Forms.Label();
-            this.winsAndLossesLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.recordMatchTab.SuspendLayout();
             this.statisticsTab.SuspendLayout();
@@ -218,6 +218,16 @@
             this.panel1.Size = new System.Drawing.Size(410, 120);
             this.panel1.TabIndex = 10;
             // 
+            // winsAndLossesLabel
+            // 
+            this.winsAndLossesLabel.AutoSize = true;
+            this.winsAndLossesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winsAndLossesLabel.Location = new System.Drawing.Point(36, 62);
+            this.winsAndLossesLabel.Name = "winsAndLossesLabel";
+            this.winsAndLossesLabel.Size = new System.Drawing.Size(353, 33);
+            this.winsAndLossesLabel.TabIndex = 0;
+            this.winsAndLossesLabel.Text = "Wins - 112 | 96 - Losses";
+            // 
             // winRateLabel
             // 
             this.winRateLabel.AutoSize = true;
@@ -227,7 +237,6 @@
             this.winRateLabel.Size = new System.Drawing.Size(220, 33);
             this.winRateLabel.TabIndex = 0;
             this.winRateLabel.Text = "Win Rate: 1.17";
-            this.winRateLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // recordMatchResultsButton
             // 
@@ -344,17 +353,6 @@
             this.editArchetypesLabel.TabIndex = 1;
             this.editArchetypesLabel.Text = "Edit Archetypes";
             this.editArchetypesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // winsAndLossesLabel
-            // 
-            this.winsAndLossesLabel.AutoSize = true;
-            this.winsAndLossesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.winsAndLossesLabel.Location = new System.Drawing.Point(36, 62);
-            this.winsAndLossesLabel.Name = "winsAndLossesLabel";
-            this.winsAndLossesLabel.Size = new System.Drawing.Size(353, 33);
-            this.winsAndLossesLabel.TabIndex = 0;
-            this.winsAndLossesLabel.Text = "Wins - 112 | 96 - Losses";
-            this.winsAndLossesLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // Form1
             // 
