@@ -21,16 +21,14 @@ namespace DeckTracker
         {
             this.Validate();
             this.deckListsBindingSource.EndEdit();
+            this.archetypesBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.databaseDataSet);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'databaseDataSet.Archetypes' table. You can move, or remove it, as needed.
             this.archetypesTableAdapter.Fill(this.databaseDataSet.Archetypes);
-            // TODO: This line of code loads data into the 'databaseDataSet.DeckLists' table. You can move, or remove it, as needed.
             this.deckListsTableAdapter.Fill(this.databaseDataSet.DeckLists);
-
         }
     }
 }
