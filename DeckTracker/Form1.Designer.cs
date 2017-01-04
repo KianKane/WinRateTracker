@@ -54,25 +54,25 @@
             this.editDeckListsTab = new System.Windows.Forms.TabPage();
             this.deckListsSave = new System.Windows.Forms.Button();
             this.deckListsDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deckListsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet = new DeckTracker.DatabaseDataSet();
             this.editDeckListsLabel = new System.Windows.Forms.Label();
             this.editArchetypesTab = new System.Windows.Forms.TabPage();
             this.archetypesSave = new System.Windows.Forms.Button();
             this.archetypesDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.editArchetypesLabel = new System.Windows.Forms.Label();
             this.deckListsTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.DeckListsTableAdapter();
             this.tableAdapterManager = new DeckTracker.DatabaseDataSetTableAdapters.TableAdapterManager();
             this.archetypesTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.recordMatchTab.SuspendLayout();
             this.statisticsTab.SuspendLayout();
@@ -162,24 +162,28 @@
             // 
             // matchArchetypeComboBox
             // 
+            this.matchArchetypeComboBox.DataSource = this.archetypesBindingSource;
+            this.matchArchetypeComboBox.DisplayMember = "name";
             this.matchArchetypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.matchArchetypeComboBox.DropDownWidth = 121;
-            this.matchArchetypeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.matchArchetypeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.matchArchetypeComboBox.FormattingEnabled = true;
             this.matchArchetypeComboBox.Location = new System.Drawing.Point(388, 126);
             this.matchArchetypeComboBox.Name = "matchArchetypeComboBox";
-            this.matchArchetypeComboBox.Size = new System.Drawing.Size(150, 32);
+            this.matchArchetypeComboBox.Size = new System.Drawing.Size(150, 24);
             this.matchArchetypeComboBox.TabIndex = 2;
             // 
             // matchDeckListComboBox
             // 
+            this.matchDeckListComboBox.DataSource = this.deckListsBindingSource;
+            this.matchDeckListComboBox.DisplayMember = "name";
             this.matchDeckListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.matchDeckListComboBox.DropDownWidth = 121;
-            this.matchDeckListComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.matchDeckListComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.matchDeckListComboBox.FormattingEnabled = true;
             this.matchDeckListComboBox.Location = new System.Drawing.Point(81, 126);
             this.matchDeckListComboBox.Name = "matchDeckListComboBox";
-            this.matchDeckListComboBox.Size = new System.Drawing.Size(150, 32);
+            this.matchDeckListComboBox.Size = new System.Drawing.Size(150, 24);
             this.matchDeckListComboBox.TabIndex = 2;
             // 
             // matchEditArchetypesLink
@@ -284,24 +288,28 @@
             // 
             // statisticsArchetypeComboBox
             // 
+            this.statisticsArchetypeComboBox.DataSource = this.archetypesBindingSource;
+            this.statisticsArchetypeComboBox.DisplayMember = "name";
             this.statisticsArchetypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statisticsArchetypeComboBox.DropDownWidth = 121;
-            this.statisticsArchetypeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsArchetypeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statisticsArchetypeComboBox.FormattingEnabled = true;
             this.statisticsArchetypeComboBox.Location = new System.Drawing.Point(388, 126);
             this.statisticsArchetypeComboBox.Name = "statisticsArchetypeComboBox";
-            this.statisticsArchetypeComboBox.Size = new System.Drawing.Size(150, 32);
+            this.statisticsArchetypeComboBox.Size = new System.Drawing.Size(150, 24);
             this.statisticsArchetypeComboBox.TabIndex = 6;
             // 
             // statisticsDeckListComboBox
             // 
+            this.statisticsDeckListComboBox.DataSource = this.deckListsBindingSource;
+            this.statisticsDeckListComboBox.DisplayMember = "name";
             this.statisticsDeckListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statisticsDeckListComboBox.DropDownWidth = 121;
-            this.statisticsDeckListComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsDeckListComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statisticsDeckListComboBox.FormattingEnabled = true;
             this.statisticsDeckListComboBox.Location = new System.Drawing.Point(81, 126);
             this.statisticsDeckListComboBox.Name = "statisticsDeckListComboBox";
-            this.statisticsDeckListComboBox.Size = new System.Drawing.Size(150, 32);
+            this.statisticsDeckListComboBox.Size = new System.Drawing.Size(150, 24);
             this.statisticsDeckListComboBox.TabIndex = 7;
             // 
             // statisticsEditDeckArchetypesLink
@@ -374,6 +382,31 @@
             this.deckListsDataGridView.Size = new System.Drawing.Size(600, 309);
             this.deckListsDataGridView.TabIndex = 1;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "deckListID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "deckListID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "note";
+            this.dataGridViewTextBoxColumn3.HeaderText = "note";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "class";
+            this.dataGridViewTextBoxColumn4.HeaderText = "class";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
             // deckListsBindingSource
             // 
             this.deckListsBindingSource.DataMember = "DeckLists";
@@ -432,6 +465,31 @@
             this.archetypesDataGridView.Size = new System.Drawing.Size(600, 309);
             this.archetypesDataGridView.TabIndex = 1;
             // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "archetypeID";
+            this.dataGridViewTextBoxColumn5.HeaderText = "archetypeID";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "name";
+            this.dataGridViewTextBoxColumn6.HeaderText = "name";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "note";
+            this.dataGridViewTextBoxColumn7.HeaderText = "note";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "class";
+            this.dataGridViewTextBoxColumn8.HeaderText = "class";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
             // archetypesBindingSource
             // 
             this.archetypesBindingSource.DataMember = "Archetypes";
@@ -463,56 +521,6 @@
             // archetypesTableAdapter
             // 
             this.archetypesTableAdapter.ClearBeforeFill = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "archetypeID";
-            this.dataGridViewTextBoxColumn5.HeaderText = "archetypeID";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "name";
-            this.dataGridViewTextBoxColumn6.HeaderText = "name";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "note";
-            this.dataGridViewTextBoxColumn7.HeaderText = "note";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "class";
-            this.dataGridViewTextBoxColumn8.HeaderText = "class";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "deckListID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "deckListID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "name";
-            this.dataGridViewTextBoxColumn2.HeaderText = "name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "note";
-            this.dataGridViewTextBoxColumn3.HeaderText = "note";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "class";
-            this.dataGridViewTextBoxColumn4.HeaderText = "class";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
             // Form1
             // 
