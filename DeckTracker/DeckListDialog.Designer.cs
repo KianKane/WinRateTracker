@@ -1,6 +1,6 @@
 ﻿namespace DeckTracker
 {
-    partial class DeckListForm
+    partial class DeckListDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -66,6 +66,7 @@
             // 
             // cb_class
             // 
+            this.cb_class.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_class.FormattingEnabled = true;
             this.cb_class.Items.AddRange(new object[] {
             "Mage",
@@ -120,7 +121,7 @@
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
-            // DeckListForm
+            // DeckListDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -133,8 +134,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "DeckListForm";
-            this.Text = "Deck List Form";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "DeckListDialog";
+            this.Text = "Deck List Dialog";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,12 +145,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tb_name;
-        private System.Windows.Forms.TextBox tb_note;
-        private System.Windows.Forms.ComboBox cb_class;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_confirm;
         private System.Windows.Forms.Button btn_cancel;
+        public System.Windows.Forms.TextBox tb_name;
+        public System.Windows.Forms.TextBox tb_note;
+        public System.Windows.Forms.ComboBox cb_class;
     }
 }

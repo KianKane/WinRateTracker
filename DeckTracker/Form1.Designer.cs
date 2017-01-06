@@ -55,8 +55,10 @@
             this.statisticsEditDeckListsLink = new System.Windows.Forms.LinkLabel();
             this.statisticsLabel = new System.Windows.Forms.Label();
             this.editDeckListsTab = new System.Windows.Forms.TabPage();
-            this.deckListsSave = new System.Windows.Forms.Button();
-            this.deckListsDataGridView = new System.Windows.Forms.DataGridView();
+            this.btn_addDeckList = new System.Windows.Forms.Button();
+            this.btn_editDeckList = new System.Windows.Forms.Button();
+            this.btn_deleteDeckList = new System.Windows.Forms.Button();
+            this.dgv_deckLists = new System.Windows.Forms.DataGridView();
             this.editDeckListsLabel = new System.Windows.Forms.Label();
             this.editArchetypesTab = new System.Windows.Forms.TabPage();
             this.archetypesSave = new System.Windows.Forms.Button();
@@ -69,10 +71,10 @@
             this.deckListsTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.DeckListsTableAdapter();
             this.tableAdapterManager = new DeckTracker.DatabaseDataSetTableAdapters.TableAdapterManager();
             this.archetypesTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.classColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.recordMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).BeginInit();
@@ -81,7 +83,7 @@
             this.statisticsTab.SuspendLayout();
             this.panel1.SuspendLayout();
             this.editDeckListsTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.deckListsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_deckLists)).BeginInit();
             this.editArchetypesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.archetypesDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -362,8 +364,10 @@
             // editDeckListsTab
             // 
             this.editDeckListsTab.AutoScroll = true;
-            this.editDeckListsTab.Controls.Add(this.deckListsSave);
-            this.editDeckListsTab.Controls.Add(this.deckListsDataGridView);
+            this.editDeckListsTab.Controls.Add(this.btn_addDeckList);
+            this.editDeckListsTab.Controls.Add(this.btn_editDeckList);
+            this.editDeckListsTab.Controls.Add(this.btn_deleteDeckList);
+            this.editDeckListsTab.Controls.Add(this.dgv_deckLists);
             this.editDeckListsTab.Controls.Add(this.editDeckListsLabel);
             this.editDeckListsTab.Location = new System.Drawing.Point(4, 29);
             this.editDeckListsTab.Name = "editDeckListsTab";
@@ -372,39 +376,59 @@
             this.editDeckListsTab.Text = "Edit Deck Lists";
             this.editDeckListsTab.UseVisualStyleBackColor = true;
             // 
-            // deckListsSave
+            // btn_addDeckList
             // 
-            this.deckListsSave.Location = new System.Drawing.Point(488, 378);
-            this.deckListsSave.Name = "deckListsSave";
-            this.deckListsSave.Size = new System.Drawing.Size(120, 23);
-            this.deckListsSave.TabIndex = 2;
-            this.deckListsSave.Text = "Save Changes";
-            this.deckListsSave.UseVisualStyleBackColor = true;
-            this.deckListsSave.Click += new System.EventHandler(this.UpdateDatabase);
+            this.btn_addDeckList.Location = new System.Drawing.Point(236, 378);
+            this.btn_addDeckList.Name = "btn_addDeckList";
+            this.btn_addDeckList.Size = new System.Drawing.Size(120, 23);
+            this.btn_addDeckList.TabIndex = 1;
+            this.btn_addDeckList.Text = "Add Deck List";
+            this.btn_addDeckList.UseVisualStyleBackColor = true;
+            this.btn_addDeckList.Click += new System.EventHandler(this.btn_addDeckList_Click);
             // 
-            // deckListsDataGridView
+            // btn_editDeckList
             // 
-            this.deckListsDataGridView.AllowUserToAddRows = false;
-            this.deckListsDataGridView.AllowUserToDeleteRows = false;
-            this.deckListsDataGridView.AllowUserToResizeColumns = false;
-            this.deckListsDataGridView.AllowUserToResizeRows = false;
-            this.deckListsDataGridView.AutoGenerateColumns = false;
-            this.deckListsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.deckListsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.deckListsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn1});
-            this.deckListsDataGridView.DataSource = this.deckListsBindingSource;
-            this.deckListsDataGridView.Location = new System.Drawing.Point(8, 63);
-            this.deckListsDataGridView.MultiSelect = false;
-            this.deckListsDataGridView.Name = "deckListsDataGridView";
-            this.deckListsDataGridView.ReadOnly = true;
-            this.deckListsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.deckListsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.deckListsDataGridView.Size = new System.Drawing.Size(600, 309);
-            this.deckListsDataGridView.TabIndex = 1;
+            this.btn_editDeckList.Location = new System.Drawing.Point(362, 378);
+            this.btn_editDeckList.Name = "btn_editDeckList";
+            this.btn_editDeckList.Size = new System.Drawing.Size(120, 23);
+            this.btn_editDeckList.TabIndex = 2;
+            this.btn_editDeckList.Text = "Edit Selected";
+            this.btn_editDeckList.UseVisualStyleBackColor = true;
+            this.btn_editDeckList.Click += new System.EventHandler(this.btn_editDeckList_Click);
+            // 
+            // btn_deleteDeckList
+            // 
+            this.btn_deleteDeckList.Location = new System.Drawing.Point(488, 378);
+            this.btn_deleteDeckList.Name = "btn_deleteDeckList";
+            this.btn_deleteDeckList.Size = new System.Drawing.Size(120, 23);
+            this.btn_deleteDeckList.TabIndex = 3;
+            this.btn_deleteDeckList.Text = "Delete Selected";
+            this.btn_deleteDeckList.UseVisualStyleBackColor = true;
+            this.btn_deleteDeckList.Click += new System.EventHandler(this.btn_deleteDeckList_Click);
+            // 
+            // dgv_deckLists
+            // 
+            this.dgv_deckLists.AllowUserToAddRows = false;
+            this.dgv_deckLists.AllowUserToDeleteRows = false;
+            this.dgv_deckLists.AllowUserToResizeColumns = false;
+            this.dgv_deckLists.AllowUserToResizeRows = false;
+            this.dgv_deckLists.AutoGenerateColumns = false;
+            this.dgv_deckLists.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_deckLists.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgv_deckLists.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameColumn,
+            this.noteColumn,
+            this.classColumn,
+            this.idColumn});
+            this.dgv_deckLists.DataSource = this.deckListsBindingSource;
+            this.dgv_deckLists.Location = new System.Drawing.Point(8, 63);
+            this.dgv_deckLists.MultiSelect = false;
+            this.dgv_deckLists.Name = "dgv_deckLists";
+            this.dgv_deckLists.ReadOnly = true;
+            this.dgv_deckLists.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgv_deckLists.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_deckLists.Size = new System.Drawing.Size(600, 309);
+            this.dgv_deckLists.TabIndex = 0;
             // 
             // editDeckListsLabel
             // 
@@ -506,34 +530,34 @@
             // 
             this.archetypesTableAdapter.ClearBeforeFill = true;
             // 
-            // dataGridViewTextBoxColumn2
+            // nameColumn
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "name";
-            this.dataGridViewTextBoxColumn2.HeaderText = "name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.nameColumn.DataPropertyName = "name";
+            this.nameColumn.HeaderText = "name";
+            this.nameColumn.Name = "nameColumn";
+            this.nameColumn.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn3
+            // noteColumn
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "note";
-            this.dataGridViewTextBoxColumn3.HeaderText = "note";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.noteColumn.DataPropertyName = "note";
+            this.noteColumn.HeaderText = "note";
+            this.noteColumn.Name = "noteColumn";
+            this.noteColumn.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn4
+            // classColumn
             // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "class";
-            this.dataGridViewTextBoxColumn4.HeaderText = "class";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.classColumn.DataPropertyName = "class";
+            this.classColumn.HeaderText = "class";
+            this.classColumn.Name = "classColumn";
+            this.classColumn.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn1
+            // idColumn
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "deckListID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "deckListID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.idColumn.DataPropertyName = "deckListID";
+            this.idColumn.HeaderText = "id";
+            this.idColumn.Name = "idColumn";
+            this.idColumn.ReadOnly = true;
+            this.idColumn.Visible = false;
             // 
             // Form1
             // 
@@ -556,7 +580,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.editDeckListsTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.deckListsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_deckLists)).EndInit();
             this.editArchetypesTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.archetypesDataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -595,8 +619,8 @@
         private System.Windows.Forms.BindingSource deckListsBindingSource;
         private DatabaseDataSetTableAdapters.DeckListsTableAdapter deckListsTableAdapter;
         private DatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView deckListsDataGridView;
-        private System.Windows.Forms.Button deckListsSave;
+        private System.Windows.Forms.DataGridView dgv_deckLists;
+        private System.Windows.Forms.Button btn_deleteDeckList;
         private DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
         private System.Windows.Forms.BindingSource archetypesBindingSource;
         private System.Windows.Forms.DataGridView archetypesDataGridView;
@@ -605,10 +629,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button btn_addDeckList;
+        private System.Windows.Forms.Button btn_editDeckList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn classColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
     }
 }
 

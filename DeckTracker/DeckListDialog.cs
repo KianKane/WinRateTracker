@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DeckTracker
 {
-    public partial class DeckListForm : Form
+    public partial class DeckListDialog : Form
     {
-        public DeckListForm()
+        public DeckListDialog()
         {
             InitializeComponent();
         }
@@ -28,6 +28,12 @@ namespace DeckTracker
             {
                 MessageBox.Show("You must enter a name for the Deck List", "Invalid Name");
                 tb_name.Focus();
+                return; // Exits the function, preventing the OK dialog result
+            }
+            if (cb_class.Text.Equals(""))
+            {
+                MessageBox.Show("You must select a class for the Deck List", "Invalid Class");
+                cb_class.Focus();
                 return; // Exits the function, preventing the OK dialog result
             }
 
