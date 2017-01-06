@@ -69,6 +69,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ArchetypeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArchetypeDialog.Designer.cs">
+      <DependentUpon>ArchetypeDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeckListDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ArchetypeDialog.resx">
+      <DependentUpon>ArchetypeDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeckListDialog.resx">
       <DependentUpon>DeckListDialog.cs</DependentUpon>
     </EmbeddedResource>

@@ -61,20 +61,22 @@
             this.dgv_deckLists = new System.Windows.Forms.DataGridView();
             this.editDeckListsLabel = new System.Windows.Forms.Label();
             this.editArchetypesTab = new System.Windows.Forms.TabPage();
-            this.archetypesSave = new System.Windows.Forms.Button();
-            this.archetypesDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_addArchetype = new System.Windows.Forms.Button();
+            this.btn_editArchetype = new System.Windows.Forms.Button();
+            this.btn_deleteArchetype = new System.Windows.Forms.Button();
+            this.dgv_archetypes = new System.Windows.Forms.DataGridView();
+            this.nameColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.classColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editArchetypesLabel = new System.Windows.Forms.Label();
             this.deckListsTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.DeckListsTableAdapter();
             this.tableAdapterManager = new DeckTracker.DatabaseDataSetTableAdapters.TableAdapterManager();
             this.archetypesTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
-            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.classColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameColumnDeckList = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteColumnDeckList = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.classColumnDeckList = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idColumnDeckList = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.recordMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).BeginInit();
@@ -85,7 +87,7 @@
             this.editDeckListsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_deckLists)).BeginInit();
             this.editArchetypesTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.archetypesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_archetypes)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -416,10 +418,10 @@
             this.dgv_deckLists.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_deckLists.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_deckLists.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameColumn,
-            this.noteColumn,
-            this.classColumn,
-            this.idColumn});
+            this.nameColumnDeckList,
+            this.noteColumnDeckList,
+            this.classColumnDeckList,
+            this.idColumnDeckList});
             this.dgv_deckLists.DataSource = this.deckListsBindingSource;
             this.dgv_deckLists.Location = new System.Drawing.Point(8, 63);
             this.dgv_deckLists.MultiSelect = false;
@@ -444,8 +446,10 @@
             // editArchetypesTab
             // 
             this.editArchetypesTab.AutoScroll = true;
-            this.editArchetypesTab.Controls.Add(this.archetypesSave);
-            this.editArchetypesTab.Controls.Add(this.archetypesDataGridView);
+            this.editArchetypesTab.Controls.Add(this.btn_addArchetype);
+            this.editArchetypesTab.Controls.Add(this.btn_editArchetype);
+            this.editArchetypesTab.Controls.Add(this.btn_deleteArchetype);
+            this.editArchetypesTab.Controls.Add(this.dgv_archetypes);
             this.editArchetypesTab.Controls.Add(this.editArchetypesLabel);
             this.editArchetypesTab.Location = new System.Drawing.Point(4, 29);
             this.editArchetypesTab.Name = "editArchetypesTab";
@@ -454,54 +458,88 @@
             this.editArchetypesTab.Text = "Edit Archetypes";
             this.editArchetypesTab.UseVisualStyleBackColor = true;
             // 
-            // archetypesSave
+            // btn_addArchetype
             // 
-            this.archetypesSave.Location = new System.Drawing.Point(488, 378);
-            this.archetypesSave.Name = "archetypesSave";
-            this.archetypesSave.Size = new System.Drawing.Size(120, 23);
-            this.archetypesSave.TabIndex = 3;
-            this.archetypesSave.Text = "Save Changes";
-            this.archetypesSave.UseVisualStyleBackColor = true;
-            this.archetypesSave.Click += new System.EventHandler(this.UpdateDatabase);
+            this.btn_addArchetype.Location = new System.Drawing.Point(236, 378);
+            this.btn_addArchetype.Name = "btn_addArchetype";
+            this.btn_addArchetype.Size = new System.Drawing.Size(120, 23);
+            this.btn_addArchetype.TabIndex = 5;
+            this.btn_addArchetype.Text = "Add Archetype";
+            this.btn_addArchetype.UseVisualStyleBackColor = true;
+            this.btn_addArchetype.Click += new System.EventHandler(this.btn_addArchetype_Click);
             // 
-            // archetypesDataGridView
+            // btn_editArchetype
             // 
-            this.archetypesDataGridView.AutoGenerateColumns = false;
-            this.archetypesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8});
-            this.archetypesDataGridView.DataSource = this.archetypesBindingSource;
-            this.archetypesDataGridView.Location = new System.Drawing.Point(8, 63);
-            this.archetypesDataGridView.Name = "archetypesDataGridView";
-            this.archetypesDataGridView.Size = new System.Drawing.Size(600, 309);
-            this.archetypesDataGridView.TabIndex = 1;
+            this.btn_editArchetype.Location = new System.Drawing.Point(362, 378);
+            this.btn_editArchetype.Name = "btn_editArchetype";
+            this.btn_editArchetype.Size = new System.Drawing.Size(120, 23);
+            this.btn_editArchetype.TabIndex = 6;
+            this.btn_editArchetype.Text = "Edit Selected";
+            this.btn_editArchetype.UseVisualStyleBackColor = true;
+            this.btn_editArchetype.Click += new System.EventHandler(this.btn_editArchetype_Click);
             // 
-            // dataGridViewTextBoxColumn5
+            // btn_deleteArchetype
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "archetypeID";
-            this.dataGridViewTextBoxColumn5.HeaderText = "archetypeID";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.btn_deleteArchetype.Location = new System.Drawing.Point(488, 378);
+            this.btn_deleteArchetype.Name = "btn_deleteArchetype";
+            this.btn_deleteArchetype.Size = new System.Drawing.Size(120, 23);
+            this.btn_deleteArchetype.TabIndex = 7;
+            this.btn_deleteArchetype.Text = "Delete Selected";
+            this.btn_deleteArchetype.UseVisualStyleBackColor = true;
+            this.btn_deleteArchetype.Click += new System.EventHandler(this.btn_deleteArchetype_Click);
             // 
-            // dataGridViewTextBoxColumn6
+            // dgv_archetypes
             // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "name";
-            this.dataGridViewTextBoxColumn6.HeaderText = "name";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dgv_archetypes.AllowUserToAddRows = false;
+            this.dgv_archetypes.AllowUserToDeleteRows = false;
+            this.dgv_archetypes.AllowUserToResizeColumns = false;
+            this.dgv_archetypes.AllowUserToResizeRows = false;
+            this.dgv_archetypes.AutoGenerateColumns = false;
+            this.dgv_archetypes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_archetypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgv_archetypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameColumnArchetype,
+            this.noteColumnArchetype,
+            this.classColumnArchetype,
+            this.idColumnArchetype});
+            this.dgv_archetypes.DataSource = this.archetypesBindingSource;
+            this.dgv_archetypes.Location = new System.Drawing.Point(8, 63);
+            this.dgv_archetypes.MultiSelect = false;
+            this.dgv_archetypes.Name = "dgv_archetypes";
+            this.dgv_archetypes.ReadOnly = true;
+            this.dgv_archetypes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgv_archetypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_archetypes.Size = new System.Drawing.Size(600, 309);
+            this.dgv_archetypes.TabIndex = 4;
             // 
-            // dataGridViewTextBoxColumn7
+            // nameColumnArchetype
             // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "note";
-            this.dataGridViewTextBoxColumn7.HeaderText = "note";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.nameColumnArchetype.DataPropertyName = "name";
+            this.nameColumnArchetype.HeaderText = "name";
+            this.nameColumnArchetype.Name = "nameColumnArchetype";
+            this.nameColumnArchetype.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn8
+            // noteColumnArchetype
             // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "class";
-            this.dataGridViewTextBoxColumn8.HeaderText = "class";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.noteColumnArchetype.DataPropertyName = "note";
+            this.noteColumnArchetype.HeaderText = "note";
+            this.noteColumnArchetype.Name = "noteColumnArchetype";
+            this.noteColumnArchetype.ReadOnly = true;
+            // 
+            // classColumnArchetype
+            // 
+            this.classColumnArchetype.DataPropertyName = "class";
+            this.classColumnArchetype.HeaderText = "class";
+            this.classColumnArchetype.Name = "classColumnArchetype";
+            this.classColumnArchetype.ReadOnly = true;
+            // 
+            // idColumnArchetype
+            // 
+            this.idColumnArchetype.DataPropertyName = "archetypeID";
+            this.idColumnArchetype.HeaderText = "id";
+            this.idColumnArchetype.Name = "idColumnArchetype";
+            this.idColumnArchetype.ReadOnly = true;
+            this.idColumnArchetype.Visible = false;
             // 
             // editArchetypesLabel
             // 
@@ -530,34 +568,34 @@
             // 
             this.archetypesTableAdapter.ClearBeforeFill = true;
             // 
-            // nameColumn
+            // nameColumnDeckList
             // 
-            this.nameColumn.DataPropertyName = "name";
-            this.nameColumn.HeaderText = "name";
-            this.nameColumn.Name = "nameColumn";
-            this.nameColumn.ReadOnly = true;
+            this.nameColumnDeckList.DataPropertyName = "name";
+            this.nameColumnDeckList.HeaderText = "name";
+            this.nameColumnDeckList.Name = "nameColumnDeckList";
+            this.nameColumnDeckList.ReadOnly = true;
             // 
-            // noteColumn
+            // noteColumnDeckList
             // 
-            this.noteColumn.DataPropertyName = "note";
-            this.noteColumn.HeaderText = "note";
-            this.noteColumn.Name = "noteColumn";
-            this.noteColumn.ReadOnly = true;
+            this.noteColumnDeckList.DataPropertyName = "note";
+            this.noteColumnDeckList.HeaderText = "note";
+            this.noteColumnDeckList.Name = "noteColumnDeckList";
+            this.noteColumnDeckList.ReadOnly = true;
             // 
-            // classColumn
+            // classColumnDeckList
             // 
-            this.classColumn.DataPropertyName = "class";
-            this.classColumn.HeaderText = "class";
-            this.classColumn.Name = "classColumn";
-            this.classColumn.ReadOnly = true;
+            this.classColumnDeckList.DataPropertyName = "class";
+            this.classColumnDeckList.HeaderText = "class";
+            this.classColumnDeckList.Name = "classColumnDeckList";
+            this.classColumnDeckList.ReadOnly = true;
             // 
-            // idColumn
+            // idColumnDeckList
             // 
-            this.idColumn.DataPropertyName = "deckListID";
-            this.idColumn.HeaderText = "id";
-            this.idColumn.Name = "idColumn";
-            this.idColumn.ReadOnly = true;
-            this.idColumn.Visible = false;
+            this.idColumnDeckList.DataPropertyName = "deckListID";
+            this.idColumnDeckList.HeaderText = "id";
+            this.idColumnDeckList.Name = "idColumnDeckList";
+            this.idColumnDeckList.ReadOnly = true;
+            this.idColumnDeckList.Visible = false;
             // 
             // Form1
             // 
@@ -582,7 +620,7 @@
             this.editDeckListsTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_deckLists)).EndInit();
             this.editArchetypesTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.archetypesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_archetypes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -623,18 +661,20 @@
         private System.Windows.Forms.Button btn_deleteDeckList;
         private DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
         private System.Windows.Forms.BindingSource archetypesBindingSource;
-        private System.Windows.Forms.DataGridView archetypesDataGridView;
-        private System.Windows.Forms.Button archetypesSave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.Button btn_addDeckList;
         private System.Windows.Forms.Button btn_editDeckList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn classColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
+        private System.Windows.Forms.Button btn_addArchetype;
+        private System.Windows.Forms.Button btn_editArchetype;
+        private System.Windows.Forms.Button btn_deleteArchetype;
+        private System.Windows.Forms.DataGridView dgv_archetypes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumnArchetype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnArchetype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn classColumnArchetype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idColumnArchetype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumnDeckList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnDeckList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn classColumnDeckList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idColumnDeckList;
     }
 }
 
