@@ -21,6 +21,7 @@ namespace DeckTracker
         {
             this.archetypesTableAdapter.Fill(this.databaseDataSet.Archetypes);
             this.deckListsTableAdapter.Fill(this.databaseDataSet.DeckLists);
+            UpdateStatistics();
         }
 
         // Record Match Results tab -------------------------------------------------------------------------------------------
@@ -55,6 +56,33 @@ namespace DeckTracker
         private void btn_recordMatch_Click(object sender, EventArgs e)
         {
             tabControl.SelectTab(0);
+        }
+
+        private void cb_statisticsArchetype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateStatistics();
+        }
+
+        private void cb_statisticsDeckList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateStatistics();
+        }
+
+        private void UpdateStatistics()
+        {
+            DataRowView deckList = (DataRowView)cb_statisticsDeckList.SelectedItem;
+            DataRowView archetype = (DataRowView)cb_statisticsArchetype.SelectedItem;
+
+            if (deckList == null || archetype == null)
+                return;
+
+            int wins = (int)matchesTableAdapter.CountWinsQuery((int)deckList["deckListID"], (int)archetype["archetypeID"]);
+            int losses = (int)matchesTableAdapter.CountLossesQuery((int)deckList["deckListID"], (int)archetype["archetypeID"]);
+
+            lbl_wins.Text = wins.ToString();
+            lbl_losses.Text = losses.ToString();
+
+            lbl_winRate.Text = ((double)wins / (losses > 0 ? losses : 1)).ToString("F2");
         }
 
         // Edit Deck Lists tab -------------------------------------------------------------------------------------------

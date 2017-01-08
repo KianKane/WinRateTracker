@@ -45,12 +45,12 @@
             this.recordMatchLabel = new System.Windows.Forms.Label();
             this.statisticsTab = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.winsAndLossesLabel = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
             this.winRateLabel = new System.Windows.Forms.Label();
             this.btn_recordMatch = new System.Windows.Forms.Button();
             this.statisticsVersusLabel = new System.Windows.Forms.Label();
-            this.statisticsArchetypeComboBox = new System.Windows.Forms.ComboBox();
-            this.statisticsDeckListComboBox = new System.Windows.Forms.ComboBox();
+            this.cb_statisticsArchetype = new System.Windows.Forms.ComboBox();
+            this.cb_statisticsDeckList = new System.Windows.Forms.ComboBox();
             this.link_statisticsToEditDeckArchetypes = new System.Windows.Forms.LinkLabel();
             this.link_statisticsToEditDeckLists = new System.Windows.Forms.LinkLabel();
             this.statisticsLabel = new System.Windows.Forms.Label();
@@ -77,6 +77,12 @@
             this.deckListsTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.DeckListsTableAdapter();
             this.tableAdapterManager = new DeckTracker.DatabaseDataSetTableAdapters.TableAdapterManager();
             this.archetypesTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
+            this.lbl_winRate = new System.Windows.Forms.Label();
+            this.lbl_losses = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_wins = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.matchesTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.MatchesTableAdapter();
             this.tabControl.SuspendLayout();
             this.recordMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).BeginInit();
@@ -245,8 +251,8 @@
             this.statisticsTab.Controls.Add(this.panel1);
             this.statisticsTab.Controls.Add(this.btn_recordMatch);
             this.statisticsTab.Controls.Add(this.statisticsVersusLabel);
-            this.statisticsTab.Controls.Add(this.statisticsArchetypeComboBox);
-            this.statisticsTab.Controls.Add(this.statisticsDeckListComboBox);
+            this.statisticsTab.Controls.Add(this.cb_statisticsArchetype);
+            this.statisticsTab.Controls.Add(this.cb_statisticsDeckList);
             this.statisticsTab.Controls.Add(this.link_statisticsToEditDeckArchetypes);
             this.statisticsTab.Controls.Add(this.link_statisticsToEditDeckLists);
             this.statisticsTab.Controls.Add(this.statisticsLabel);
@@ -261,22 +267,27 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.winsAndLossesLabel);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label);
+            this.panel1.Controls.Add(this.lbl_wins);
+            this.panel1.Controls.Add(this.lbl_losses);
+            this.panel1.Controls.Add(this.lbl_winRate);
             this.panel1.Controls.Add(this.winRateLabel);
             this.panel1.Location = new System.Drawing.Point(103, 188);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(410, 120);
             this.panel1.TabIndex = 10;
             // 
-            // winsAndLossesLabel
+            // label
             // 
-            this.winsAndLossesLabel.AutoSize = true;
-            this.winsAndLossesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.winsAndLossesLabel.Location = new System.Drawing.Point(36, 62);
-            this.winsAndLossesLabel.Name = "winsAndLossesLabel";
-            this.winsAndLossesLabel.Size = new System.Drawing.Size(353, 33);
-            this.winsAndLossesLabel.TabIndex = 0;
-            this.winsAndLossesLabel.Text = "Wins - 112 | 96 - Losses";
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(23, 62);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(104, 33);
+            this.label.TabIndex = 0;
+            this.label.Text = "Wins -";
             // 
             // winRateLabel
             // 
@@ -284,9 +295,9 @@
             this.winRateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.winRateLabel.Location = new System.Drawing.Point(94, 11);
             this.winRateLabel.Name = "winRateLabel";
-            this.winRateLabel.Size = new System.Drawing.Size(220, 33);
+            this.winRateLabel.Size = new System.Drawing.Size(151, 33);
             this.winRateLabel.TabIndex = 0;
-            this.winRateLabel.Text = "Win Rate: 1.17";
+            this.winRateLabel.Text = "Win Rate:";
             // 
             // btn_recordMatch
             // 
@@ -309,31 +320,33 @@
             this.statisticsVersusLabel.TabIndex = 8;
             this.statisticsVersusLabel.Text = "VS";
             // 
-            // statisticsArchetypeComboBox
+            // cb_statisticsArchetype
             // 
-            this.statisticsArchetypeComboBox.DataSource = this.archetypesBindingSource;
-            this.statisticsArchetypeComboBox.DisplayMember = "name";
-            this.statisticsArchetypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.statisticsArchetypeComboBox.DropDownWidth = 121;
-            this.statisticsArchetypeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statisticsArchetypeComboBox.FormattingEnabled = true;
-            this.statisticsArchetypeComboBox.Location = new System.Drawing.Point(388, 126);
-            this.statisticsArchetypeComboBox.Name = "statisticsArchetypeComboBox";
-            this.statisticsArchetypeComboBox.Size = new System.Drawing.Size(150, 24);
-            this.statisticsArchetypeComboBox.TabIndex = 6;
+            this.cb_statisticsArchetype.DataSource = this.archetypesBindingSource;
+            this.cb_statisticsArchetype.DisplayMember = "name";
+            this.cb_statisticsArchetype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_statisticsArchetype.DropDownWidth = 121;
+            this.cb_statisticsArchetype.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_statisticsArchetype.FormattingEnabled = true;
+            this.cb_statisticsArchetype.Location = new System.Drawing.Point(388, 126);
+            this.cb_statisticsArchetype.Name = "cb_statisticsArchetype";
+            this.cb_statisticsArchetype.Size = new System.Drawing.Size(150, 24);
+            this.cb_statisticsArchetype.TabIndex = 6;
+            this.cb_statisticsArchetype.SelectedIndexChanged += new System.EventHandler(this.cb_statisticsArchetype_SelectedIndexChanged);
             // 
-            // statisticsDeckListComboBox
+            // cb_statisticsDeckList
             // 
-            this.statisticsDeckListComboBox.DataSource = this.deckListsBindingSource;
-            this.statisticsDeckListComboBox.DisplayMember = "name";
-            this.statisticsDeckListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.statisticsDeckListComboBox.DropDownWidth = 121;
-            this.statisticsDeckListComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statisticsDeckListComboBox.FormattingEnabled = true;
-            this.statisticsDeckListComboBox.Location = new System.Drawing.Point(81, 126);
-            this.statisticsDeckListComboBox.Name = "statisticsDeckListComboBox";
-            this.statisticsDeckListComboBox.Size = new System.Drawing.Size(150, 24);
-            this.statisticsDeckListComboBox.TabIndex = 7;
+            this.cb_statisticsDeckList.DataSource = this.deckListsBindingSource;
+            this.cb_statisticsDeckList.DisplayMember = "name";
+            this.cb_statisticsDeckList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_statisticsDeckList.DropDownWidth = 121;
+            this.cb_statisticsDeckList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_statisticsDeckList.FormattingEnabled = true;
+            this.cb_statisticsDeckList.Location = new System.Drawing.Point(81, 126);
+            this.cb_statisticsDeckList.Name = "cb_statisticsDeckList";
+            this.cb_statisticsDeckList.Size = new System.Drawing.Size(150, 24);
+            this.cb_statisticsDeckList.TabIndex = 7;
+            this.cb_statisticsDeckList.SelectedIndexChanged += new System.EventHandler(this.cb_statisticsDeckList_SelectedIndexChanged);
             // 
             // link_statisticsToEditDeckArchetypes
             // 
@@ -603,6 +616,60 @@
             // 
             this.archetypesTableAdapter.ClearBeforeFill = true;
             // 
+            // lbl_winRate
+            // 
+            this.lbl_winRate.AutoSize = true;
+            this.lbl_winRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_winRate.Location = new System.Drawing.Point(251, 11);
+            this.lbl_winRate.Name = "lbl_winRate";
+            this.lbl_winRate.Size = new System.Drawing.Size(75, 33);
+            this.lbl_winRate.TabIndex = 0;
+            this.lbl_winRate.Text = "1.23";
+            // 
+            // lbl_losses
+            // 
+            this.lbl_losses.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_losses.Location = new System.Drawing.Point(206, 62);
+            this.lbl_losses.Name = "lbl_losses";
+            this.lbl_losses.Size = new System.Drawing.Size(75, 33);
+            this.lbl_losses.TabIndex = 0;
+            this.lbl_losses.Text = "123";
+            this.lbl_losses.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(278, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(134, 33);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "- Losses";
+            // 
+            // lbl_wins
+            // 
+            this.lbl_wins.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_wins.Location = new System.Drawing.Point(133, 62);
+            this.lbl_wins.Name = "lbl_wins";
+            this.lbl_wins.Size = new System.Drawing.Size(66, 33);
+            this.lbl_wins.TabIndex = 0;
+            this.lbl_wins.Text = "123";
+            this.lbl_wins.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(190, 62);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(24, 33);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "|";
+            // 
+            // matchesTableAdapter
+            // 
+            this.matchesTableAdapter.ClearBeforeFill = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -651,14 +718,14 @@
         private System.Windows.Forms.LinkLabel link_recordMatchToEditDeckLists;
         private System.Windows.Forms.Button btn_statistics;
         private System.Windows.Forms.Label statisticsVersusLabel;
-        private System.Windows.Forms.ComboBox statisticsArchetypeComboBox;
-        private System.Windows.Forms.ComboBox statisticsDeckListComboBox;
+        private System.Windows.Forms.ComboBox cb_statisticsArchetype;
+        private System.Windows.Forms.ComboBox cb_statisticsDeckList;
         private System.Windows.Forms.LinkLabel link_statisticsToEditDeckArchetypes;
         private System.Windows.Forms.LinkLabel link_statisticsToEditDeckLists;
         private System.Windows.Forms.Button btn_recordMatch;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label winRateLabel;
-        private System.Windows.Forms.Label winsAndLossesLabel;
+        private System.Windows.Forms.Label label;
         private DatabaseDataSet databaseDataSet;
         private System.Windows.Forms.BindingSource deckListsBindingSource;
         private DatabaseDataSetTableAdapters.DeckListsTableAdapter deckListsTableAdapter;
@@ -681,6 +748,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnDeckList;
         private System.Windows.Forms.DataGridViewTextBoxColumn classColumnDeckList;
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumnDeckList;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl_wins;
+        private System.Windows.Forms.Label lbl_losses;
+        private System.Windows.Forms.Label lbl_winRate;
+        private DatabaseDataSetTableAdapters.MatchesTableAdapter matchesTableAdapter;
     }
 }
 
