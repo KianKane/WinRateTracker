@@ -23,6 +23,40 @@ namespace DeckTracker
             this.deckListsTableAdapter.Fill(this.databaseDataSet.DeckLists);
         }
 
+        // Record Match Results tab -------------------------------------------------------------------------------------------
+
+        private void link_recordMatchToEditDeckLists_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tabControl.SelectTab(2);
+        }
+
+        private void link_recordMatchToEditDeckArchetypes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tabControl.SelectTab(3);
+        }
+
+        private void btn_statistics_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(1);
+        }
+
+        // Statistics tab ----------------------------------------------------------------------------------------------------
+
+        private void link_statisticsToEditDeckLists_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tabControl.SelectTab(2);
+        }
+
+        private void link_statisticsToEditDeckArchetypes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tabControl.SelectTab(3);
+        }
+
+        private void btn_recordMatch_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(0);
+        }
+
         // Edit Deck Lists tab -------------------------------------------------------------------------------------------
 
         private void btn_addDeckList_Click(object sender, EventArgs e)
