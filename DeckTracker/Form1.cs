@@ -41,6 +41,42 @@ namespace DeckTracker
             tabControl.SelectTab(1);
         }
 
+        private void btn_victory_Click(object sender, EventArgs e)
+        {
+            RecordMatch(true);
+        }
+
+        private void btn_defeat_Click(object sender, EventArgs e)
+        {
+            RecordMatch(false);
+        }
+
+        private void RecordMatch(bool victory)
+        {
+            DataRowView deckList = (DataRowView)cb_matchDeckList.SelectedItem;
+            DataRowView archetype = (DataRowView)cb_matchArchetype.SelectedItem;
+
+            if (deckList == null)
+            {
+                MessageBox.Show("Please select a Deck List", "No Deck List Selected");
+                return;
+            }
+            if (archetype == null)
+            {
+                MessageBox.Show("Please select an Archetype", "No Archetype Selected");
+                return;
+            }
+
+            if (MessageBox.Show("Are you sure you want to record this result?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                matchesTableAdapter.RecordMatchQuery((int)deckList["deckListID"], (int)archetype["archetypeID"], victory);
+                matchesTableAdapter.Fill(databaseDataSet.Matches);
+                databaseDataSet.AcceptChanges();
+
+                UpdateStatistics();
+            }
+        }
+
         // Statistics tab ----------------------------------------------------------------------------------------------------
 
         private void link_statisticsToEditDeckLists_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

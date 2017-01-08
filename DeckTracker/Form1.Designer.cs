@@ -32,20 +32,25 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.recordMatchTab = new System.Windows.Forms.TabPage();
             this.btn_statistics = new System.Windows.Forms.Button();
-            this.defeatButton = new System.Windows.Forms.Button();
-            this.victoryButton = new System.Windows.Forms.Button();
+            this.btn_defeat = new System.Windows.Forms.Button();
+            this.btn_victory = new System.Windows.Forms.Button();
             this.matchVersusLabel = new System.Windows.Forms.Label();
-            this.matchArchetypeComboBox = new System.Windows.Forms.ComboBox();
+            this.cb_matchArchetype = new System.Windows.Forms.ComboBox();
             this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet = new DeckTracker.DatabaseDataSet();
-            this.matchDeckListComboBox = new System.Windows.Forms.ComboBox();
+            this.cb_matchDeckList = new System.Windows.Forms.ComboBox();
             this.deckListsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.link_recordMatchToEditDeckArchetypes = new System.Windows.Forms.LinkLabel();
             this.link_recordMatchToEditDeckLists = new System.Windows.Forms.LinkLabel();
             this.recordMatchLabel = new System.Windows.Forms.Label();
             this.statisticsTab = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
+            this.lbl_wins = new System.Windows.Forms.Label();
+            this.lbl_losses = new System.Windows.Forms.Label();
+            this.lbl_winRate = new System.Windows.Forms.Label();
             this.winRateLabel = new System.Windows.Forms.Label();
             this.btn_recordMatch = new System.Windows.Forms.Button();
             this.statisticsVersusLabel = new System.Windows.Forms.Label();
@@ -77,11 +82,6 @@
             this.deckListsTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.DeckListsTableAdapter();
             this.tableAdapterManager = new DeckTracker.DatabaseDataSetTableAdapters.TableAdapterManager();
             this.archetypesTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
-            this.lbl_winRate = new System.Windows.Forms.Label();
-            this.lbl_losses = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lbl_wins = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.matchesTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.MatchesTableAdapter();
             this.tabControl.SuspendLayout();
             this.recordMatchTab.SuspendLayout();
@@ -114,11 +114,11 @@
             // recordMatchTab
             // 
             this.recordMatchTab.Controls.Add(this.btn_statistics);
-            this.recordMatchTab.Controls.Add(this.defeatButton);
-            this.recordMatchTab.Controls.Add(this.victoryButton);
+            this.recordMatchTab.Controls.Add(this.btn_defeat);
+            this.recordMatchTab.Controls.Add(this.btn_victory);
             this.recordMatchTab.Controls.Add(this.matchVersusLabel);
-            this.recordMatchTab.Controls.Add(this.matchArchetypeComboBox);
-            this.recordMatchTab.Controls.Add(this.matchDeckListComboBox);
+            this.recordMatchTab.Controls.Add(this.cb_matchArchetype);
+            this.recordMatchTab.Controls.Add(this.cb_matchDeckList);
             this.recordMatchTab.Controls.Add(this.link_recordMatchToEditDeckArchetypes);
             this.recordMatchTab.Controls.Add(this.link_recordMatchToEditDeckLists);
             this.recordMatchTab.Controls.Add(this.recordMatchLabel);
@@ -141,25 +141,27 @@
             this.btn_statistics.UseVisualStyleBackColor = true;
             this.btn_statistics.Click += new System.EventHandler(this.btn_statistics_Click);
             // 
-            // defeatButton
+            // btn_defeat
             // 
-            this.defeatButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.defeatButton.Location = new System.Drawing.Point(337, 245);
-            this.defeatButton.Name = "defeatButton";
-            this.defeatButton.Size = new System.Drawing.Size(240, 50);
-            this.defeatButton.TabIndex = 4;
-            this.defeatButton.Text = "Defeat";
-            this.defeatButton.UseVisualStyleBackColor = true;
+            this.btn_defeat.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_defeat.Location = new System.Drawing.Point(337, 245);
+            this.btn_defeat.Name = "btn_defeat";
+            this.btn_defeat.Size = new System.Drawing.Size(240, 50);
+            this.btn_defeat.TabIndex = 4;
+            this.btn_defeat.Text = "Defeat";
+            this.btn_defeat.UseVisualStyleBackColor = true;
+            this.btn_defeat.Click += new System.EventHandler(this.btn_defeat_Click);
             // 
-            // victoryButton
+            // btn_victory
             // 
-            this.victoryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.victoryButton.Location = new System.Drawing.Point(40, 245);
-            this.victoryButton.Name = "victoryButton";
-            this.victoryButton.Size = new System.Drawing.Size(240, 50);
-            this.victoryButton.TabIndex = 4;
-            this.victoryButton.Text = "Victory";
-            this.victoryButton.UseVisualStyleBackColor = true;
+            this.btn_victory.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_victory.Location = new System.Drawing.Point(40, 245);
+            this.btn_victory.Name = "btn_victory";
+            this.btn_victory.Size = new System.Drawing.Size(240, 50);
+            this.btn_victory.TabIndex = 4;
+            this.btn_victory.Text = "Victory";
+            this.btn_victory.UseVisualStyleBackColor = true;
+            this.btn_victory.Click += new System.EventHandler(this.btn_victory_Click);
             // 
             // matchVersusLabel
             // 
@@ -171,18 +173,18 @@
             this.matchVersusLabel.TabIndex = 3;
             this.matchVersusLabel.Text = "VS";
             // 
-            // matchArchetypeComboBox
+            // cb_matchArchetype
             // 
-            this.matchArchetypeComboBox.DataSource = this.archetypesBindingSource;
-            this.matchArchetypeComboBox.DisplayMember = "name";
-            this.matchArchetypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.matchArchetypeComboBox.DropDownWidth = 121;
-            this.matchArchetypeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.matchArchetypeComboBox.FormattingEnabled = true;
-            this.matchArchetypeComboBox.Location = new System.Drawing.Point(388, 126);
-            this.matchArchetypeComboBox.Name = "matchArchetypeComboBox";
-            this.matchArchetypeComboBox.Size = new System.Drawing.Size(150, 24);
-            this.matchArchetypeComboBox.TabIndex = 2;
+            this.cb_matchArchetype.DataSource = this.archetypesBindingSource;
+            this.cb_matchArchetype.DisplayMember = "name";
+            this.cb_matchArchetype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_matchArchetype.DropDownWidth = 121;
+            this.cb_matchArchetype.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_matchArchetype.FormattingEnabled = true;
+            this.cb_matchArchetype.Location = new System.Drawing.Point(388, 126);
+            this.cb_matchArchetype.Name = "cb_matchArchetype";
+            this.cb_matchArchetype.Size = new System.Drawing.Size(150, 24);
+            this.cb_matchArchetype.TabIndex = 2;
             // 
             // archetypesBindingSource
             // 
@@ -194,18 +196,18 @@
             this.databaseDataSet.DataSetName = "DatabaseDataSet";
             this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // matchDeckListComboBox
+            // cb_matchDeckList
             // 
-            this.matchDeckListComboBox.DataSource = this.deckListsBindingSource;
-            this.matchDeckListComboBox.DisplayMember = "name";
-            this.matchDeckListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.matchDeckListComboBox.DropDownWidth = 121;
-            this.matchDeckListComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.matchDeckListComboBox.FormattingEnabled = true;
-            this.matchDeckListComboBox.Location = new System.Drawing.Point(81, 126);
-            this.matchDeckListComboBox.Name = "matchDeckListComboBox";
-            this.matchDeckListComboBox.Size = new System.Drawing.Size(150, 24);
-            this.matchDeckListComboBox.TabIndex = 2;
+            this.cb_matchDeckList.DataSource = this.deckListsBindingSource;
+            this.cb_matchDeckList.DisplayMember = "name";
+            this.cb_matchDeckList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_matchDeckList.DropDownWidth = 121;
+            this.cb_matchDeckList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_matchDeckList.FormattingEnabled = true;
+            this.cb_matchDeckList.Location = new System.Drawing.Point(81, 126);
+            this.cb_matchDeckList.Name = "cb_matchDeckList";
+            this.cb_matchDeckList.Size = new System.Drawing.Size(150, 24);
+            this.cb_matchDeckList.TabIndex = 2;
             // 
             // deckListsBindingSource
             // 
@@ -279,6 +281,26 @@
             this.panel1.Size = new System.Drawing.Size(410, 120);
             this.panel1.TabIndex = 10;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(278, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(134, 33);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "- Losses";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(190, 62);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(24, 33);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "|";
+            // 
             // label
             // 
             this.label.AutoSize = true;
@@ -288,6 +310,36 @@
             this.label.Size = new System.Drawing.Size(104, 33);
             this.label.TabIndex = 0;
             this.label.Text = "Wins -";
+            // 
+            // lbl_wins
+            // 
+            this.lbl_wins.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_wins.Location = new System.Drawing.Point(133, 62);
+            this.lbl_wins.Name = "lbl_wins";
+            this.lbl_wins.Size = new System.Drawing.Size(66, 33);
+            this.lbl_wins.TabIndex = 0;
+            this.lbl_wins.Text = "123";
+            this.lbl_wins.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lbl_losses
+            // 
+            this.lbl_losses.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_losses.Location = new System.Drawing.Point(206, 62);
+            this.lbl_losses.Name = "lbl_losses";
+            this.lbl_losses.Size = new System.Drawing.Size(75, 33);
+            this.lbl_losses.TabIndex = 0;
+            this.lbl_losses.Text = "123";
+            this.lbl_losses.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lbl_winRate
+            // 
+            this.lbl_winRate.AutoSize = true;
+            this.lbl_winRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_winRate.Location = new System.Drawing.Point(251, 11);
+            this.lbl_winRate.Name = "lbl_winRate";
+            this.lbl_winRate.Size = new System.Drawing.Size(75, 33);
+            this.lbl_winRate.TabIndex = 0;
+            this.lbl_winRate.Text = "1.23";
             // 
             // winRateLabel
             // 
@@ -616,56 +668,6 @@
             // 
             this.archetypesTableAdapter.ClearBeforeFill = true;
             // 
-            // lbl_winRate
-            // 
-            this.lbl_winRate.AutoSize = true;
-            this.lbl_winRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_winRate.Location = new System.Drawing.Point(251, 11);
-            this.lbl_winRate.Name = "lbl_winRate";
-            this.lbl_winRate.Size = new System.Drawing.Size(75, 33);
-            this.lbl_winRate.TabIndex = 0;
-            this.lbl_winRate.Text = "1.23";
-            // 
-            // lbl_losses
-            // 
-            this.lbl_losses.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_losses.Location = new System.Drawing.Point(206, 62);
-            this.lbl_losses.Name = "lbl_losses";
-            this.lbl_losses.Size = new System.Drawing.Size(75, 33);
-            this.lbl_losses.TabIndex = 0;
-            this.lbl_losses.Text = "123";
-            this.lbl_losses.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(278, 62);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(134, 33);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "- Losses";
-            // 
-            // lbl_wins
-            // 
-            this.lbl_wins.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_wins.Location = new System.Drawing.Point(133, 62);
-            this.lbl_wins.Name = "lbl_wins";
-            this.lbl_wins.Size = new System.Drawing.Size(66, 33);
-            this.lbl_wins.TabIndex = 0;
-            this.lbl_wins.Text = "123";
-            this.lbl_wins.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(190, 62);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(24, 33);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "|";
-            // 
             // matchesTableAdapter
             // 
             this.matchesTableAdapter.ClearBeforeFill = true;
@@ -709,11 +711,11 @@
         private System.Windows.Forms.Label statisticsLabel;
         private System.Windows.Forms.Label editDeckListsLabel;
         private System.Windows.Forms.Label editArchetypesLabel;
-        private System.Windows.Forms.Button defeatButton;
-        private System.Windows.Forms.Button victoryButton;
+        private System.Windows.Forms.Button btn_defeat;
+        private System.Windows.Forms.Button btn_victory;
         private System.Windows.Forms.Label matchVersusLabel;
-        private System.Windows.Forms.ComboBox matchArchetypeComboBox;
-        private System.Windows.Forms.ComboBox matchDeckListComboBox;
+        private System.Windows.Forms.ComboBox cb_matchArchetype;
+        private System.Windows.Forms.ComboBox cb_matchDeckList;
         private System.Windows.Forms.LinkLabel link_recordMatchToEditDeckArchetypes;
         private System.Windows.Forms.LinkLabel link_recordMatchToEditDeckLists;
         private System.Windows.Forms.Button btn_statistics;
