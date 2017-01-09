@@ -1822,7 +1822,8 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM Archetypes WHERE archetypeID= @id";
+            this._commandCollection[1].CommandText = "DELETE FROM Matches WHERE archetypeID = @id;\r\nDELETE FROM Archetypes WHERE archet" +
+                "ypeID = @id;";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
@@ -2335,7 +2336,8 @@ SELECT deckListID, name, note, class FROM DeckLists WHERE (deckListID = @deckLis
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM DeckLists WHERE deckListID = @id";
+            this._commandCollection[1].CommandText = "DELETE FROM Matches WHERE deckListID = @id;\r\nDELETE FROM DeckLists WHERE deckList" +
+                "ID = @id;";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();

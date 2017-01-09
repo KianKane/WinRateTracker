@@ -160,11 +160,14 @@ namespace DeckTracker
             if (dgv_deckLists.CurrentRow == null)
                 return;
 
-            int id = (int)dgv_deckLists.CurrentRow.Cells["idColumnDeckList"].Value;
+            if (MessageBox.Show("Deleting this deck list will also delete all associated match information.  Are you sure you want to continue?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int id = (int)dgv_deckLists.CurrentRow.Cells["idColumnDeckList"].Value;
 
-            deckListsTableAdapter.DeleteQuery(id);
-            deckListsTableAdapter.Fill(databaseDataSet.DeckLists);
-            databaseDataSet.AcceptChanges();
+                deckListsTableAdapter.DeleteQuery(id);
+                deckListsTableAdapter.Fill(databaseDataSet.DeckLists);
+                databaseDataSet.AcceptChanges();
+            }
         }
 
         // Edit Archetypes tab -------------------------------------------------------------------------------------------
@@ -209,11 +212,14 @@ namespace DeckTracker
             if (dgv_archetypes.CurrentRow == null)
                 return;
 
-            int id = (int)dgv_archetypes.CurrentRow.Cells["idColumnArchetype"].Value;
+            if (MessageBox.Show("Deleting this archetype will also delete all associated match information.  Are you sure you want to continue?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int id = (int)dgv_archetypes.CurrentRow.Cells["idColumnArchetype"].Value;
 
-            archetypesTableAdapter.DeleteQuery(id);
-            archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
-            databaseDataSet.AcceptChanges();
+                archetypesTableAdapter.DeleteQuery(id);
+                archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
+                databaseDataSet.AcceptChanges();
+            }
         }
     }
 }
