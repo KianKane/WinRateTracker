@@ -679,6 +679,7 @@
             this.ClientSize = new System.Drawing.Size(624, 442);
             this.Controls.Add(this.tabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Deck Tracker";
             this.Load += new System.EventHandler(this.Form1_Load);
