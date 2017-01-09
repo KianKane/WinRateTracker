@@ -110,7 +110,12 @@ namespace DeckTracker
             DataRowView archetype = (DataRowView)cb_statisticsArchetype.SelectedItem;
 
             if (deckList == null || archetype == null)
+            {
+                lbl_wins.Text = "0";
+                lbl_losses.Text = "0";
+                lbl_winRate.Text = "0.00";
                 return;
+            }
 
             int wins = (int)matchesTableAdapter.CountWinsQuery((int)deckList["deckListID"], (int)archetype["archetypeID"]);
             int losses = (int)matchesTableAdapter.CountLossesQuery((int)deckList["deckListID"], (int)archetype["archetypeID"]);
