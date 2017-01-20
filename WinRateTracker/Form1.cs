@@ -26,12 +26,12 @@ namespace DeckTracker
 
         // Record Match Results tab -------------------------------------------------------------------------------------------
 
-        private void link_recordMatchToEditDeckLists_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void link_recordMatchToEditBuilds_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             tabControl.SelectTab(2);
         }
 
-        private void link_recordMatchToEditDeckArchetypes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void link_recordMatchToEditArchetypes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             tabControl.SelectTab(3);
         }
@@ -53,7 +53,7 @@ namespace DeckTracker
 
         private void RecordMatch(bool victory)
         {
-            DataRowView deckList = (DataRowView)cb_matchDeckList.SelectedItem;
+            DataRowView deckList = (DataRowView)cb_matchBuild.SelectedItem;
             DataRowView archetype = (DataRowView)cb_matchArchetype.SelectedItem;
 
             if (deckList == null)
@@ -79,12 +79,12 @@ namespace DeckTracker
 
         // Statistics tab ----------------------------------------------------------------------------------------------------
 
-        private void link_statisticsToEditDeckLists_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void link_statisticsToEditBuilds_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             tabControl.SelectTab(2);
         }
 
-        private void link_statisticsToEditDeckArchetypes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void link_statisticsToEditArchetypes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             tabControl.SelectTab(3);
         }
@@ -99,14 +99,14 @@ namespace DeckTracker
             UpdateStatistics();
         }
 
-        private void cb_statisticsDeckList_SelectedIndexChanged(object sender, EventArgs e)
+        private void cb_statisticsBuild_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateStatistics();
         }
 
         private void UpdateStatistics()
         {
-            DataRowView deckList = (DataRowView)cb_statisticsDeckList.SelectedItem;
+            DataRowView deckList = (DataRowView)cb_statisticsBuild.SelectedItem;
             DataRowView archetype = (DataRowView)cb_statisticsArchetype.SelectedItem;
 
             if (deckList == null || archetype == null)
@@ -128,7 +128,7 @@ namespace DeckTracker
 
         // Edit Deck Lists tab -------------------------------------------------------------------------------------------
 
-        private void btn_addDeckList_Click(object sender, EventArgs e)
+        private void btn_addBuild_Click(object sender, EventArgs e)
         {
             DeckListDialog dialog = new DeckListDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -139,18 +139,18 @@ namespace DeckTracker
             }
         }
 
-        private void btn_editDeckList_Click(object sender, EventArgs e)
+        private void btn_editBuild_Click(object sender, EventArgs e)
         {
-            if (dgv_deckLists.CurrentRow == null)
+            if (dgv_builds.CurrentRow == null)
                 return;
 
-            int id = (int)dgv_deckLists.CurrentRow.Cells["idColumnDeckList"].Value;
+            int id = (int)dgv_builds.CurrentRow.Cells["idColumnDeckList"].Value;
 
             DeckListDialog dialog = new DeckListDialog();
-            dialog.tb_name.Text = (string)dgv_deckLists.CurrentRow.Cells["nameColumnDeckList"].Value;
-            dialog.cb_class.Text = (string)dgv_deckLists.CurrentRow.Cells["classColumnDeckList"].Value;
-            if (!Convert.IsDBNull(dgv_deckLists.CurrentRow.Cells["noteColumnDeckList"].Value))
-                dialog.tb_note.Text = (string)dgv_deckLists.CurrentRow.Cells["noteColumnDeckList"].Value;
+            dialog.tb_name.Text = (string)dgv_builds.CurrentRow.Cells["nameColumnDeckList"].Value;
+            dialog.cb_class.Text = (string)dgv_builds.CurrentRow.Cells["classColumnDeckList"].Value;
+            if (!Convert.IsDBNull(dgv_builds.CurrentRow.Cells["noteColumnDeckList"].Value))
+                dialog.tb_note.Text = (string)dgv_builds.CurrentRow.Cells["noteColumnDeckList"].Value;
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -160,14 +160,14 @@ namespace DeckTracker
             }
         }
 
-        private void btn_deleteDeckList_Click(object sender, EventArgs e)
+        private void btn_deleteBuild_Click(object sender, EventArgs e)
         {
-            if (dgv_deckLists.CurrentRow == null)
+            if (dgv_builds.CurrentRow == null)
                 return;
 
             if (MessageBox.Show("Deleting this deck list will also delete all associated match information.  Are you sure you want to continue?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                int id = (int)dgv_deckLists.CurrentRow.Cells["idColumnDeckList"].Value;
+                int id = (int)dgv_builds.CurrentRow.Cells["idColumnDeckList"].Value;
 
                 deckListsTableAdapter.DeleteQuery(id);
                 deckListsTableAdapter.Fill(databaseDataSet.DeckLists);
