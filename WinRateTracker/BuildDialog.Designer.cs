@@ -1,6 +1,6 @@
 ﻿namespace DeckTracker
 {
-    partial class DeckListDialog
+    partial class BuildDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -137,7 +137,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "DeckListDialog";
-            this.Text = "Build Dialog";
+            this.Text = "Deck List Dialog";
             this.ResumeLayout(false);
             this.PerformLayout();
 

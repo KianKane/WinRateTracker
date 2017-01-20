@@ -218,12 +218,12 @@
             // 
             this.link_recordMatchToEditDeckArchetypes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.link_recordMatchToEditDeckArchetypes.AutoSize = true;
-            this.link_recordMatchToEditDeckArchetypes.Location = new System.Drawing.Point(428, 110);
+            this.link_recordMatchToEditDeckArchetypes.Location = new System.Drawing.Point(457, 110);
             this.link_recordMatchToEditDeckArchetypes.Name = "link_recordMatchToEditDeckArchetypes";
-            this.link_recordMatchToEditDeckArchetypes.Size = new System.Drawing.Size(110, 13);
+            this.link_recordMatchToEditDeckArchetypes.Size = new System.Drawing.Size(81, 13);
             this.link_recordMatchToEditDeckArchetypes.TabIndex = 1;
             this.link_recordMatchToEditDeckArchetypes.TabStop = true;
-            this.link_recordMatchToEditDeckArchetypes.Text = "Edit Deck Archetypes";
+            this.link_recordMatchToEditDeckArchetypes.Text = "Edit Archetypes";
             this.link_recordMatchToEditDeckArchetypes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_recordMatchToEditDeckArchetypes_LinkClicked);
             // 
             // link_recordMatchToEditDeckLists
@@ -231,10 +231,10 @@
             this.link_recordMatchToEditDeckLists.AutoSize = true;
             this.link_recordMatchToEditDeckLists.Location = new System.Drawing.Point(78, 110);
             this.link_recordMatchToEditDeckLists.Name = "link_recordMatchToEditDeckLists";
-            this.link_recordMatchToEditDeckLists.Size = new System.Drawing.Size(78, 13);
+            this.link_recordMatchToEditDeckLists.Size = new System.Drawing.Size(73, 13);
             this.link_recordMatchToEditDeckLists.TabIndex = 1;
             this.link_recordMatchToEditDeckLists.TabStop = true;
-            this.link_recordMatchToEditDeckLists.Text = "Edit Deck Lists";
+            this.link_recordMatchToEditDeckLists.Text = "Edit My Builds";
             this.link_recordMatchToEditDeckLists.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_recordMatchToEditDeckLists_LinkClicked);
             // 
             // recordMatchLabel
@@ -404,12 +404,12 @@
             // 
             this.link_statisticsToEditDeckArchetypes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.link_statisticsToEditDeckArchetypes.AutoSize = true;
-            this.link_statisticsToEditDeckArchetypes.Location = new System.Drawing.Point(428, 110);
+            this.link_statisticsToEditDeckArchetypes.Location = new System.Drawing.Point(457, 110);
             this.link_statisticsToEditDeckArchetypes.Name = "link_statisticsToEditDeckArchetypes";
-            this.link_statisticsToEditDeckArchetypes.Size = new System.Drawing.Size(110, 13);
+            this.link_statisticsToEditDeckArchetypes.Size = new System.Drawing.Size(81, 13);
             this.link_statisticsToEditDeckArchetypes.TabIndex = 4;
             this.link_statisticsToEditDeckArchetypes.TabStop = true;
-            this.link_statisticsToEditDeckArchetypes.Text = "Edit Deck Archetypes";
+            this.link_statisticsToEditDeckArchetypes.Text = "Edit Archetypes";
             this.link_statisticsToEditDeckArchetypes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_statisticsToEditDeckArchetypes_LinkClicked);
             // 
             // link_statisticsToEditDeckLists
@@ -417,10 +417,10 @@
             this.link_statisticsToEditDeckLists.AutoSize = true;
             this.link_statisticsToEditDeckLists.Location = new System.Drawing.Point(78, 110);
             this.link_statisticsToEditDeckLists.Name = "link_statisticsToEditDeckLists";
-            this.link_statisticsToEditDeckLists.Size = new System.Drawing.Size(78, 13);
+            this.link_statisticsToEditDeckLists.Size = new System.Drawing.Size(73, 13);
             this.link_statisticsToEditDeckLists.TabIndex = 5;
             this.link_statisticsToEditDeckLists.TabStop = true;
-            this.link_statisticsToEditDeckLists.Text = "Edit Deck Lists";
+            this.link_statisticsToEditDeckLists.Text = "Edit My Builds";
             this.link_statisticsToEditDeckLists.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_statisticsToEditDeckLists_LinkClicked);
             // 
             // statisticsLabel
@@ -446,7 +446,7 @@
             this.editDeckListsTab.Name = "editDeckListsTab";
             this.editDeckListsTab.Size = new System.Drawing.Size(616, 409);
             this.editDeckListsTab.TabIndex = 2;
-            this.editDeckListsTab.Text = "Edit Deck Lists";
+            this.editDeckListsTab.Text = "Edit My Builds";
             this.editDeckListsTab.UseVisualStyleBackColor = true;
             // 
             // btn_addDeckList
@@ -455,7 +455,7 @@
             this.btn_addDeckList.Name = "btn_addDeckList";
             this.btn_addDeckList.Size = new System.Drawing.Size(120, 23);
             this.btn_addDeckList.TabIndex = 1;
-            this.btn_addDeckList.Text = "Add Deck List";
+            this.btn_addDeckList.Text = "Add New Build";
             this.btn_addDeckList.UseVisualStyleBackColor = true;
             this.btn_addDeckList.Click += new System.EventHandler(this.btn_addDeckList_Click);
             // 
@@ -540,7 +540,7 @@
             this.editDeckListsLabel.Name = "editDeckListsLabel";
             this.editDeckListsLabel.Size = new System.Drawing.Size(616, 60);
             this.editDeckListsLabel.TabIndex = 1;
-            this.editDeckListsLabel.Text = "Edit Deck Lists";
+            this.editDeckListsLabel.Text = "Edit My Builds";
             this.editDeckListsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // editArchetypesTab
