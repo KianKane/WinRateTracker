@@ -61,41 +61,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseDataSet.cs">
+    <Compile Include="Database\DatabaseDataSet.cs">
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseDataSet.Designer.cs">
+    <Compile Include="Database\DatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ArchetypeDialog.cs">
+    <Compile Include="Dialogs\ArchetypeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ArchetypeDialog.Designer.cs">
+    <Compile Include="Dialogs\ArchetypeDialog.Designer.cs">
       <DependentUpon>ArchetypeDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="BuildDialog.cs">
+    <Compile Include="Dialogs\BuildDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BuildDialog.Designer.cs">
+    <Compile Include="Dialogs\BuildDialog.Designer.cs">
       <DependentUpon>BuildDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Form1\EditArchetypesTab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Form1\EditMyBuildsTab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ArchetypeDialog.resx">
+    <Compile Include="Form1\RecordMatchTab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1\StatisticsTab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Dialogs\ArchetypeDialog.resx">
       <DependentUpon>ArchetypeDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BuildDialog.resx">
+    <EmbeddedResource Include="Dialogs\BuildDialog.resx">
       <DependentUpon>BuildDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Form1\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -107,15 +119,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="DatabaseDataSet.xsc">
+    <None Include="Database\DatabaseDataSet.xsc">
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DatabaseDataSet.xsd">
+    <None Include="Database\DatabaseDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DatabaseDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DatabaseDataSet.xss">
+    <None Include="Database\DatabaseDataSet.xss">
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
@@ -132,10 +144,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database.mdf">
+    <Content Include="Database\Database.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Database_log.ldf">
+    <Content Include="Database\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -152,6 +164,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

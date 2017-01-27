@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace DeckTracker {
+namespace DeckTracker.Database {
     
     
     /// <summary>
@@ -1641,7 +1641,7 @@ namespace DeckTracker {
         }
     }
 }
-namespace DeckTracker.DatabaseDataSetTableAdapters {
+namespace DeckTracker.Database.DatabaseDataSetTableAdapters {
     
     
     /// <summary>

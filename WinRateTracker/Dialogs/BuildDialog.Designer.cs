@@ -34,12 +34,12 @@
             this.tb_note = new System.Windows.Forms.TextBox();
             this.cb_archetype = new System.Windows.Forms.ComboBox();
             this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new DeckTracker.DatabaseDataSet();
+            this.databaseDataSet = new DeckTracker.Database.DatabaseDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_confirm = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.archetypesTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
+            this.archetypesTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             this.SuspendLayout();
@@ -169,8 +169,8 @@
         public System.Windows.Forms.TextBox tb_name;
         public System.Windows.Forms.TextBox tb_note;
         public System.Windows.Forms.ComboBox cb_archetype;
-        private DatabaseDataSet databaseDataSet;
+        private Database.DatabaseDataSet databaseDataSet;
         private System.Windows.Forms.BindingSource archetypesBindingSource;
-        private DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
+        private Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
     }
 }
