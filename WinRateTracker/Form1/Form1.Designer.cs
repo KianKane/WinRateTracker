@@ -74,13 +74,13 @@
             this.buildsTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.BuildsTableAdapter();
             this.archetypesTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
             this.matchesTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.MatchesTableAdapter();
-            this.nameColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.archetypeColumnBuild = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.noteColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.recordMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).BeginInit();
@@ -607,30 +607,6 @@
             // 
             this.matchesTableAdapter.ClearBeforeFill = true;
             // 
-            // nameColumnArchetype
-            // 
-            this.nameColumnArchetype.DataPropertyName = "name";
-            this.nameColumnArchetype.FillWeight = 25F;
-            this.nameColumnArchetype.HeaderText = "name";
-            this.nameColumnArchetype.Name = "nameColumnArchetype";
-            this.nameColumnArchetype.ReadOnly = true;
-            // 
-            // noteColumnArchetype
-            // 
-            this.noteColumnArchetype.DataPropertyName = "note";
-            this.noteColumnArchetype.FillWeight = 75F;
-            this.noteColumnArchetype.HeaderText = "note";
-            this.noteColumnArchetype.Name = "noteColumnArchetype";
-            this.noteColumnArchetype.ReadOnly = true;
-            // 
-            // idColumnArchetype
-            // 
-            this.idColumnArchetype.DataPropertyName = "archetypeID";
-            this.idColumnArchetype.HeaderText = "archetypeID";
-            this.idColumnArchetype.Name = "idColumnArchetype";
-            this.idColumnArchetype.ReadOnly = true;
-            this.idColumnArchetype.Visible = false;
-            // 
             // nameColumnBuild
             // 
             this.nameColumnBuild.DataPropertyName = "name";
@@ -638,6 +614,7 @@
             this.nameColumnBuild.HeaderText = "name";
             this.nameColumnBuild.Name = "nameColumnBuild";
             this.nameColumnBuild.ReadOnly = true;
+            this.nameColumnBuild.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // archetypeColumnBuild
             // 
@@ -650,7 +627,6 @@
             this.archetypeColumnBuild.Name = "archetypeColumnBuild";
             this.archetypeColumnBuild.ReadOnly = true;
             this.archetypeColumnBuild.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.archetypeColumnBuild.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.archetypeColumnBuild.ValueMember = "archetypeID";
             // 
             // noteColumnBuild
@@ -660,6 +636,7 @@
             this.noteColumnBuild.HeaderText = "note";
             this.noteColumnBuild.Name = "noteColumnBuild";
             this.noteColumnBuild.ReadOnly = true;
+            this.noteColumnBuild.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // idColumnBuild
             // 
@@ -667,7 +644,35 @@
             this.idColumnBuild.HeaderText = "buildID";
             this.idColumnBuild.Name = "idColumnBuild";
             this.idColumnBuild.ReadOnly = true;
+            this.idColumnBuild.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.idColumnBuild.Visible = false;
+            // 
+            // nameColumnArchetype
+            // 
+            this.nameColumnArchetype.DataPropertyName = "name";
+            this.nameColumnArchetype.FillWeight = 25F;
+            this.nameColumnArchetype.HeaderText = "name";
+            this.nameColumnArchetype.Name = "nameColumnArchetype";
+            this.nameColumnArchetype.ReadOnly = true;
+            this.nameColumnArchetype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // noteColumnArchetype
+            // 
+            this.noteColumnArchetype.DataPropertyName = "note";
+            this.noteColumnArchetype.FillWeight = 75F;
+            this.noteColumnArchetype.HeaderText = "note";
+            this.noteColumnArchetype.Name = "noteColumnArchetype";
+            this.noteColumnArchetype.ReadOnly = true;
+            this.noteColumnArchetype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // idColumnArchetype
+            // 
+            this.idColumnArchetype.DataPropertyName = "archetypeID";
+            this.idColumnArchetype.HeaderText = "archetypeID";
+            this.idColumnArchetype.Name = "idColumnArchetype";
+            this.idColumnArchetype.ReadOnly = true;
+            this.idColumnArchetype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.idColumnArchetype.Visible = false;
             // 
             // Form1
             // 
@@ -745,13 +750,13 @@
         private System.Windows.Forms.BindingSource archetypesBindingSource;
         private Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
         private Database.DatabaseDataSetTableAdapters.MatchesTableAdapter matchesTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumnArchetype;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnArchetype;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idColumnArchetype;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumnBuild;
         private System.Windows.Forms.DataGridViewComboBoxColumn archetypeColumnBuild;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnBuild;
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumnBuild;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumnArchetype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnArchetype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idColumnArchetype;
     }
 }
 
