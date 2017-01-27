@@ -12,6 +12,12 @@ namespace DeckTracker
         // Add
         private void btn_addBuild_Click(object sender, EventArgs e)
         {
+            if (archetypesBindingSource.Count == 0)
+            {
+                MessageBox.Show("You need to add at least one archetype before you can create a build.");
+                return;
+            }
+
             BuildDialog dialog = new BuildDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
