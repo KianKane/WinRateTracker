@@ -28,6 +28,25 @@ namespace DeckTracker
             this.buildsTableAdapter.Fill(this.databaseDataSet.Builds);
             this.archetypesTableAdapter.Fill(this.databaseDataSet.Archetypes);
             this.buildsTableAdapter.Fill(this.databaseDataSet.Builds);
+
+            if (archetypesBindingSource.Count == 0)
+            {
+                if (MessageBox.Show("Would you like to set up classes for Hearthstone?", "Setup Archetypes", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    archetypesTableAdapter.InsertQuery("Mage", null);
+                    archetypesTableAdapter.InsertQuery("Hunter", null);
+                    archetypesTableAdapter.InsertQuery("Paladin", null);
+                    archetypesTableAdapter.InsertQuery("Warrior", null);
+                    archetypesTableAdapter.InsertQuery("Druid", null);
+                    archetypesTableAdapter.InsertQuery("Warlock", null);
+                    archetypesTableAdapter.InsertQuery("Shaman", null);
+                    archetypesTableAdapter.InsertQuery("Priest", null);
+                    archetypesTableAdapter.InsertQuery("Rogue", null);
+                    archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
+                    databaseDataSet.AcceptChanges();
+                }
+            }
+
             UpdateStatistics();
         }
     }
