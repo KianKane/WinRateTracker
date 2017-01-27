@@ -17,6 +17,11 @@ namespace DeckTracker
             InitializeComponent();
         }
 
+        private void BuildDialog_Load(object sender, EventArgs e)
+        {
+            this.archetypesTableAdapter.Fill(this.databaseDataSet.Archetypes);
+        }
+
         private void btn_confirm_Click(object sender, EventArgs e)
         {
             // Trim
@@ -26,14 +31,14 @@ namespace DeckTracker
             // Validate
             if (tb_name.Text.Equals(""))
             {
-                MessageBox.Show("You must enter a name for the Deck List", "Invalid Name");
+                MessageBox.Show("You must enter a name for the build", "Invalid Name");
                 tb_name.Focus();
                 return; // Exits the function, preventing the OK dialog result
             }
-            if (cb_class.Text.Equals(""))
+            if (cb_archetype.SelectedIndex < 0)
             {
-                MessageBox.Show("You must select a class for the Deck List", "Invalid Class");
-                cb_class.Focus();
+                MessageBox.Show("You must select an archetype for the build", "Invalid Archetype");
+                cb_archetype.Focus();
                 return; // Exits the function, preventing the OK dialog result
             }
 

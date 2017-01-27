@@ -30,12 +30,6 @@ namespace DeckTracker
                 tb_name.Focus();
                 return; // Exits the function, preventing the OK dialog result
             }
-            if (cb_class.Text.Equals(""))
-            {
-                MessageBox.Show("You must select a class for the Archetype", "Invalid Class");
-                cb_class.Focus();
-                return; // Exits the function, preventing the OK dialog result
-            }
 
             // OK
             this.DialogResult = DialogResult.OK;

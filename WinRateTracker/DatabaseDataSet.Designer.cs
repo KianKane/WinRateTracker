@@ -26,13 +26,15 @@ namespace DeckTracker {
         
         private ArchetypesDataTable tableArchetypes;
         
-        private DeckListsDataTable tableDeckLists;
-        
         private MatchesDataTable tableMatches;
+        
+        private BuildsDataTable tableBuilds;
         
         private global::System.Data.DataRelation relationFK_Matches_Archetypes;
         
-        private global::System.Data.DataRelation relationFK_Matches_DeckLists;
+        private global::System.Data.DataRelation relationFK_Matches_Builds;
+        
+        private global::System.Data.DataRelation relationFK_Builds_Archetypes;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -65,11 +67,11 @@ namespace DeckTracker {
                 if ((ds.Tables["Archetypes"] != null)) {
                     base.Tables.Add(new ArchetypesDataTable(ds.Tables["Archetypes"]));
                 }
-                if ((ds.Tables["DeckLists"] != null)) {
-                    base.Tables.Add(new DeckListsDataTable(ds.Tables["DeckLists"]));
-                }
                 if ((ds.Tables["Matches"] != null)) {
                     base.Tables.Add(new MatchesDataTable(ds.Tables["Matches"]));
+                }
+                if ((ds.Tables["Builds"] != null)) {
+                    base.Tables.Add(new BuildsDataTable(ds.Tables["Builds"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -103,9 +105,9 @@ namespace DeckTracker {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DeckListsDataTable DeckLists {
+        public MatchesDataTable Matches {
             get {
-                return this.tableDeckLists;
+                return this.tableMatches;
             }
         }
         
@@ -113,9 +115,9 @@ namespace DeckTracker {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public MatchesDataTable Matches {
+        public BuildsDataTable Builds {
             get {
-                return this.tableMatches;
+                return this.tableBuilds;
             }
         }
         
@@ -189,11 +191,11 @@ namespace DeckTracker {
                 if ((ds.Tables["Archetypes"] != null)) {
                     base.Tables.Add(new ArchetypesDataTable(ds.Tables["Archetypes"]));
                 }
-                if ((ds.Tables["DeckLists"] != null)) {
-                    base.Tables.Add(new DeckListsDataTable(ds.Tables["DeckLists"]));
-                }
                 if ((ds.Tables["Matches"] != null)) {
                     base.Tables.Add(new MatchesDataTable(ds.Tables["Matches"]));
+                }
+                if ((ds.Tables["Builds"] != null)) {
+                    base.Tables.Add(new BuildsDataTable(ds.Tables["Builds"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -234,20 +236,21 @@ namespace DeckTracker {
                     this.tableArchetypes.InitVars();
                 }
             }
-            this.tableDeckLists = ((DeckListsDataTable)(base.Tables["DeckLists"]));
-            if ((initTable == true)) {
-                if ((this.tableDeckLists != null)) {
-                    this.tableDeckLists.InitVars();
-                }
-            }
             this.tableMatches = ((MatchesDataTable)(base.Tables["Matches"]));
             if ((initTable == true)) {
                 if ((this.tableMatches != null)) {
                     this.tableMatches.InitVars();
                 }
             }
+            this.tableBuilds = ((BuildsDataTable)(base.Tables["Builds"]));
+            if ((initTable == true)) {
+                if ((this.tableBuilds != null)) {
+                    this.tableBuilds.InitVars();
+                }
+            }
             this.relationFK_Matches_Archetypes = this.Relations["FK_Matches_Archetypes"];
-            this.relationFK_Matches_DeckLists = this.Relations["FK_Matches_DeckLists"];
+            this.relationFK_Matches_Builds = this.Relations["FK_Matches_Builds"];
+            this.relationFK_Builds_Archetypes = this.Relations["FK_Builds_Archetypes"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -260,18 +263,22 @@ namespace DeckTracker {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableArchetypes = new ArchetypesDataTable();
             base.Tables.Add(this.tableArchetypes);
-            this.tableDeckLists = new DeckListsDataTable();
-            base.Tables.Add(this.tableDeckLists);
             this.tableMatches = new MatchesDataTable();
             base.Tables.Add(this.tableMatches);
+            this.tableBuilds = new BuildsDataTable();
+            base.Tables.Add(this.tableBuilds);
             this.relationFK_Matches_Archetypes = new global::System.Data.DataRelation("FK_Matches_Archetypes", new global::System.Data.DataColumn[] {
                         this.tableArchetypes.archetypeIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableMatches.archetypeIDColumn}, false);
             this.Relations.Add(this.relationFK_Matches_Archetypes);
-            this.relationFK_Matches_DeckLists = new global::System.Data.DataRelation("FK_Matches_DeckLists", new global::System.Data.DataColumn[] {
-                        this.tableDeckLists.deckListIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableMatches.deckListIDColumn}, false);
-            this.Relations.Add(this.relationFK_Matches_DeckLists);
+            this.relationFK_Matches_Builds = new global::System.Data.DataRelation("FK_Matches_Builds", new global::System.Data.DataColumn[] {
+                        this.tableBuilds.buildIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMatches.buildIDColumn}, false);
+            this.Relations.Add(this.relationFK_Matches_Builds);
+            this.relationFK_Builds_Archetypes = new global::System.Data.DataRelation("FK_Builds_Archetypes", new global::System.Data.DataColumn[] {
+                        this.tableArchetypes.archetypeIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBuilds.archetypeIDColumn}, false);
+            this.Relations.Add(this.relationFK_Builds_Archetypes);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -282,13 +289,13 @@ namespace DeckTracker {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeDeckLists() {
+        private bool ShouldSerializeMatches() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeMatches() {
+        private bool ShouldSerializeBuilds() {
             return false;
         }
         
@@ -351,10 +358,10 @@ namespace DeckTracker {
         public delegate void ArchetypesRowChangeEventHandler(object sender, ArchetypesRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void DeckListsRowChangeEventHandler(object sender, DeckListsRowChangeEvent e);
+        public delegate void MatchesRowChangeEventHandler(object sender, MatchesRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void MatchesRowChangeEventHandler(object sender, MatchesRowChangeEvent e);
+        public delegate void BuildsRowChangeEventHandler(object sender, BuildsRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -368,8 +375,6 @@ namespace DeckTracker {
             private global::System.Data.DataColumn columnname;
             
             private global::System.Data.DataColumn columnnote;
-            
-            private global::System.Data.DataColumn columnclass;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -430,14 +435,6 @@ namespace DeckTracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn classColumn {
-                get {
-                    return this.columnclass;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -473,13 +470,12 @@ namespace DeckTracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ArchetypesRow AddArchetypesRow(int archetypeID, string name, string note, string _class) {
+            public ArchetypesRow AddArchetypesRow(int archetypeID, string name, string note) {
                 ArchetypesRow rowArchetypesRow = ((ArchetypesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         archetypeID,
                         name,
-                        note,
-                        _class};
+                        note};
                 rowArchetypesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowArchetypesRow);
                 return rowArchetypesRow;
@@ -512,7 +508,6 @@ namespace DeckTracker {
                 this.columnarchetypeID = base.Columns["archetypeID"];
                 this.columnname = base.Columns["name"];
                 this.columnnote = base.Columns["note"];
-                this.columnclass = base.Columns["class"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -524,11 +519,6 @@ namespace DeckTracker {
                 base.Columns.Add(this.columnname);
                 this.columnnote = new global::System.Data.DataColumn("note", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnote);
-                this.columnclass = new global::System.Data.DataColumn("class", typeof(string), null, global::System.Data.MappingType.Element);
-                this.columnclass.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "classColumn");
-                this.columnclass.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columnclass");
-                this.columnclass.ExtendedProperties.Add("Generator_UserColumnName", "class");
-                base.Columns.Add(this.columnclass);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnarchetypeID}, true));
                 this.columnarchetypeID.AllowDBNull = false;
@@ -536,8 +526,6 @@ namespace DeckTracker {
                 this.columnname.AllowDBNull = false;
                 this.columnname.MaxLength = 50;
                 this.columnnote.MaxLength = 200;
-                this.columnclass.AllowDBNull = false;
-                this.columnclass.MaxLength = 7;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -669,323 +657,15 @@ namespace DeckTracker {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DeckListsDataTable : global::System.Data.TypedTableBase<DeckListsRow> {
-            
-            private global::System.Data.DataColumn columndeckListID;
-            
-            private global::System.Data.DataColumn columnname;
-            
-            private global::System.Data.DataColumn columnnote;
-            
-            private global::System.Data.DataColumn columnclass;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DeckListsDataTable() {
-                this.TableName = "DeckLists";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DeckListsDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected DeckListsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn deckListIDColumn {
-                get {
-                    return this.columndeckListID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn nameColumn {
-                get {
-                    return this.columnname;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn noteColumn {
-                get {
-                    return this.columnnote;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn classColumn {
-                get {
-                    return this.columnclass;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DeckListsRow this[int index] {
-                get {
-                    return ((DeckListsRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DeckListsRowChangeEventHandler DeckListsRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DeckListsRowChangeEventHandler DeckListsRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DeckListsRowChangeEventHandler DeckListsRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DeckListsRowChangeEventHandler DeckListsRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddDeckListsRow(DeckListsRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DeckListsRow AddDeckListsRow(int deckListID, string name, string note, string _class) {
-                DeckListsRow rowDeckListsRow = ((DeckListsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        deckListID,
-                        name,
-                        note,
-                        _class};
-                rowDeckListsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDeckListsRow);
-                return rowDeckListsRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DeckListsRow FindBydeckListID(int deckListID) {
-                return ((DeckListsRow)(this.Rows.Find(new object[] {
-                            deckListID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                DeckListsDataTable cln = ((DeckListsDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new DeckListsDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columndeckListID = base.Columns["deckListID"];
-                this.columnname = base.Columns["name"];
-                this.columnnote = base.Columns["note"];
-                this.columnclass = base.Columns["class"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columndeckListID = new global::System.Data.DataColumn("deckListID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndeckListID);
-                this.columnname = new global::System.Data.DataColumn("name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnname);
-                this.columnnote = new global::System.Data.DataColumn("note", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnote);
-                this.columnclass = new global::System.Data.DataColumn("class", typeof(string), null, global::System.Data.MappingType.Element);
-                this.columnclass.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "classColumn");
-                this.columnclass.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columnclass");
-                this.columnclass.ExtendedProperties.Add("Generator_UserColumnName", "class");
-                base.Columns.Add(this.columnclass);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columndeckListID}, true));
-                this.columndeckListID.AllowDBNull = false;
-                this.columndeckListID.Unique = true;
-                this.columnname.AllowDBNull = false;
-                this.columnname.MaxLength = 50;
-                this.columnnote.MaxLength = 200;
-                this.columnclass.AllowDBNull = false;
-                this.columnclass.MaxLength = 7;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DeckListsRow NewDeckListsRow() {
-                return ((DeckListsRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DeckListsRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(DeckListsRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.DeckListsRowChanged != null)) {
-                    this.DeckListsRowChanged(this, new DeckListsRowChangeEvent(((DeckListsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.DeckListsRowChanging != null)) {
-                    this.DeckListsRowChanging(this, new DeckListsRowChangeEvent(((DeckListsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.DeckListsRowDeleted != null)) {
-                    this.DeckListsRowDeleted(this, new DeckListsRowChangeEvent(((DeckListsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.DeckListsRowDeleting != null)) {
-                    this.DeckListsRowDeleting(this, new DeckListsRowChangeEvent(((DeckListsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveDeckListsRow(DeckListsRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DatabaseDataSet ds = new DatabaseDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DeckListsDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class MatchesDataTable : global::System.Data.TypedTableBase<MatchesRow> {
             
             private global::System.Data.DataColumn columnmatchID;
             
-            private global::System.Data.DataColumn columndeckListID;
-            
             private global::System.Data.DataColumn columnarchetypeID;
             
             private global::System.Data.DataColumn columnvictory;
+            
+            private global::System.Data.DataColumn columnbuildID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1030,14 +710,6 @@ namespace DeckTracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn deckListIDColumn {
-                get {
-                    return this.columndeckListID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn archetypeIDColumn {
                 get {
                     return this.columnarchetypeID;
@@ -1049,6 +721,14 @@ namespace DeckTracker {
             public global::System.Data.DataColumn victoryColumn {
                 get {
                     return this.columnvictory;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn buildIDColumn {
+                get {
+                    return this.columnbuildID;
                 }
             }
             
@@ -1089,18 +769,18 @@ namespace DeckTracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MatchesRow AddMatchesRow(int matchID, DeckListsRow parentDeckListsRowByFK_Matches_DeckLists, ArchetypesRow parentArchetypesRowByFK_Matches_Archetypes, bool victory) {
+            public MatchesRow AddMatchesRow(int matchID, ArchetypesRow parentArchetypesRowByFK_Matches_Archetypes, bool victory, BuildsRow parentBuildsRowByFK_Matches_Builds) {
                 MatchesRow rowMatchesRow = ((MatchesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         matchID,
                         null,
-                        null,
-                        victory};
-                if ((parentDeckListsRowByFK_Matches_DeckLists != null)) {
-                    columnValuesArray[1] = parentDeckListsRowByFK_Matches_DeckLists[0];
-                }
+                        victory,
+                        null};
                 if ((parentArchetypesRowByFK_Matches_Archetypes != null)) {
-                    columnValuesArray[2] = parentArchetypesRowByFK_Matches_Archetypes[0];
+                    columnValuesArray[1] = parentArchetypesRowByFK_Matches_Archetypes[0];
+                }
+                if ((parentBuildsRowByFK_Matches_Builds != null)) {
+                    columnValuesArray[3] = parentBuildsRowByFK_Matches_Builds[0];
                 }
                 rowMatchesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMatchesRow);
@@ -1132,9 +812,9 @@ namespace DeckTracker {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnmatchID = base.Columns["matchID"];
-                this.columndeckListID = base.Columns["deckListID"];
                 this.columnarchetypeID = base.Columns["archetypeID"];
                 this.columnvictory = base.Columns["victory"];
+                this.columnbuildID = base.Columns["buildID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1142,19 +822,19 @@ namespace DeckTracker {
             private void InitClass() {
                 this.columnmatchID = new global::System.Data.DataColumn("matchID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmatchID);
-                this.columndeckListID = new global::System.Data.DataColumn("deckListID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndeckListID);
                 this.columnarchetypeID = new global::System.Data.DataColumn("archetypeID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnarchetypeID);
                 this.columnvictory = new global::System.Data.DataColumn("victory", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvictory);
+                this.columnbuildID = new global::System.Data.DataColumn("buildID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbuildID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnmatchID}, true));
                 this.columnmatchID.AllowDBNull = false;
                 this.columnmatchID.Unique = true;
-                this.columndeckListID.AllowDBNull = false;
                 this.columnarchetypeID.AllowDBNull = false;
                 this.columnvictory.AllowDBNull = false;
+                this.columnbuildID.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1282,6 +962,317 @@ namespace DeckTracker {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class BuildsDataTable : global::System.Data.TypedTableBase<BuildsRow> {
+            
+            private global::System.Data.DataColumn columnbuildID;
+            
+            private global::System.Data.DataColumn columnname;
+            
+            private global::System.Data.DataColumn columnnote;
+            
+            private global::System.Data.DataColumn columnarchetypeID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public BuildsDataTable() {
+                this.TableName = "Builds";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal BuildsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected BuildsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn buildIDColumn {
+                get {
+                    return this.columnbuildID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn nameColumn {
+                get {
+                    return this.columnname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn noteColumn {
+                get {
+                    return this.columnnote;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn archetypeIDColumn {
+                get {
+                    return this.columnarchetypeID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public BuildsRow this[int index] {
+                get {
+                    return ((BuildsRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event BuildsRowChangeEventHandler BuildsRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event BuildsRowChangeEventHandler BuildsRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event BuildsRowChangeEventHandler BuildsRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event BuildsRowChangeEventHandler BuildsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddBuildsRow(BuildsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public BuildsRow AddBuildsRow(string name, string note, ArchetypesRow parentArchetypesRowByFK_Builds_Archetypes) {
+                BuildsRow rowBuildsRow = ((BuildsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        name,
+                        note,
+                        null};
+                if ((parentArchetypesRowByFK_Builds_Archetypes != null)) {
+                    columnValuesArray[3] = parentArchetypesRowByFK_Builds_Archetypes[0];
+                }
+                rowBuildsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowBuildsRow);
+                return rowBuildsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public BuildsRow FindBybuildID(int buildID) {
+                return ((BuildsRow)(this.Rows.Find(new object[] {
+                            buildID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                BuildsDataTable cln = ((BuildsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new BuildsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnbuildID = base.Columns["buildID"];
+                this.columnname = base.Columns["name"];
+                this.columnnote = base.Columns["note"];
+                this.columnarchetypeID = base.Columns["archetypeID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnbuildID = new global::System.Data.DataColumn("buildID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbuildID);
+                this.columnname = new global::System.Data.DataColumn("name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnname);
+                this.columnnote = new global::System.Data.DataColumn("note", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnote);
+                this.columnarchetypeID = new global::System.Data.DataColumn("archetypeID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnarchetypeID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnbuildID}, true));
+                this.columnbuildID.AutoIncrement = true;
+                this.columnbuildID.AutoIncrementSeed = -1;
+                this.columnbuildID.AutoIncrementStep = -1;
+                this.columnbuildID.AllowDBNull = false;
+                this.columnbuildID.ReadOnly = true;
+                this.columnbuildID.Unique = true;
+                this.columnname.AllowDBNull = false;
+                this.columnname.MaxLength = 50;
+                this.columnnote.MaxLength = 200;
+                this.columnarchetypeID.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public BuildsRow NewBuildsRow() {
+                return ((BuildsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new BuildsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(BuildsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.BuildsRowChanged != null)) {
+                    this.BuildsRowChanged(this, new BuildsRowChangeEvent(((BuildsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.BuildsRowChanging != null)) {
+                    this.BuildsRowChanging(this, new BuildsRowChangeEvent(((BuildsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.BuildsRowDeleted != null)) {
+                    this.BuildsRowDeleted(this, new BuildsRowChangeEvent(((BuildsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.BuildsRowDeleting != null)) {
+                    this.BuildsRowDeleting(this, new BuildsRowChangeEvent(((BuildsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveBuildsRow(BuildsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DatabaseDataSet ds = new DatabaseDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "BuildsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class ArchetypesRow : global::System.Data.DataRow {
@@ -1335,17 +1326,6 @@ namespace DeckTracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string _class {
-                get {
-                    return ((string)(this[this.tableArchetypes.classColumn]));
-                }
-                set {
-                    this[this.tableArchetypes.classColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsnoteNull() {
                 return this.IsNull(this.tableArchetypes.noteColumn);
             }
@@ -1366,91 +1346,15 @@ namespace DeckTracker {
                     return ((MatchesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Matches_Archetypes"])));
                 }
             }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class DeckListsRow : global::System.Data.DataRow {
-            
-            private DeckListsDataTable tableDeckLists;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DeckListsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableDeckLists = ((DeckListsDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int deckListID {
-                get {
-                    return ((int)(this[this.tableDeckLists.deckListIDColumn]));
-                }
-                set {
-                    this[this.tableDeckLists.deckListIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string name {
-                get {
-                    return ((string)(this[this.tableDeckLists.nameColumn]));
-                }
-                set {
-                    this[this.tableDeckLists.nameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string note {
-                get {
-                    try {
-                        return ((string)(this[this.tableDeckLists.noteColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'note\' in table \'DeckLists\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDeckLists.noteColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string _class {
-                get {
-                    return ((string)(this[this.tableDeckLists.classColumn]));
-                }
-                set {
-                    this[this.tableDeckLists.classColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsnoteNull() {
-                return this.IsNull(this.tableDeckLists.noteColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetnoteNull() {
-                this[this.tableDeckLists.noteColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MatchesRow[] GetMatchesRows() {
-                if ((this.Table.ChildRelations["FK_Matches_DeckLists"] == null)) {
-                    return new MatchesRow[0];
+            public BuildsRow[] GetBuildsRows() {
+                if ((this.Table.ChildRelations["FK_Builds_Archetypes"] == null)) {
+                    return new BuildsRow[0];
                 }
                 else {
-                    return ((MatchesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Matches_DeckLists"])));
+                    return ((BuildsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Builds_Archetypes"])));
                 }
             }
         }
@@ -1482,17 +1386,6 @@ namespace DeckTracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int deckListID {
-                get {
-                    return ((int)(this[this.tableMatches.deckListIDColumn]));
-                }
-                set {
-                    this[this.tableMatches.deckListIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int archetypeID {
                 get {
                     return ((int)(this[this.tableMatches.archetypeIDColumn]));
@@ -1515,6 +1408,17 @@ namespace DeckTracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int buildID {
+                get {
+                    return ((int)(this[this.tableMatches.buildIDColumn]));
+                }
+                set {
+                    this[this.tableMatches.buildIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ArchetypesRow ArchetypesRow {
                 get {
                     return ((ArchetypesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Matches_Archetypes"])));
@@ -1526,12 +1430,110 @@ namespace DeckTracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DeckListsRow DeckListsRow {
+            public BuildsRow BuildsRow {
                 get {
-                    return ((DeckListsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Matches_DeckLists"])));
+                    return ((BuildsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Matches_Builds"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Matches_DeckLists"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Matches_Builds"]);
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class BuildsRow : global::System.Data.DataRow {
+            
+            private BuildsDataTable tableBuilds;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal BuildsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableBuilds = ((BuildsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int buildID {
+                get {
+                    return ((int)(this[this.tableBuilds.buildIDColumn]));
+                }
+                set {
+                    this[this.tableBuilds.buildIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string name {
+                get {
+                    return ((string)(this[this.tableBuilds.nameColumn]));
+                }
+                set {
+                    this[this.tableBuilds.nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string note {
+                get {
+                    try {
+                        return ((string)(this[this.tableBuilds.noteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'note\' in table \'Builds\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBuilds.noteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int archetypeID {
+                get {
+                    return ((int)(this[this.tableBuilds.archetypeIDColumn]));
+                }
+                set {
+                    this[this.tableBuilds.archetypeIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ArchetypesRow ArchetypesRow {
+                get {
+                    return ((ArchetypesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Builds_Archetypes"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Builds_Archetypes"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsnoteNull() {
+                return this.IsNull(this.tableBuilds.noteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetnoteNull() {
+                this[this.tableBuilds.noteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public MatchesRow[] GetMatchesRows() {
+                if ((this.Table.ChildRelations["FK_Matches_Builds"] == null)) {
+                    return new MatchesRow[0];
+                }
+                else {
+                    return ((MatchesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Matches_Builds"])));
                 }
             }
         }
@@ -1574,22 +1576,22 @@ namespace DeckTracker {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class DeckListsRowChangeEvent : global::System.EventArgs {
+        public class MatchesRowChangeEvent : global::System.EventArgs {
             
-            private DeckListsRow eventRow;
+            private MatchesRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DeckListsRowChangeEvent(DeckListsRow row, global::System.Data.DataRowAction action) {
+            public MatchesRowChangeEvent(MatchesRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DeckListsRow Row {
+            public MatchesRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1608,22 +1610,22 @@ namespace DeckTracker {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class MatchesRowChangeEvent : global::System.EventArgs {
+        public class BuildsRowChangeEvent : global::System.EventArgs {
             
-            private MatchesRow eventRow;
+            private BuildsRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MatchesRowChangeEvent(MatchesRow row, global::System.Data.DataRowAction action) {
+            public BuildsRowChangeEvent(BuildsRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MatchesRow Row {
+            public BuildsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1766,43 +1768,36 @@ namespace DeckTracker.DatabaseDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("archetypeID", "archetypeID");
             tableMapping.ColumnMappings.Add("name", "name");
             tableMapping.ColumnMappings.Add("note", "note");
-            tableMapping.ColumnMappings.Add("class", "class");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Archetypes] WHERE (([archetypeID] = @Original_archetypeID) AND" +
-                " ([name] = @Original_name) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note]" +
-                " = @Original_note)) AND ([class] = @Original_class))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Archetypes] WHERE (([archetypeID] = @Original_archetypeID) AND ([nam" +
+                "e] = @Original_name) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Or" +
+                "iginal_note)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_note", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_class", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Archetypes] ([archetypeID], [name], [note], [class]) VALUES (@" +
-                "archetypeID, @name, @note, @class);\r\nSELECT archetypeID, name, note, class FROM " +
-                "Archetypes WHERE (archetypeID = @archetypeID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Archetypes] ([name], [note]) VALUES (@name, @note);\r\nSELECT archetyp" +
+                "eID, name, note FROM Archetypes WHERE (archetypeID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@class", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Archetypes] SET [archetypeID] = @archetypeID, [name] = @name, [note] = @note, [class] = @class WHERE (([archetypeID] = @Original_archetypeID) AND ([name] = @Original_name) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)) AND ([class] = @Original_class));
-SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @archetypeID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Archetypes] SET [name] = @name, [note] = @note WHERE (([archetypeID] = @Original_archetypeID) AND ([name] = @Original_name) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)));
+SELECT archetypeID, name, note FROM Archetypes WHERE (archetypeID = @archetypeID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@class", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_note", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_class", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1818,28 +1813,27 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT archetypeID, name, note, class FROM dbo.Archetypes";
+            this._commandCollection[0].CommandText = "SELECT archetypeID, name, note FROM Archetypes";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM Matches WHERE archetypeID = @id;\r\nDELETE FROM Archetypes WHERE archet" +
+            this._commandCollection[1].CommandText = "DELETE Matches FROM Matches INNER JOIN Builds on Matches.buildID = Builds.BuildID" +
+                " where Builds.archetypeID = @id;\r\nDELETE FROM Builds WHERE archetypeID = @id;\r\nD" +
+                "ELETE FROM Matches WHERE archetypeID = @id;\r\nDELETE FROM Archetypes WHERE archet" +
                 "ypeID = @id;";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "INSERT INTO Archetypes (name, class, note) VALUES (@name,@class,@note)";
+            this._commandCollection[2].CommandText = "INSERT INTO Archetypes (name, note) VALUES (@name, @note)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@class", global::System.Data.SqlDbType.NVarChar, 7, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "UPDATE Archetypes SET name = @newName, class = @newClass, note = @newNote WHERE a" +
-                "rchetypeID = @id";
+            this._commandCollection[3].CommandText = "UPDATE Archetypes SET name = @newName, note = @newNote WHERE archetypeID = @id";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@newName", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@newClass", global::System.Data.SqlDbType.NVarChar, 7, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@newNote", global::System.Data.SqlDbType.NVarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
@@ -1901,7 +1895,7 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_archetypeID, string Original_name, string Original_note, string Original_class) {
+        public virtual int Delete(int Original_archetypeID, string Original_name, string Original_note) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_archetypeID));
             if ((Original_name == null)) {
                 throw new global::System.ArgumentNullException("Original_name");
@@ -1917,12 +1911,6 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_note));
             }
-            if ((Original_class == null)) {
-                throw new global::System.ArgumentNullException("Original_class");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_class));
-            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1943,25 +1931,18 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int archetypeID, string name, string note, string _class) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(archetypeID));
+        public virtual int Insert(string name, string note) {
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(name));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(name));
             }
             if ((note == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(note));
-            }
-            if ((_class == null)) {
-                throw new global::System.ArgumentNullException("_class");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(_class));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(note));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1983,47 +1964,35 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int archetypeID, string name, string note, string _class, int Original_archetypeID, string Original_name, string Original_note, string Original_class) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(archetypeID));
+        public virtual int Update(string name, string note, int Original_archetypeID, string Original_name, string Original_note, int archetypeID) {
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(name));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(name));
             }
             if ((note == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(note));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(note));
             }
-            if ((_class == null)) {
-                throw new global::System.ArgumentNullException("_class");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(_class));
-            }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_archetypeID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_archetypeID));
             if ((Original_name == null)) {
                 throw new global::System.ArgumentNullException("Original_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_name));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_name));
             }
             if ((Original_note == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_note));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_note));
             }
-            if ((Original_class == null)) {
-                throw new global::System.ArgumentNullException("Original_class");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_class));
-            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(archetypeID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2044,8 +2013,8 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string name, string note, string _class, int Original_archetypeID, string Original_name, string Original_note, string Original_class) {
-            return this.Update(Original_archetypeID, name, note, _class, Original_archetypeID, Original_name, Original_note, Original_class);
+        public virtual int Update(string name, string note, int Original_archetypeID, string Original_name, string Original_note) {
+            return this.Update(name, note, Original_archetypeID, Original_name, Original_note, Original_archetypeID);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2076,7 +2045,7 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertQuery(string name, string _class, string note) {
+        public virtual int InsertQuery(string name, string note) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
@@ -2084,17 +2053,11 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
             else {
                 command.Parameters[0].Value = ((string)(name));
             }
-            if ((_class == null)) {
-                throw new global::System.ArgumentNullException("_class");
-            }
-            else {
-                command.Parameters[1].Value = ((string)(_class));
-            }
             if ((note == null)) {
-                command.Parameters[2].Value = global::System.DBNull.Value;
+                command.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[2].Value = ((string)(note));
+                command.Parameters[1].Value = ((string)(note));
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2117,7 +2080,7 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateQuery(string newName, string newClass, string newNote, int id) {
+        public virtual int UpdateQuery(string newName, string newNote, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             if ((newName == null)) {
                 throw new global::System.ArgumentNullException("newName");
@@ -2125,533 +2088,13 @@ SELECT archetypeID, name, note, class FROM Archetypes WHERE (archetypeID = @arch
             else {
                 command.Parameters[0].Value = ((string)(newName));
             }
-            if ((newClass == null)) {
-                throw new global::System.ArgumentNullException("newClass");
-            }
-            else {
-                command.Parameters[1].Value = ((string)(newClass));
-            }
             if ((newNote == null)) {
-                command.Parameters[2].Value = global::System.DBNull.Value;
+                command.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[2].Value = ((string)(newNote));
+                command.Parameters[1].Value = ((string)(newNote));
             }
-            command.Parameters[3].Value = ((int)(id));
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            int returnValue;
-            try {
-                returnValue = command.ExecuteNonQuery();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            return returnValue;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class DeckListsTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DeckListsTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "DeckLists";
-            tableMapping.ColumnMappings.Add("deckListID", "deckListID");
-            tableMapping.ColumnMappings.Add("name", "name");
-            tableMapping.ColumnMappings.Add("note", "note");
-            tableMapping.ColumnMappings.Add("class", "class");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[DeckLists] WHERE (([deckListID] = @Original_deckListID) AND ([" +
-                "name] = @Original_name) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = " +
-                "@Original_note)) AND ([class] = @Original_class))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_deckListID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_note", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_class", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[DeckLists] ([deckListID], [name], [note], [class]) VALUES (@de" +
-                "ckListID, @name, @note, @class);\r\nSELECT deckListID, name, note, class FROM Deck" +
-                "Lists WHERE (deckListID = @deckListID)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@deckListID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@class", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[DeckLists] SET [deckListID] = @deckListID, [name] = @name, [note] = @note, [class] = @class WHERE (([deckListID] = @Original_deckListID) AND ([name] = @Original_name) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)) AND ([class] = @Original_class));
-SELECT deckListID, name, note, class FROM DeckLists WHERE (deckListID = @deckListID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@deckListID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@class", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_deckListID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_note", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_class", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DeckTracker.Properties.Settings.Default.DatabaseConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT deckListID, name, note, class FROM dbo.DeckLists";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM Matches WHERE deckListID = @id;\r\nDELETE FROM DeckLists WHERE deckList" +
-                "ID = @id;";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "INSERT INTO DeckLists (name, class, note) VALUES (@name,@class,@note)";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@class", global::System.Data.SqlDbType.NVarChar, 7, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "UPDATE DeckLists SET name = @newName, class = @newClass, note = @newNote WHERE de" +
-                "ckListID = @id";
-            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@newName", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@newClass", global::System.Data.SqlDbType.NVarChar, 7, global::System.Data.ParameterDirection.Input, 0, 0, "class", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@newNote", global::System.Data.SqlDbType.NVarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DatabaseDataSet.DeckListsDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DatabaseDataSet.DeckListsDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            DatabaseDataSet.DeckListsDataTable dataTable = new DatabaseDataSet.DeckListsDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(DatabaseDataSet.DeckListsDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(DatabaseDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "DeckLists");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_deckListID, string Original_name, string Original_note, string Original_class) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_deckListID));
-            if ((Original_name == null)) {
-                throw new global::System.ArgumentNullException("Original_name");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_name));
-            }
-            if ((Original_note == null)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_note));
-            }
-            if ((Original_class == null)) {
-                throw new global::System.ArgumentNullException("Original_class");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_class));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int deckListID, string name, string note, string _class) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(deckListID));
-            if ((name == null)) {
-                throw new global::System.ArgumentNullException("name");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(name));
-            }
-            if ((note == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(note));
-            }
-            if ((_class == null)) {
-                throw new global::System.ArgumentNullException("_class");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(_class));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int deckListID, string name, string note, string _class, int Original_deckListID, string Original_name, string Original_note, string Original_class) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(deckListID));
-            if ((name == null)) {
-                throw new global::System.ArgumentNullException("name");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(name));
-            }
-            if ((note == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(note));
-            }
-            if ((_class == null)) {
-                throw new global::System.ArgumentNullException("_class");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(_class));
-            }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_deckListID));
-            if ((Original_name == null)) {
-                throw new global::System.ArgumentNullException("Original_name");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_name));
-            }
-            if ((Original_note == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_note));
-            }
-            if ((Original_class == null)) {
-                throw new global::System.ArgumentNullException("Original_class");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_class));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string name, string note, string _class, int Original_deckListID, string Original_name, string Original_note, string Original_class) {
-            return this.Update(Original_deckListID, name, note, _class, Original_deckListID, Original_name, Original_note, Original_class);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int DeleteQuery(int id) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
-            command.Parameters[0].Value = ((int)(id));
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            int returnValue;
-            try {
-                returnValue = command.ExecuteNonQuery();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertQuery(string name, string _class, string note) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
-            if ((name == null)) {
-                throw new global::System.ArgumentNullException("name");
-            }
-            else {
-                command.Parameters[0].Value = ((string)(name));
-            }
-            if ((_class == null)) {
-                throw new global::System.ArgumentNullException("_class");
-            }
-            else {
-                command.Parameters[1].Value = ((string)(_class));
-            }
-            if ((note == null)) {
-                command.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[2].Value = ((string)(note));
-            }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            int returnValue;
-            try {
-                returnValue = command.ExecuteNonQuery();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateQuery(string newName, string newClass, string newNote, int id) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
-            if ((newName == null)) {
-                throw new global::System.ArgumentNullException("newName");
-            }
-            else {
-                command.Parameters[0].Value = ((string)(newName));
-            }
-            if ((newClass == null)) {
-                throw new global::System.ArgumentNullException("newClass");
-            }
-            else {
-                command.Parameters[1].Value = ((string)(newClass));
-            }
-            if ((newNote == null)) {
-                command.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[2].Value = ((string)(newNote));
-            }
-            command.Parameters[3].Value = ((int)(id));
+            command.Parameters[2].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2792,43 +2235,42 @@ SELECT deckListID, name, note, class FROM DeckLists WHERE (deckListID = @deckLis
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Matches";
             tableMapping.ColumnMappings.Add("matchID", "matchID");
-            tableMapping.ColumnMappings.Add("deckListID", "deckListID");
             tableMapping.ColumnMappings.Add("archetypeID", "archetypeID");
             tableMapping.ColumnMappings.Add("victory", "victory");
+            tableMapping.ColumnMappings.Add("buildID", "buildID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Matches] WHERE (([matchID] = @Original_matchID) AND ([deckList" +
-                "ID] = @Original_deckListID) AND ([archetypeID] = @Original_archetypeID) AND ([vi" +
-                "ctory] = @Original_victory))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Matches] WHERE (([matchID] = @Original_matchID) AND ([archetypeID] =" +
+                " @Original_archetypeID) AND ([victory] = @Original_victory) AND ([buildID] = @Or" +
+                "iginal_buildID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_matchID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "matchID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_deckListID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_victory", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "victory", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_buildID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Matches] ([matchID], [deckListID], [archetypeID], [victory]) V" +
-                "ALUES (@matchID, @deckListID, @archetypeID, @victory);\r\nSELECT matchID, deckList" +
-                "ID, archetypeID, victory FROM Matches WHERE (matchID = @matchID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Matches] ([archetypeID], [victory], [buildID]) VALUES (@archetypeID," +
+                " @victory, @buildID);\r\nSELECT matchID, archetypeID, victory, buildID FROM Matche" +
+                "s WHERE (matchID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@matchID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "matchID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@deckListID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@victory", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "victory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@buildID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Matches] SET [matchID] = @matchID, [deckListID] = @deckListID, [archetypeID] = @archetypeID, [victory] = @victory WHERE (([matchID] = @Original_matchID) AND ([deckListID] = @Original_deckListID) AND ([archetypeID] = @Original_archetypeID) AND ([victory] = @Original_victory));
-SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @matchID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Matches] SET [archetypeID] = @archetypeID, [victory] = @victory, [buildID] = @buildID WHERE (([matchID] = @Original_matchID) AND ([archetypeID] = @Original_archetypeID) AND ([victory] = @Original_victory) AND ([buildID] = @Original_buildID));
+SELECT matchID, archetypeID, victory, buildID FROM Matches WHERE (matchID = @matchID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@matchID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "matchID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@deckListID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@victory", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "victory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@buildID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_matchID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "matchID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_deckListID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_victory", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "victory", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_buildID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@matchID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "matchID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2844,28 +2286,28 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT matchID, deckListID, archetypeID, victory FROM dbo.Matches";
+            this._commandCollection[0].CommandText = "SELECT matchID, archetypeID, victory, buildID FROM Matches";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT COUNT(*) FROM Matches WHERE deckListID = @deckListID AND archetypeID = @ar" +
-                "chetypeID AND victory = 0";
+            this._commandCollection[1].CommandText = "SELECT COUNT(*) FROM Matches WHERE buildID = @buildID AND archetypeID = @archetyp" +
+                "eID AND victory = 0";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@deckListID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@buildID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT COUNT(*) FROM Matches WHERE deckListID = @deckListID AND archetypeID = @ar" +
-                "chetypeID AND victory = 1";
+            this._commandCollection[2].CommandText = "SELECT COUNT(*) FROM Matches WHERE buildID = @buildID AND archetypeID = @archetyp" +
+                "eID AND victory = 1";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@deckListID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@buildID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO Matches (deckListID, archetypeID, victory) VALUES (@deckListID, @arch" +
-                "etypeID, @victory);";
+            this._commandCollection[3].CommandText = "INSERT INTO Matches (buildID, archetypeID, victory) VALUES (@buildID, @archetypeI" +
+                "D, @victory);";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@deckListID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "deckListID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@buildID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@victory", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "victory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -2927,11 +2369,11 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_matchID, int Original_deckListID, int Original_archetypeID, bool Original_victory) {
+        public virtual int Delete(int Original_matchID, int Original_archetypeID, bool Original_victory, int Original_buildID) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_matchID));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_deckListID));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_archetypeID));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((bool)(Original_victory));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_archetypeID));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((bool)(Original_victory));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_buildID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2952,11 +2394,10 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int matchID, int deckListID, int archetypeID, bool victory) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(matchID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(deckListID));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(archetypeID));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(victory));
+        public virtual int Insert(int archetypeID, bool victory, int buildID) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(archetypeID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((bool)(victory));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(buildID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2977,15 +2418,15 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int matchID, int deckListID, int archetypeID, bool victory, int Original_matchID, int Original_deckListID, int Original_archetypeID, bool Original_victory) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(matchID));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(deckListID));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(archetypeID));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(victory));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_matchID));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_deckListID));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_archetypeID));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Original_victory));
+        public virtual int Update(int archetypeID, bool victory, int buildID, int Original_matchID, int Original_archetypeID, bool Original_victory, int Original_buildID, int matchID) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(archetypeID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((bool)(victory));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(buildID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_matchID));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_archetypeID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(Original_victory));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_buildID));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(matchID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3006,16 +2447,16 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int deckListID, int archetypeID, bool victory, int Original_matchID, int Original_deckListID, int Original_archetypeID, bool Original_victory) {
-            return this.Update(Original_matchID, deckListID, archetypeID, victory, Original_matchID, Original_deckListID, Original_archetypeID, Original_victory);
+        public virtual int Update(int archetypeID, bool victory, int buildID, int Original_matchID, int Original_archetypeID, bool Original_victory, int Original_buildID) {
+            return this.Update(archetypeID, victory, buildID, Original_matchID, Original_archetypeID, Original_victory, Original_buildID, Original_matchID);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> CountLossesQuery(int deckListID, int archetypeID) {
+        public virtual object CountLossesQuery(int buildID, int archetypeID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
-            command.Parameters[0].Value = ((int)(deckListID));
+            command.Parameters[0].Value = ((int)(buildID));
             command.Parameters[1].Value = ((int)(archetypeID));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3033,19 +2474,19 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return null;
             }
             else {
-                return new global::System.Nullable<int>(((int)(returnValue)));
+                return ((object)(returnValue));
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> CountWinsQuery(int deckListID, int archetypeID) {
+        public virtual object CountWinsQuery(int buildID, int archetypeID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
-            command.Parameters[0].Value = ((int)(deckListID));
+            command.Parameters[0].Value = ((int)(buildID));
             command.Parameters[1].Value = ((int)(archetypeID));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3063,10 +2504,10 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return null;
             }
             else {
-                return new global::System.Nullable<int>(((int)(returnValue)));
+                return ((object)(returnValue));
             }
         }
         
@@ -3074,11 +2515,493 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int RecordMatchQuery(int deckListID, int archetypeID, bool victory) {
+        public virtual int RecordMatchQuery(int buildID, int archetypeID, bool victory) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
-            command.Parameters[0].Value = ((int)(deckListID));
+            command.Parameters[0].Value = ((int)(buildID));
             command.Parameters[1].Value = ((int)(archetypeID));
             command.Parameters[2].Value = ((bool)(victory));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class BuildsTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public BuildsTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "Builds";
+            tableMapping.ColumnMappings.Add("buildID", "buildID");
+            tableMapping.ColumnMappings.Add("name", "name");
+            tableMapping.ColumnMappings.Add("note", "note");
+            tableMapping.ColumnMappings.Add("archetypeID", "archetypeID");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Builds] WHERE (([buildID] = @Original_buildID) AND ([name] = @" +
+                "Original_name) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original" +
+                "_note)) AND ([archetypeID] = @Original_archetypeID))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_buildID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_note", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Builds] ([name], [note], [archetypeID]) VALUES (@name, @note, " +
+                "@archetypeID);\r\nSELECT buildID, name, note, archetypeID FROM Builds WHERE (build" +
+                "ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Builds] SET [name] = @name, [note] = @note, [archetypeID] = @archetypeID WHERE (([buildID] = @Original_buildID) AND ([name] = @Original_name) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)) AND ([archetypeID] = @Original_archetypeID));
+SELECT buildID, name, note, archetypeID FROM Builds WHERE (buildID = @buildID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_buildID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_note", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_archetypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@buildID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::DeckTracker.Properties.Settings.Default.DatabaseConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT buildID, name, note, archetypeID FROM dbo.Builds";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "DELETE FROM Matches WHERE buildID = @id;\r\nDELETE FROM Builds WHERE buildID = @id;" +
+                "";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "INSERT INTO Builds (name, note, archetypeID) VALUES (@name, @note, @archetypeID)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "UPDATE Builds SET name = @newName, note = @newNote, archetypeID = @archetypeID WH" +
+                "ERE buildID = @id";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@newName", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@newNote", global::System.Data.SqlDbType.NVarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(DatabaseDataSet.BuildsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual DatabaseDataSet.BuildsDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            DatabaseDataSet.BuildsDataTable dataTable = new DatabaseDataSet.BuildsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(DatabaseDataSet.BuildsDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(DatabaseDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "Builds");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_buildID, string Original_name, string Original_note, int Original_archetypeID) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_buildID));
+            if ((Original_name == null)) {
+                throw new global::System.ArgumentNullException("Original_name");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_name));
+            }
+            if ((Original_note == null)) {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_note));
+            }
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_archetypeID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string name, string note, int archetypeID) {
+            if ((name == null)) {
+                throw new global::System.ArgumentNullException("name");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(name));
+            }
+            if ((note == null)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(note));
+            }
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(archetypeID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string name, string note, int archetypeID, int Original_buildID, string Original_name, string Original_note, int Original_archetypeID, int buildID) {
+            if ((name == null)) {
+                throw new global::System.ArgumentNullException("name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(name));
+            }
+            if ((note == null)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(note));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(archetypeID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_buildID));
+            if ((Original_name == null)) {
+                throw new global::System.ArgumentNullException("Original_name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_name));
+            }
+            if ((Original_note == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_note));
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_archetypeID));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(buildID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string name, string note, int archetypeID, int Original_buildID, string Original_name, string Original_note, int Original_archetypeID) {
+            return this.Update(name, note, archetypeID, Original_buildID, Original_name, Original_note, Original_archetypeID, Original_buildID);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteQuery(int id) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            command.Parameters[0].Value = ((int)(id));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertQuery(string name, string note, int archetypeID) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            if ((name == null)) {
+                throw new global::System.ArgumentNullException("name");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(name));
+            }
+            if ((note == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(note));
+            }
+            command.Parameters[2].Value = ((int)(archetypeID));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateQuery(string newName, string newNote, int archetypeID, int id) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            if ((newName == null)) {
+                throw new global::System.ArgumentNullException("newName");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(newName));
+            }
+            if ((newNote == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(newNote));
+            }
+            command.Parameters[2].Value = ((int)(archetypeID));
+            command.Parameters[3].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3111,9 +3034,9 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
         
         private ArchetypesTableAdapter _archetypesTableAdapter;
         
-        private DeckListsTableAdapter _deckListsTableAdapter;
-        
         private MatchesTableAdapter _matchesTableAdapter;
+        
+        private BuildsTableAdapter _buildsTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -3149,12 +3072,12 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public DeckListsTableAdapter DeckListsTableAdapter {
+        public MatchesTableAdapter MatchesTableAdapter {
             get {
-                return this._deckListsTableAdapter;
+                return this._matchesTableAdapter;
             }
             set {
-                this._deckListsTableAdapter = value;
+                this._matchesTableAdapter = value;
             }
         }
         
@@ -3163,12 +3086,12 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public MatchesTableAdapter MatchesTableAdapter {
+        public BuildsTableAdapter BuildsTableAdapter {
             get {
-                return this._matchesTableAdapter;
+                return this._buildsTableAdapter;
             }
             set {
-                this._matchesTableAdapter = value;
+                this._buildsTableAdapter = value;
             }
         }
         
@@ -3195,13 +3118,13 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
                             && (this._archetypesTableAdapter.Connection != null))) {
                     return this._archetypesTableAdapter.Connection;
                 }
-                if (((this._deckListsTableAdapter != null) 
-                            && (this._deckListsTableAdapter.Connection != null))) {
-                    return this._deckListsTableAdapter.Connection;
-                }
                 if (((this._matchesTableAdapter != null) 
                             && (this._matchesTableAdapter.Connection != null))) {
                     return this._matchesTableAdapter.Connection;
+                }
+                if (((this._buildsTableAdapter != null) 
+                            && (this._buildsTableAdapter.Connection != null))) {
+                    return this._buildsTableAdapter.Connection;
                 }
                 return null;
             }
@@ -3219,10 +3142,10 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
                 if ((this._archetypesTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._deckListsTableAdapter != null)) {
+                if ((this._matchesTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._matchesTableAdapter != null)) {
+                if ((this._buildsTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -3245,12 +3168,12 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._deckListsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.DeckLists.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._buildsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Builds.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._deckListsTableAdapter.Update(updatedRows));
+                    result = (result + this._buildsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -3281,11 +3204,11 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._deckListsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.DeckLists.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._buildsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Builds.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._deckListsTableAdapter.Update(addedRows));
+                    result = (result + this._buildsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -3315,11 +3238,11 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._deckListsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.DeckLists.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._buildsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Builds.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._deckListsTableAdapter.Update(deletedRows));
+                    result = (result + this._buildsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -3375,13 +3298,13 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._deckListsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._deckListsTableAdapter.Connection) == false))) {
+            if (((this._matchesTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._matchesTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._matchesTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._matchesTableAdapter.Connection) == false))) {
+            if (((this._buildsTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._buildsTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -3426,15 +3349,6 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
                         adaptersWithAcceptChangesDuringUpdate.Add(this._archetypesTableAdapter.Adapter);
                     }
                 }
-                if ((this._deckListsTableAdapter != null)) {
-                    revertConnections.Add(this._deckListsTableAdapter, this._deckListsTableAdapter.Connection);
-                    this._deckListsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._deckListsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._deckListsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._deckListsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._deckListsTableAdapter.Adapter);
-                    }
-                }
                 if ((this._matchesTableAdapter != null)) {
                     revertConnections.Add(this._matchesTableAdapter, this._matchesTableAdapter.Connection);
                     this._matchesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -3442,6 +3356,15 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
                     if (this._matchesTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._matchesTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._matchesTableAdapter.Adapter);
+                    }
+                }
+                if ((this._buildsTableAdapter != null)) {
+                    revertConnections.Add(this._buildsTableAdapter, this._buildsTableAdapter.Connection);
+                    this._buildsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._buildsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._buildsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._buildsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._buildsTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -3506,13 +3429,13 @@ SELECT matchID, deckListID, archetypeID, victory FROM Matches WHERE (matchID = @
                     this._archetypesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._archetypesTableAdapter]));
                     this._archetypesTableAdapter.Transaction = null;
                 }
-                if ((this._deckListsTableAdapter != null)) {
-                    this._deckListsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._deckListsTableAdapter]));
-                    this._deckListsTableAdapter.Transaction = null;
-                }
                 if ((this._matchesTableAdapter != null)) {
                     this._matchesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._matchesTableAdapter]));
                     this._matchesTableAdapter.Transaction = null;
+                }
+                if ((this._buildsTableAdapter != null)) {
+                    this._buildsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._buildsTableAdapter]));
+                    this._buildsTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

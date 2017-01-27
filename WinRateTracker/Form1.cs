@@ -20,7 +20,9 @@ namespace DeckTracker
         private void Form1_Load(object sender, EventArgs e)
         {
             this.archetypesTableAdapter.Fill(this.databaseDataSet.Archetypes);
-            this.deckListsTableAdapter.Fill(this.databaseDataSet.DeckLists);
+            this.buildsTableAdapter.Fill(this.databaseDataSet.Builds);
+            this.archetypesTableAdapter.Fill(this.databaseDataSet.Archetypes);
+            this.buildsTableAdapter.Fill(this.databaseDataSet.Builds);
             UpdateStatistics();
         }
 
@@ -53,23 +55,24 @@ namespace DeckTracker
 
         private void RecordMatch(bool victory)
         {
-            DataRowView deckList = (DataRowView)cb_matchBuild.SelectedItem;
-            DataRowView archetype = (DataRowView)cb_matchArchetype.SelectedItem;
-
-            if (deckList == null)
+            if (cb_matchBuild.SelectedIndex < 0)
             {
-                MessageBox.Show("Please select a Deck List", "No Deck List Selected");
+                MessageBox.Show("Please select a build", "No Build Selected");
                 return;
             }
-            if (archetype == null)
+
+            if (cb_matchArchetype.SelectedIndex < 0)
             {
                 MessageBox.Show("Please select an Archetype", "No Archetype Selected");
                 return;
             }
 
+            int build = (int)cb_matchBuild.SelectedValue;
+            int archetype = (int)cb_matchArchetype.SelectedValue;
+
             if (MessageBox.Show("Are you sure you want to record this result?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                matchesTableAdapter.RecordMatchQuery((int)deckList["deckListID"], (int)archetype["archetypeID"], victory);
+                matchesTableAdapter.RecordMatchQuery(build, archetype, victory);
                 matchesTableAdapter.Fill(databaseDataSet.Matches);
                 databaseDataSet.AcceptChanges();
 
@@ -106,10 +109,7 @@ namespace DeckTracker
 
         private void UpdateStatistics()
         {
-            DataRowView deckList = (DataRowView)cb_statisticsBuild.SelectedItem;
-            DataRowView archetype = (DataRowView)cb_statisticsArchetype.SelectedItem;
-
-            if (deckList == null || archetype == null)
+            if (cb_statisticsBuild.SelectedIndex < 0 || cb_statisticsArchetype.SelectedIndex < 0)
             {
                 lbl_wins.Text = "0";
                 lbl_losses.Text = "0";
@@ -117,8 +117,11 @@ namespace DeckTracker
                 return;
             }
 
-            int wins = (int)matchesTableAdapter.CountWinsQuery((int)deckList["deckListID"], (int)archetype["archetypeID"]);
-            int losses = (int)matchesTableAdapter.CountLossesQuery((int)deckList["deckListID"], (int)archetype["archetypeID"]);
+            int build = (int)cb_statisticsBuild.SelectedValue;
+            int archetype = (int)cb_statisticsArchetype.SelectedValue;
+
+            int wins = (int)matchesTableAdapter.CountWinsQuery(build, archetype);
+            int losses = (int)matchesTableAdapter.CountLossesQuery(build, archetype);
 
             lbl_wins.Text = wins.ToString();
             lbl_losses.Text = losses.ToString();
@@ -126,15 +129,15 @@ namespace DeckTracker
             lbl_winRate.Text = ((double)wins / (losses > 0 ? losses : 1)).ToString("F2");
         }
 
-        // Edit Deck Lists tab -------------------------------------------------------------------------------------------
+        // Edit My Builds tab -------------------------------------------------------------------------------------------
 
         private void btn_addBuild_Click(object sender, EventArgs e)
         {
-            DeckListDialog dialog = new DeckListDialog();
+            BuildDialog dialog = new BuildDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                deckListsTableAdapter.InsertQuery(dialog.tb_name.Text, dialog.cb_class.Text, dialog.tb_note.Text);
-                deckListsTableAdapter.Fill(databaseDataSet.DeckLists);
+                buildsTableAdapter.InsertQuery(dialog.tb_name.Text, dialog.tb_note.Text, (int)dialog.cb_archetype.SelectedValue);
+                buildsTableAdapter.Fill(databaseDataSet.Builds);
                 databaseDataSet.AcceptChanges();
             }
         }
@@ -144,18 +147,18 @@ namespace DeckTracker
             if (dgv_builds.CurrentRow == null)
                 return;
 
-            int id = (int)dgv_builds.CurrentRow.Cells["idColumnDeckList"].Value;
+            int id = (int)dgv_builds.CurrentRow.Cells["idColumnBuild"].Value;
 
-            DeckListDialog dialog = new DeckListDialog();
-            dialog.tb_name.Text = (string)dgv_builds.CurrentRow.Cells["nameColumnDeckList"].Value;
-            dialog.cb_class.Text = (string)dgv_builds.CurrentRow.Cells["classColumnDeckList"].Value;
-            if (!Convert.IsDBNull(dgv_builds.CurrentRow.Cells["noteColumnDeckList"].Value))
-                dialog.tb_note.Text = (string)dgv_builds.CurrentRow.Cells["noteColumnDeckList"].Value;
+            BuildDialog dialog = new BuildDialog();
+            dialog.tb_name.Text = (string)dgv_builds.CurrentRow.Cells["nameColumnBuild"].Value;
+            dialog.cb_archetype.Text = (string)dgv_builds.CurrentRow.Cells["classColumnBuild"].Value;
+            if (!Convert.IsDBNull(dgv_builds.CurrentRow.Cells["noteColumnBuild"].Value))
+                dialog.tb_note.Text = (string)dgv_builds.CurrentRow.Cells["noteColumnBuild"].Value;
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                deckListsTableAdapter.UpdateQuery(dialog.tb_name.Text, dialog.cb_class.Text, dialog.tb_note.Text, id);
-                deckListsTableAdapter.Fill(databaseDataSet.DeckLists);
+                buildsTableAdapter.UpdateQuery(dialog.tb_name.Text, dialog.tb_note.Text, (int)dialog.cb_archetype.SelectedValue, id);
+                buildsTableAdapter.Fill(databaseDataSet.Builds);
                 databaseDataSet.AcceptChanges();
             }
         }
@@ -165,12 +168,12 @@ namespace DeckTracker
             if (dgv_builds.CurrentRow == null)
                 return;
 
-            if (MessageBox.Show("Deleting this deck list will also delete all associated match information.  Are you sure you want to continue?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Deleting this build list will also delete all associated match information.  Are you sure you want to continue?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                int id = (int)dgv_builds.CurrentRow.Cells["idColumnDeckList"].Value;
+                int id = (int)dgv_builds.CurrentRow.Cells["idColumnBuild"].Value;
 
-                deckListsTableAdapter.DeleteQuery(id);
-                deckListsTableAdapter.Fill(databaseDataSet.DeckLists);
+                buildsTableAdapter.DeleteQuery(id);
+                buildsTableAdapter.Fill(databaseDataSet.Builds);
                 databaseDataSet.AcceptChanges();
             }
         }
@@ -183,7 +186,7 @@ namespace DeckTracker
             ArchetypeDialog dialog = new ArchetypeDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                archetypesTableAdapter.InsertQuery(dialog.tb_name.Text, dialog.cb_class.Text, dialog.tb_note.Text);
+                archetypesTableAdapter.InsertQuery(dialog.tb_name.Text, dialog.tb_note.Text);
                 archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
                 databaseDataSet.AcceptChanges();
             }
@@ -199,13 +202,12 @@ namespace DeckTracker
 
             ArchetypeDialog dialog = new ArchetypeDialog();
             dialog.tb_name.Text = (string)dgv_archetypes.CurrentRow.Cells["nameColumnArchetype"].Value;
-            dialog.cb_class.Text = (string)dgv_archetypes.CurrentRow.Cells["classColumnArchetype"].Value;
             if (!Convert.IsDBNull(dgv_archetypes.CurrentRow.Cells["noteColumnArchetype"].Value))
                 dialog.tb_note.Text = (string)dgv_archetypes.CurrentRow.Cells["noteColumnArchetype"].Value;
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                archetypesTableAdapter.UpdateQuery(dialog.tb_name.Text, dialog.cb_class.Text, dialog.tb_note.Text, id);
+                archetypesTableAdapter.UpdateQuery(dialog.tb_name.Text, dialog.tb_note.Text, id);
                 archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
                 databaseDataSet.AcceptChanges();
             }
@@ -217,7 +219,7 @@ namespace DeckTracker
             if (dgv_archetypes.CurrentRow == null)
                 return;
 
-            if (MessageBox.Show("Deleting this archetype will also delete all associated match information.  Are you sure you want to continue?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Deleting this archetype will also delete all associated builds and match information.  Are you sure you want to continue?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int id = (int)dgv_archetypes.CurrentRow.Cells["idColumnArchetype"].Value;
 

@@ -7,3 +7,11 @@
     }
 }
 
+
+
+namespace DeckTracker.DatabaseDataSetTableAdapters {
+    
+    
+    public partial class ArchetypesTableAdapter {
+    }
+}

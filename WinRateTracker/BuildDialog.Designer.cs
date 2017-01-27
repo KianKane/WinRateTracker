@@ -28,14 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tb_note = new System.Windows.Forms.TextBox();
-            this.cb_class = new System.Windows.Forms.ComboBox();
+            this.cb_archetype = new System.Windows.Forms.ComboBox();
+            this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.databaseDataSet = new DeckTracker.DatabaseDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_confirm = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
+            this.archetypesTableAdapter = new DeckTracker.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -64,24 +70,27 @@
             this.tb_note.Size = new System.Drawing.Size(216, 47);
             this.tb_note.TabIndex = 2;
             // 
-            // cb_class
+            // cb_archetype
             // 
-            this.cb_class.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_class.FormattingEnabled = true;
-            this.cb_class.Items.AddRange(new object[] {
-            "Mage",
-            "Hunter",
-            "Paladin",
-            "Warrior",
-            "Druid",
-            "Warlock",
-            "Shaman",
-            "Priest",
-            "Rogue"});
-            this.cb_class.Location = new System.Drawing.Point(56, 41);
-            this.cb_class.Name = "cb_class";
-            this.cb_class.Size = new System.Drawing.Size(135, 21);
-            this.cb_class.TabIndex = 1;
+            this.cb_archetype.DataSource = this.archetypesBindingSource;
+            this.cb_archetype.DisplayMember = "name";
+            this.cb_archetype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_archetype.FormattingEnabled = true;
+            this.cb_archetype.Location = new System.Drawing.Point(56, 41);
+            this.cb_archetype.Name = "cb_archetype";
+            this.cb_archetype.Size = new System.Drawing.Size(135, 21);
+            this.cb_archetype.TabIndex = 1;
+            this.cb_archetype.ValueMember = "archetypeID";
+            // 
+            // archetypesBindingSource
+            // 
+            this.archetypesBindingSource.DataMember = "Archetypes";
+            this.archetypesBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // databaseDataSet
+            // 
+            this.databaseDataSet.DataSetName = "DatabaseDataSet";
+            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -121,14 +130,18 @@
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
-            // DeckListDialog
+            // archetypesTableAdapter
+            // 
+            this.archetypesTableAdapter.ClearBeforeFill = true;
+            // 
+            // BuildDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 152);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_confirm);
-            this.Controls.Add(this.cb_class);
+            this.Controls.Add(this.cb_archetype);
             this.Controls.Add(this.tb_note);
             this.Controls.Add(this.tb_name);
             this.Controls.Add(this.label3);
@@ -136,8 +149,11 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "DeckListDialog";
-            this.Text = "Deck List Dialog";
+            this.Name = "BuildDialog";
+            this.Text = "Build Dialog";
+            this.Load += new System.EventHandler(this.BuildDialog_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,6 +168,9 @@
         private System.Windows.Forms.Button btn_cancel;
         public System.Windows.Forms.TextBox tb_name;
         public System.Windows.Forms.TextBox tb_note;
-        public System.Windows.Forms.ComboBox cb_class;
+        public System.Windows.Forms.ComboBox cb_archetype;
+        private DatabaseDataSet databaseDataSet;
+        private System.Windows.Forms.BindingSource archetypesBindingSource;
+        private DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
     }
 }

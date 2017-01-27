@@ -31,8 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tb_note = new System.Windows.Forms.TextBox();
-            this.cb_class = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_confirm = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
@@ -57,45 +55,17 @@
             // 
             // tb_note
             // 
-            this.tb_note.Location = new System.Drawing.Point(56, 68);
+            this.tb_note.Location = new System.Drawing.Point(56, 41);
             this.tb_note.MaxLength = 200;
             this.tb_note.Multiline = true;
             this.tb_note.Name = "tb_note";
             this.tb_note.Size = new System.Drawing.Size(216, 47);
             this.tb_note.TabIndex = 2;
             // 
-            // cb_class
-            // 
-            this.cb_class.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_class.FormattingEnabled = true;
-            this.cb_class.Items.AddRange(new object[] {
-            "Mage",
-            "Hunter",
-            "Paladin",
-            "Warrior",
-            "Druid",
-            "Warlock",
-            "Shaman",
-            "Priest",
-            "Rogue"});
-            this.cb_class.Location = new System.Drawing.Point(56, 41);
-            this.cb_class.Name = "cb_class";
-            this.cb_class.Size = new System.Drawing.Size(135, 21);
-            this.cb_class.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 44);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Class:";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 71);
+            this.label3.Location = new System.Drawing.Point(17, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 0;
@@ -103,7 +73,7 @@
             // 
             // btn_confirm
             // 
-            this.btn_confirm.Location = new System.Drawing.Point(56, 121);
+            this.btn_confirm.Location = new System.Drawing.Point(56, 94);
             this.btn_confirm.Name = "btn_confirm";
             this.btn_confirm.Size = new System.Drawing.Size(75, 23);
             this.btn_confirm.TabIndex = 3;
@@ -113,7 +83,7 @@
             // 
             // btn_cancel
             // 
-            this.btn_cancel.Location = new System.Drawing.Point(137, 121);
+            this.btn_cancel.Location = new System.Drawing.Point(137, 94);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_cancel.TabIndex = 4;
@@ -125,14 +95,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 152);
+            this.ClientSize = new System.Drawing.Size(284, 121);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_confirm);
-            this.Controls.Add(this.cb_class);
             this.Controls.Add(this.tb_note);
             this.Controls.Add(this.tb_name);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -146,12 +114,10 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_confirm;
         private System.Windows.Forms.Button btn_cancel;
         public System.Windows.Forms.TextBox tb_name;
         public System.Windows.Forms.TextBox tb_note;
-        public System.Windows.Forms.ComboBox cb_class;
     }
 }
