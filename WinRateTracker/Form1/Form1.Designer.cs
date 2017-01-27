@@ -36,7 +36,10 @@
             this.btn_victory = new System.Windows.Forms.Button();
             this.matchVersusLabel = new System.Windows.Forms.Label();
             this.cb_matchArchetype = new System.Windows.Forms.ComboBox();
+            this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.databaseDataSet = new DeckTracker.Database.DatabaseDataSet();
             this.cb_matchBuild = new System.Windows.Forms.ComboBox();
+            this.buildsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.link_recordMatchToEditArchetypes = new System.Windows.Forms.LinkLabel();
             this.link_recordMatchToEditBuilds = new System.Windows.Forms.LinkLabel();
             this.recordMatchLabel = new System.Windows.Forms.Label();
@@ -68,30 +71,27 @@
             this.btn_deleteArchetype = new System.Windows.Forms.Button();
             this.dgv_archetypes = new System.Windows.Forms.DataGridView();
             this.editArchetypesLabel = new System.Windows.Forms.Label();
-            this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new DeckTracker.Database.DatabaseDataSet();
-            this.buildsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buildsTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.BuildsTableAdapter();
             this.archetypesTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
             this.matchesTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.MatchesTableAdapter();
-            this.idColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.archetypeColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.recordMatchTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buildsBindingSource)).BeginInit();
             this.statisticsTab.SuspendLayout();
             this.panel1.SuspendLayout();
             this.editBuildsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_builds)).BeginInit();
             this.editArchetypesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_archetypes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buildsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -185,6 +185,16 @@
             this.cb_matchArchetype.TabIndex = 2;
             this.cb_matchArchetype.ValueMember = "archetypeID";
             // 
+            // archetypesBindingSource
+            // 
+            this.archetypesBindingSource.DataMember = "Archetypes";
+            this.archetypesBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // databaseDataSet
+            // 
+            this.databaseDataSet.DataSetName = "DatabaseDataSet";
+            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // cb_matchBuild
             // 
             this.cb_matchBuild.DataSource = this.buildsBindingSource;
@@ -198,6 +208,11 @@
             this.cb_matchBuild.Size = new System.Drawing.Size(150, 24);
             this.cb_matchBuild.TabIndex = 2;
             this.cb_matchBuild.ValueMember = "buildID";
+            // 
+            // buildsBindingSource
+            // 
+            this.buildsBindingSource.DataMember = "Builds";
+            this.buildsBindingSource.DataSource = this.databaseDataSet;
             // 
             // link_recordMatchToEditArchetypes
             // 
@@ -476,10 +491,10 @@
             this.dgv_builds.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_builds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_builds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idColumnBuild,
             this.nameColumnBuild,
+            this.archetypeColumnBuild,
             this.noteColumnBuild,
-            this.archetypeColumnBuild});
+            this.idColumnBuild});
             this.dgv_builds.DataSource = this.buildsBindingSource;
             this.dgv_builds.Location = new System.Drawing.Point(8, 63);
             this.dgv_builds.MultiSelect = false;
@@ -556,9 +571,9 @@
             this.dgv_archetypes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_archetypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_archetypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idColumnArchetype,
             this.nameColumnArchetype,
-            this.noteColumnArchetype});
+            this.noteColumnArchetype,
+            this.idColumnArchetype});
             this.dgv_archetypes.DataSource = this.archetypesBindingSource;
             this.dgv_archetypes.Location = new System.Drawing.Point(8, 63);
             this.dgv_archetypes.MultiSelect = false;
@@ -580,21 +595,6 @@
             this.editArchetypesLabel.Text = "Edit Archetypes";
             this.editArchetypesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // archetypesBindingSource
-            // 
-            this.archetypesBindingSource.DataMember = "Archetypes";
-            this.archetypesBindingSource.DataSource = this.databaseDataSet;
-            // 
-            // databaseDataSet
-            // 
-            this.databaseDataSet.DataSetName = "DatabaseDataSet";
-            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // buildsBindingSource
-            // 
-            this.buildsBindingSource.DataMember = "Builds";
-            this.buildsBindingSource.DataSource = this.databaseDataSet;
-            // 
             // buildsTableAdapter
             // 
             this.buildsTableAdapter.ClearBeforeFill = true;
@@ -607,44 +607,42 @@
             // 
             this.matchesTableAdapter.ClearBeforeFill = true;
             // 
+            // nameColumnBuild
+            // 
+            this.nameColumnBuild.DataPropertyName = "name";
+            this.nameColumnBuild.FillWeight = 25F;
+            this.nameColumnBuild.HeaderText = "name";
+            this.nameColumnBuild.Name = "nameColumnBuild";
+            this.nameColumnBuild.ReadOnly = true;
+            // 
+            // archetypeColumnBuild
+            // 
+            this.archetypeColumnBuild.DataPropertyName = "archetypeID";
+            this.archetypeColumnBuild.FillWeight = 25F;
+            this.archetypeColumnBuild.HeaderText = "archetypeID";
+            this.archetypeColumnBuild.Name = "archetypeColumnBuild";
+            this.archetypeColumnBuild.ReadOnly = true;
+            // 
+            // noteColumnBuild
+            // 
+            this.noteColumnBuild.DataPropertyName = "note";
+            this.noteColumnBuild.FillWeight = 50F;
+            this.noteColumnBuild.HeaderText = "note";
+            this.noteColumnBuild.Name = "noteColumnBuild";
+            this.noteColumnBuild.ReadOnly = true;
+            // 
             // idColumnBuild
             // 
             this.idColumnBuild.DataPropertyName = "buildID";
             this.idColumnBuild.HeaderText = "buildID";
             this.idColumnBuild.Name = "idColumnBuild";
             this.idColumnBuild.ReadOnly = true;
-            // 
-            // nameColumnBuild
-            // 
-            this.nameColumnBuild.DataPropertyName = "name";
-            this.nameColumnBuild.HeaderText = "name";
-            this.nameColumnBuild.Name = "nameColumnBuild";
-            this.nameColumnBuild.ReadOnly = true;
-            // 
-            // noteColumnBuild
-            // 
-            this.noteColumnBuild.DataPropertyName = "note";
-            this.noteColumnBuild.HeaderText = "note";
-            this.noteColumnBuild.Name = "noteColumnBuild";
-            this.noteColumnBuild.ReadOnly = true;
-            // 
-            // archetypeColumnBuild
-            // 
-            this.archetypeColumnBuild.DataPropertyName = "archetypeID";
-            this.archetypeColumnBuild.HeaderText = "archetypeID";
-            this.archetypeColumnBuild.Name = "archetypeColumnBuild";
-            this.archetypeColumnBuild.ReadOnly = true;
-            // 
-            // idColumnArchetype
-            // 
-            this.idColumnArchetype.DataPropertyName = "archetypeID";
-            this.idColumnArchetype.HeaderText = "archetypeID";
-            this.idColumnArchetype.Name = "idColumnArchetype";
-            this.idColumnArchetype.ReadOnly = true;
+            this.idColumnBuild.Visible = false;
             // 
             // nameColumnArchetype
             // 
             this.nameColumnArchetype.DataPropertyName = "name";
+            this.nameColumnArchetype.FillWeight = 25F;
             this.nameColumnArchetype.HeaderText = "name";
             this.nameColumnArchetype.Name = "nameColumnArchetype";
             this.nameColumnArchetype.ReadOnly = true;
@@ -652,9 +650,18 @@
             // noteColumnArchetype
             // 
             this.noteColumnArchetype.DataPropertyName = "note";
+            this.noteColumnArchetype.FillWeight = 75F;
             this.noteColumnArchetype.HeaderText = "note";
             this.noteColumnArchetype.Name = "noteColumnArchetype";
             this.noteColumnArchetype.ReadOnly = true;
+            // 
+            // idColumnArchetype
+            // 
+            this.idColumnArchetype.DataPropertyName = "archetypeID";
+            this.idColumnArchetype.HeaderText = "archetypeID";
+            this.idColumnArchetype.Name = "idColumnArchetype";
+            this.idColumnArchetype.ReadOnly = true;
+            this.idColumnArchetype.Visible = false;
             // 
             // Form1
             // 
@@ -670,6 +677,9 @@
             this.tabControl.ResumeLayout(false);
             this.recordMatchTab.ResumeLayout(false);
             this.recordMatchTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buildsBindingSource)).EndInit();
             this.statisticsTab.ResumeLayout(false);
             this.statisticsTab.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -678,9 +688,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_builds)).EndInit();
             this.editArchetypesTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_archetypes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buildsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -732,13 +739,13 @@
         private System.Windows.Forms.BindingSource archetypesBindingSource;
         private Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
         private Database.DatabaseDataSetTableAdapters.MatchesTableAdapter matchesTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idColumnBuild;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumnBuild;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnBuild;
         private System.Windows.Forms.DataGridViewTextBoxColumn archetypeColumnBuild;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idColumnArchetype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnBuild;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idColumnBuild;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumnArchetype;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnArchetype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idColumnArchetype;
     }
 }
 
