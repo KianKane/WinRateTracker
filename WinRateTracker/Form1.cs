@@ -174,6 +174,7 @@ namespace DeckTracker
 
                 buildsTableAdapter.DeleteQuery(id);
                 buildsTableAdapter.Fill(databaseDataSet.Builds);
+                matchesTableAdapter.Fill(databaseDataSet.Matches);
                 databaseDataSet.AcceptChanges();
             }
         }
@@ -225,6 +226,8 @@ namespace DeckTracker
 
                 archetypesTableAdapter.DeleteQuery(id);
                 archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
+                buildsTableAdapter.Fill(databaseDataSet.Builds);
+                matchesTableAdapter.Fill(databaseDataSet.Matches);
                 databaseDataSet.AcceptChanges();
             }
         }
