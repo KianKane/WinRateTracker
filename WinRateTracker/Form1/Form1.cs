@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DeckTracker.Dialogs;
+using DeckTracker.GameArchetypes;
 
 namespace DeckTracker
 {
@@ -31,19 +34,26 @@ namespace DeckTracker
 
             if (archetypesBindingSource.Count == 0)
             {
-                if (MessageBox.Show("Would you like to set up classes for Hearthstone?", "Setup Archetypes", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                ArchetypeSetupDialog dialog = new ArchetypeSetupDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    archetypesTableAdapter.InsertQuery("Mage", null);
-                    archetypesTableAdapter.InsertQuery("Hunter", null);
-                    archetypesTableAdapter.InsertQuery("Paladin", null);
-                    archetypesTableAdapter.InsertQuery("Warrior", null);
-                    archetypesTableAdapter.InsertQuery("Druid", null);
-                    archetypesTableAdapter.InsertQuery("Warlock", null);
-                    archetypesTableAdapter.InsertQuery("Shaman", null);
-                    archetypesTableAdapter.InsertQuery("Priest", null);
-                    archetypesTableAdapter.InsertQuery("Rogue", null);
-                    archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
-                    databaseDataSet.AcceptChanges();
+                    IArchetypeInitializer archetypeInitializer = null;
+
+                    if (dialog.cb_game.Text.Equals("Hearthstone"))
+                        archetypeInitializer = new HearthstoneArchetypeInitializer();
+                    else if (dialog.cb_game.Text.Equals("Duelyst"))
+                        archetypeInitializer = new DuelystArchetypeInitializer();
+                    else if (dialog.cb_game.Text.Equals("Gwent"))
+                        archetypeInitializer = new GwentArchetypeInitializer();
+                    else if (dialog.cb_game.Text.Equals("Shadowverse"))
+                        archetypeInitializer = new ShadowverseArchetypeInitializer();
+
+                    if (archetypeInitializer != null)
+                    {
+                        archetypeInitializer.InitializeArchetypes(archetypesTableAdapter);
+                        archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
+                        databaseDataSet.AcceptChanges();
+                    }
                 }
             }
 

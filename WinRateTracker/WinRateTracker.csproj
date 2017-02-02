@@ -75,6 +75,12 @@
     <Compile Include="Dialogs\ArchetypeDialog.Designer.cs">
       <DependentUpon>ArchetypeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ArchetypeSetupDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ArchetypeSetupDialog.Designer.cs">
+      <DependentUpon>ArchetypeSetupDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\BuildDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,11 @@
     <Compile Include="Form1\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameArchetypes\DuelystArchetypeInitializer.cs" />
+    <Compile Include="GameArchetypes\GwentArchetypeInitializer.cs" />
+    <Compile Include="GameArchetypes\HearthstoneArchetypeInitializer.cs" />
+    <Compile Include="GameArchetypes\IArchetypeInitializer.cs" />
+    <Compile Include="GameArchetypes\ShadowverseArchetypeInitializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Form1\RecordMatchTab.cs">
@@ -103,6 +114,9 @@
     </Compile>
     <EmbeddedResource Include="Dialogs\ArchetypeDialog.resx">
       <DependentUpon>ArchetypeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ArchetypeSetupDialog.resx">
+      <DependentUpon>ArchetypeSetupDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\BuildDialog.resx">
       <DependentUpon>BuildDialog.cs</DependentUpon>
