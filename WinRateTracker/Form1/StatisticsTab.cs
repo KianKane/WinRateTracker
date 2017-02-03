@@ -34,6 +34,18 @@ namespace DeckTracker
             UpdateStatistics();
         }
 
+        private void cb_allBuilds_CheckedChanged(object sender, EventArgs e)
+        {
+            cb_statisticsBuild.Enabled = !((CheckBox)sender).Checked;
+            UpdateStatistics();
+        }
+
+        private void cb_allArchetypes_CheckedChanged(object sender, EventArgs e)
+        {
+            cb_statisticsArchetype.Enabled = !((CheckBox)sender).Checked;
+            UpdateStatistics();
+        }
+
         private void UpdateStatistics()
         {
             if (cb_statisticsBuild.SelectedIndex < 0 || cb_statisticsArchetype.SelectedIndex < 0)
@@ -47,8 +59,29 @@ namespace DeckTracker
             int build = (int)cb_statisticsBuild.SelectedValue;
             int archetype = (int)cb_statisticsArchetype.SelectedValue;
 
-            int wins = (int)matchesTableAdapter.CountWinsQuery(build, archetype);
-            int losses = (int)matchesTableAdapter.CountLossesQuery(build, archetype);
+            int wins;
+            int losses;
+
+            if (cb_allBuilds.Checked && cb_allArchetypes.Checked)
+            {
+                wins = (int)matchesTableAdapter.CountMatchesAllQuery(true);
+                losses = (int)matchesTableAdapter.CountMatchesAllQuery(false);
+            }
+            else if (cb_allBuilds.Checked && !cb_allArchetypes.Checked)
+            {
+                wins = (int)matchesTableAdapter.CountMatchesAllBuildsQuery(archetype, true);
+                losses = (int)matchesTableAdapter.CountMatchesAllBuildsQuery(archetype, false);
+            }
+            else if (!cb_allBuilds.Checked && cb_allArchetypes.Checked)
+            {
+                wins = (int)matchesTableAdapter.CountMatchesAllArchetypesQuery(build, true);
+                losses = (int)matchesTableAdapter.CountMatchesAllArchetypesQuery(build, false);
+            }
+            else
+            {
+                wins = (int)matchesTableAdapter.CountMatchesQuery(build, archetype, true);
+                losses = (int)matchesTableAdapter.CountMatchesQuery(build, archetype, false);
+            }
 
             lbl_wins.Text = wins.ToString();
             lbl_losses.Text = losses.ToString();

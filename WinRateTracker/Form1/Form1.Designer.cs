@@ -44,6 +44,8 @@
             this.link_recordMatchToEditBuilds = new System.Windows.Forms.LinkLabel();
             this.recordMatchLabel = new System.Windows.Forms.Label();
             this.statisticsTab = new System.Windows.Forms.TabPage();
+            this.cb_allBuilds = new System.Windows.Forms.CheckBox();
+            this.cb_allArchetypes = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,23 +66,23 @@
             this.btn_editBuild = new System.Windows.Forms.Button();
             this.btn_deleteBuild = new System.Windows.Forms.Button();
             this.dgv_builds = new System.Windows.Forms.DataGridView();
+            this.nameColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.archetypeColumnBuild = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.noteColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editBuildsLabel = new System.Windows.Forms.Label();
             this.editArchetypesTab = new System.Windows.Forms.TabPage();
             this.btn_addArchetype = new System.Windows.Forms.Button();
             this.btn_editArchetype = new System.Windows.Forms.Button();
             this.btn_deleteArchetype = new System.Windows.Forms.Button();
             this.dgv_archetypes = new System.Windows.Forms.DataGridView();
+            this.nameColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editArchetypesLabel = new System.Windows.Forms.Label();
             this.buildsTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.BuildsTableAdapter();
             this.archetypesTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
             this.matchesTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.MatchesTableAdapter();
-            this.nameColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.archetypeColumnBuild = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.noteColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idColumnBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.recordMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).BeginInit();
@@ -250,6 +252,8 @@
             // 
             // statisticsTab
             // 
+            this.statisticsTab.Controls.Add(this.cb_allBuilds);
+            this.statisticsTab.Controls.Add(this.cb_allArchetypes);
             this.statisticsTab.Controls.Add(this.panel1);
             this.statisticsTab.Controls.Add(this.btn_recordMatch);
             this.statisticsTab.Controls.Add(this.statisticsVersusLabel);
@@ -265,6 +269,28 @@
             this.statisticsTab.TabIndex = 1;
             this.statisticsTab.Text = "Statistics";
             this.statisticsTab.UseVisualStyleBackColor = true;
+            // 
+            // cb_allBuilds
+            // 
+            this.cb_allBuilds.AutoSize = true;
+            this.cb_allBuilds.Location = new System.Drawing.Point(103, 156);
+            this.cb_allBuilds.Name = "cb_allBuilds";
+            this.cb_allBuilds.Size = new System.Drawing.Size(68, 17);
+            this.cb_allBuilds.TabIndex = 11;
+            this.cb_allBuilds.Text = "All Builds";
+            this.cb_allBuilds.UseVisualStyleBackColor = true;
+            this.cb_allBuilds.CheckedChanged += new System.EventHandler(this.cb_allBuilds_CheckedChanged);
+            // 
+            // cb_allArchetypes
+            // 
+            this.cb_allArchetypes.AutoSize = true;
+            this.cb_allArchetypes.Location = new System.Drawing.Point(423, 156);
+            this.cb_allArchetypes.Name = "cb_allArchetypes";
+            this.cb_allArchetypes.Size = new System.Drawing.Size(93, 17);
+            this.cb_allArchetypes.TabIndex = 11;
+            this.cb_allArchetypes.Text = "All Archetypes";
+            this.cb_allArchetypes.UseVisualStyleBackColor = true;
+            this.cb_allArchetypes.CheckedChanged += new System.EventHandler(this.cb_allArchetypes_CheckedChanged);
             // 
             // panel1
             // 
@@ -505,6 +531,46 @@
             this.dgv_builds.Size = new System.Drawing.Size(600, 309);
             this.dgv_builds.TabIndex = 0;
             // 
+            // nameColumnBuild
+            // 
+            this.nameColumnBuild.DataPropertyName = "name";
+            this.nameColumnBuild.FillWeight = 25F;
+            this.nameColumnBuild.HeaderText = "name";
+            this.nameColumnBuild.Name = "nameColumnBuild";
+            this.nameColumnBuild.ReadOnly = true;
+            this.nameColumnBuild.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // archetypeColumnBuild
+            // 
+            this.archetypeColumnBuild.DataPropertyName = "archetypeID";
+            this.archetypeColumnBuild.DataSource = this.archetypesBindingSource;
+            this.archetypeColumnBuild.DisplayMember = "name";
+            this.archetypeColumnBuild.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.archetypeColumnBuild.FillWeight = 25F;
+            this.archetypeColumnBuild.HeaderText = "archetype";
+            this.archetypeColumnBuild.Name = "archetypeColumnBuild";
+            this.archetypeColumnBuild.ReadOnly = true;
+            this.archetypeColumnBuild.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.archetypeColumnBuild.ValueMember = "archetypeID";
+            // 
+            // noteColumnBuild
+            // 
+            this.noteColumnBuild.DataPropertyName = "note";
+            this.noteColumnBuild.FillWeight = 50F;
+            this.noteColumnBuild.HeaderText = "note";
+            this.noteColumnBuild.Name = "noteColumnBuild";
+            this.noteColumnBuild.ReadOnly = true;
+            this.noteColumnBuild.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // idColumnBuild
+            // 
+            this.idColumnBuild.DataPropertyName = "buildID";
+            this.idColumnBuild.HeaderText = "buildID";
+            this.idColumnBuild.Name = "idColumnBuild";
+            this.idColumnBuild.ReadOnly = true;
+            this.idColumnBuild.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.idColumnBuild.Visible = false;
+            // 
             // editBuildsLabel
             // 
             this.editBuildsLabel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -584,69 +650,6 @@
             this.dgv_archetypes.Size = new System.Drawing.Size(600, 309);
             this.dgv_archetypes.TabIndex = 4;
             // 
-            // editArchetypesLabel
-            // 
-            this.editArchetypesLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.editArchetypesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editArchetypesLabel.Location = new System.Drawing.Point(0, 0);
-            this.editArchetypesLabel.Name = "editArchetypesLabel";
-            this.editArchetypesLabel.Size = new System.Drawing.Size(616, 60);
-            this.editArchetypesLabel.TabIndex = 1;
-            this.editArchetypesLabel.Text = "Edit Archetypes";
-            this.editArchetypesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // buildsTableAdapter
-            // 
-            this.buildsTableAdapter.ClearBeforeFill = true;
-            // 
-            // archetypesTableAdapter
-            // 
-            this.archetypesTableAdapter.ClearBeforeFill = true;
-            // 
-            // matchesTableAdapter
-            // 
-            this.matchesTableAdapter.ClearBeforeFill = true;
-            // 
-            // nameColumnBuild
-            // 
-            this.nameColumnBuild.DataPropertyName = "name";
-            this.nameColumnBuild.FillWeight = 25F;
-            this.nameColumnBuild.HeaderText = "name";
-            this.nameColumnBuild.Name = "nameColumnBuild";
-            this.nameColumnBuild.ReadOnly = true;
-            this.nameColumnBuild.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // archetypeColumnBuild
-            // 
-            this.archetypeColumnBuild.DataPropertyName = "archetypeID";
-            this.archetypeColumnBuild.DataSource = this.archetypesBindingSource;
-            this.archetypeColumnBuild.DisplayMember = "name";
-            this.archetypeColumnBuild.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.archetypeColumnBuild.FillWeight = 25F;
-            this.archetypeColumnBuild.HeaderText = "archetype";
-            this.archetypeColumnBuild.Name = "archetypeColumnBuild";
-            this.archetypeColumnBuild.ReadOnly = true;
-            this.archetypeColumnBuild.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.archetypeColumnBuild.ValueMember = "archetypeID";
-            // 
-            // noteColumnBuild
-            // 
-            this.noteColumnBuild.DataPropertyName = "note";
-            this.noteColumnBuild.FillWeight = 50F;
-            this.noteColumnBuild.HeaderText = "note";
-            this.noteColumnBuild.Name = "noteColumnBuild";
-            this.noteColumnBuild.ReadOnly = true;
-            this.noteColumnBuild.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // idColumnBuild
-            // 
-            this.idColumnBuild.DataPropertyName = "buildID";
-            this.idColumnBuild.HeaderText = "buildID";
-            this.idColumnBuild.Name = "idColumnBuild";
-            this.idColumnBuild.ReadOnly = true;
-            this.idColumnBuild.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.idColumnBuild.Visible = false;
-            // 
             // nameColumnArchetype
             // 
             this.nameColumnArchetype.DataPropertyName = "name";
@@ -673,6 +676,29 @@
             this.idColumnArchetype.ReadOnly = true;
             this.idColumnArchetype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.idColumnArchetype.Visible = false;
+            // 
+            // editArchetypesLabel
+            // 
+            this.editArchetypesLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.editArchetypesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editArchetypesLabel.Location = new System.Drawing.Point(0, 0);
+            this.editArchetypesLabel.Name = "editArchetypesLabel";
+            this.editArchetypesLabel.Size = new System.Drawing.Size(616, 60);
+            this.editArchetypesLabel.TabIndex = 1;
+            this.editArchetypesLabel.Text = "Edit Archetypes";
+            this.editArchetypesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // buildsTableAdapter
+            // 
+            this.buildsTableAdapter.ClearBeforeFill = true;
+            // 
+            // archetypesTableAdapter
+            // 
+            this.archetypesTableAdapter.ClearBeforeFill = true;
+            // 
+            // matchesTableAdapter
+            // 
+            this.matchesTableAdapter.ClearBeforeFill = true;
             // 
             // Form1
             // 
@@ -757,6 +783,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumnArchetype;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnArchetype;
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumnArchetype;
+        private System.Windows.Forms.CheckBox cb_allBuilds;
+        private System.Windows.Forms.CheckBox cb_allArchetypes;
     }
 }
 
