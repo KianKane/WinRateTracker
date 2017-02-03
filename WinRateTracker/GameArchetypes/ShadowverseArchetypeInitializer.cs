@@ -11,13 +11,13 @@ namespace DeckTracker.GameArchetypes
     {
         public void InitializeArchetypes(ArchetypesTableAdapter adapter)
         {
-            adapter.InsertQuery("Arisa (Forestcraft)", null);
-            adapter.InsertQuery("Erika (Swordcraft)", null);
-            adapter.InsertQuery("Isabelle (Runecraft)", null);
-            adapter.InsertQuery("Rowan (Dragoncraft)", null);
-            adapter.InsertQuery("Luna (Shadowcraft)", null);
-            adapter.InsertQuery("Urias (Bloodcraft)", null);
-            adapter.InsertQuery("Eris (Havencraft)", null);
+            adapter.InsertQuery("Forestcraft", "Arisa");
+            adapter.InsertQuery("Swordcraft", "Erika");
+            adapter.InsertQuery("Runecraft", "Isabelle");
+            adapter.InsertQuery("Dragoncraft", "Rowan");
+            adapter.InsertQuery("Shadowcraft", "Luna");
+            adapter.InsertQuery("Bloodcraft", "Urias");
+            adapter.InsertQuery("Havencraft", "Eris");
         }
     }
 }

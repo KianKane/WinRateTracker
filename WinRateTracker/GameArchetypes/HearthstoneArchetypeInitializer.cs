@@ -11,15 +11,15 @@ namespace DeckTracker.GameArchetypes
     {
         public void InitializeArchetypes(ArchetypesTableAdapter adapter)
         {
-            adapter.InsertQuery("Mage", null);
-            adapter.InsertQuery("Hunter", null);
-            adapter.InsertQuery("Paladin", null);
-            adapter.InsertQuery("Warrior", null);
-            adapter.InsertQuery("Druid", null);
-            adapter.InsertQuery("Warlock", null);
-            adapter.InsertQuery("Shaman", null);
-            adapter.InsertQuery("Priest", null);
-            adapter.InsertQuery("Rogue", null);
+            adapter.InsertQuery("Mage", "Jaina Proudmoore");
+            adapter.InsertQuery("Hunter", "Rexxar");
+            adapter.InsertQuery("Paladin", "Uther Lightbringer");
+            adapter.InsertQuery("Warrior", "Garrosh Hellscream");
+            adapter.InsertQuery("Druid", "Malfurion Stormrage");
+            adapter.InsertQuery("Warlock", "Gul'dan");
+            adapter.InsertQuery("Shaman", "Thrall");
+            adapter.InsertQuery("Priest", "Anduin Wrynn");
+            adapter.InsertQuery("Rogue", "Valeera Sanguinar");
         }
     }
 }
