@@ -3,9 +3,14 @@ using System.Windows.Forms;
 
 namespace DeckTracker
 {
+    /// <summary>
+    /// This partial class provides functionality to the elements in the edit archetypes tab.
+    /// </summary>
     public partial class Form1
     {
-        // Add
+        /// <summary>
+        /// Adds a new archetype.
+        /// </summary>
         private void btnAddArchetype_Click(object sender, EventArgs e)
         {
             ArchetypeDialog dialog = new ArchetypeDialog();
@@ -17,7 +22,11 @@ namespace DeckTracker
             }
         }
 
-        // Edit
+        /// <summary>
+        /// Edits an existing archetype if an archetype is selected.
+        /// 
+        /// NOTE: Could there be a better way to retrieve the current data?
+        /// </summary>
         private void btnEditArchetype_Click(object sender, EventArgs e)
         {
             if (dgvArchetypes.CurrentRow == null)
@@ -38,7 +47,9 @@ namespace DeckTracker
             }
         }
 
-        // Delete
+        /// <summary>
+        /// Deletes an existing archetype if an archetype is selected.  Always prompts the user informing them that associated matches and builds will also be deleted.
+        /// </summary>
         private void btnDeleteArchetype_Click(object sender, EventArgs e)
         {
             if (dgvArchetypes.CurrentRow == null)

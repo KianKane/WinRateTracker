@@ -3,9 +3,16 @@ using System.Windows.Forms;
 
 namespace DeckTracker
 {
+    /// <summary>
+    /// This partial class provides functionality to the elements in the edit my builds tab.
+    /// </summary>
     public partial class Form1
     {
-        // Add
+        /// <summary>
+        /// Adds a new build.  If no archetypes exist this will show a message telling the user that they cannot create a build until archetypes exist.
+        /// 
+        /// NOTE: Could move the user into the edit archetypes tab if no archetypes exist?
+        /// </summary>
         private void btnAddBuild_Click(object sender, EventArgs e)
         {
             if (archetypesBindingSource.Count == 0)
@@ -23,7 +30,11 @@ namespace DeckTracker
             }
         }
 
-        // Edit
+        /// <summary>
+        /// Edits an existing build if a build is selected.
+        /// 
+        /// NOTE: Could there be a better way to retrieve the current data?
+        /// </summary>
         private void btnEditBuild_Click(object sender, EventArgs e)
         {
             if (dgvBuilds.CurrentRow == null)
@@ -45,7 +56,9 @@ namespace DeckTracker
             }
         }
 
-        // Delete
+        /// <summary>
+        /// Deletes an existing build if a build is selected.  Always prompts the user informing them that associated matches will also be deleted.
+        /// </summary>
         private void btnDeleteBuild_Click(object sender, EventArgs e)
         {
             if (dgvBuilds.CurrentRow == null)
