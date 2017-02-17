@@ -2,6 +2,13 @@
 
 namespace DeckTracker.GameArchetypes
 {
+    /// <summary>
+    /// Initializes archetypes for the game Duelyst.
+    /// Uses the name field to store the faction name.
+    /// 
+    /// TODO: Find or write default descriptions for the various factions.
+    /// NOTE: Can possibly use defualt hero names as descriptions?
+    /// </summary>
     class DuelystArchetypeInitializer : IArchetypeInitializer
     {
         public void InitializeArchetypes(ArchetypesTableAdapter adapter)

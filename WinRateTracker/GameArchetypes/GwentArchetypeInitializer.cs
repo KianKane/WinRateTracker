@@ -2,6 +2,12 @@
 
 namespace DeckTracker.GameArchetypes
 {
+    /// <summary>
+    /// Initializes archetypes for the game Gwent.
+    /// Uses the name field to store the faction name.
+    /// 
+    /// TODO: Find or write default descriptions for the various factions.
+    /// </summary>
     class GwentArchetypeInitializer : IArchetypeInitializer
     {
         public void InitializeArchetypes(ArchetypesTableAdapter adapter)

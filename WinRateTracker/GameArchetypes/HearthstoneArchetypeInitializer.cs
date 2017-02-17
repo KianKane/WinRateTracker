@@ -2,6 +2,13 @@
 
 namespace DeckTracker.GameArchetypes
 {
+    /// <summary>
+    /// Initializes archetypes for the game Hearthstone.
+    /// Uses the name field to store the class.
+    /// Uses the note field to store the default hero associated with the class.
+    /// 
+    /// NOTE: Could possibly move hero name into name and class name into note.
+    /// </summary>
     class HearthstoneArchetypeInitializer : IArchetypeInitializer
     {
         public void InitializeArchetypes(ArchetypesTableAdapter adapter)
