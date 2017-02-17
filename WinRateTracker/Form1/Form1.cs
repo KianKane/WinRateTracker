@@ -39,13 +39,13 @@ namespace DeckTracker
                 {
                     IArchetypeInitializer archetypeInitializer = null;
 
-                    if (dialog.cb_game.Text.Equals("Hearthstone"))
+                    if (dialog.cboGame.Text.Equals("Hearthstone"))
                         archetypeInitializer = new HearthstoneArchetypeInitializer();
-                    else if (dialog.cb_game.Text.Equals("Duelyst"))
+                    else if (dialog.cboGame.Text.Equals("Duelyst"))
                         archetypeInitializer = new DuelystArchetypeInitializer();
-                    else if (dialog.cb_game.Text.Equals("Gwent"))
+                    else if (dialog.cboGame.Text.Equals("Gwent"))
                         archetypeInitializer = new GwentArchetypeInitializer();
-                    else if (dialog.cb_game.Text.Equals("Shadowverse"))
+                    else if (dialog.cboGame.Text.Equals("Shadowverse"))
                         archetypeInitializer = new ShadowverseArchetypeInitializer();
 
                     if (archetypeInitializer != null)

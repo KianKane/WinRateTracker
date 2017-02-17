@@ -10,47 +10,47 @@ namespace DeckTracker
     public partial class Form1
     {
         // Add
-        private void btn_addArchetype_Click(object sender, EventArgs e)
+        private void btnAddArchetype_Click(object sender, EventArgs e)
         {
             ArchetypeDialog dialog = new ArchetypeDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                archetypesTableAdapter.InsertQuery(dialog.tb_name.Text, dialog.tb_note.Text);
+                archetypesTableAdapter.InsertQuery(dialog.txtName.Text, dialog.txtNote.Text);
                 archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
                 databaseDataSet.AcceptChanges();
             }
         }
 
         // Edit
-        private void btn_editArchetype_Click(object sender, EventArgs e)
+        private void btnEditArchetype_Click(object sender, EventArgs e)
         {
-            if (dgv_archetypes.CurrentRow == null)
+            if (dgvArchetypes.CurrentRow == null)
                 return;
 
-            int id = (int)dgv_archetypes.CurrentRow.Cells["idColumnArchetype"].Value;
+            int id = (int)dgvArchetypes.CurrentRow.Cells["idColumnArchetype"].Value;
 
             ArchetypeDialog dialog = new ArchetypeDialog();
-            dialog.tb_name.Text = (string)dgv_archetypes.CurrentRow.Cells["nameColumnArchetype"].Value;
-            if (!Convert.IsDBNull(dgv_archetypes.CurrentRow.Cells["noteColumnArchetype"].Value))
-                dialog.tb_note.Text = (string)dgv_archetypes.CurrentRow.Cells["noteColumnArchetype"].Value;
+            dialog.txtName.Text = (string)dgvArchetypes.CurrentRow.Cells["nameColumnArchetype"].Value;
+            if (!Convert.IsDBNull(dgvArchetypes.CurrentRow.Cells["noteColumnArchetype"].Value))
+                dialog.txtNote.Text = (string)dgvArchetypes.CurrentRow.Cells["noteColumnArchetype"].Value;
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                archetypesTableAdapter.UpdateQuery(dialog.tb_name.Text, dialog.tb_note.Text, id);
+                archetypesTableAdapter.UpdateQuery(dialog.txtName.Text, dialog.txtNote.Text, id);
                 archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
                 databaseDataSet.AcceptChanges();
             }
         }
 
         // Delete
-        private void btn_deleteArchetype_Click(object sender, EventArgs e)
+        private void btnDeleteArchetype_Click(object sender, EventArgs e)
         {
-            if (dgv_archetypes.CurrentRow == null)
+            if (dgvArchetypes.CurrentRow == null)
                 return;
 
             if (MessageBox.Show("Deleting this archetype will also delete all associated builds and match information.  Are you sure you want to continue?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                int id = (int)dgv_archetypes.CurrentRow.Cells["idColumnArchetype"].Value;
+                int id = (int)dgvArchetypes.CurrentRow.Cells["idColumnArchetype"].Value;
 
                 archetypesTableAdapter.DeleteQuery(id);
                 archetypesTableAdapter.Fill(databaseDataSet.Archetypes);

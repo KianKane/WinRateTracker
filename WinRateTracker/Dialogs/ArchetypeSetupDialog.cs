@@ -15,15 +15,15 @@ namespace DeckTracker.Dialogs
         public ArchetypeSetupDialog()
         {
             InitializeComponent();
-            cb_game.SelectedIndex = 0;
+            cboGame.SelectedIndex = 0;
         }
 
-        private void btn_confirm_Click(object sender, EventArgs e)
+        private void btnConfirm_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
         }
 
-        private void btn_cancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
