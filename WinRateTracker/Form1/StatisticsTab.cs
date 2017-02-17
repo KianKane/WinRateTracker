@@ -5,21 +5,6 @@ namespace DeckTracker
 {
     public partial class Form1
     {
-        private void lnkEditBuildsTab2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            tabControl.SelectTab(EDIT_MY_BUILDS_TAB_INDEX);
-        }
-
-        private void lnkEditArchetypesTab2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            tabControl.SelectTab(EDIT_ARCHETYPES_TAB_INDEX);
-        }
-
-        private void btnRecordMatch_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectTab(RECORD_MATCH_TAB_INDEX);
-        }
-
         private void cboArchetypeTab2_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateStatistics();

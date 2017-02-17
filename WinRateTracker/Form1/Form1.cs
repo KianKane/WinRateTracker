@@ -9,7 +9,7 @@ namespace DeckTracker
     {
         private const int RECORD_MATCH_TAB_INDEX = 0;
         private const int STATISTICS_TAB_INDEX = 1;
-        private const int EDIT_MY_BUILDS_TAB_INDEX = 2;
+        private const int EDIT_BUILDS_TAB_INDEX = 2;
         private const int EDIT_ARCHETYPES_TAB_INDEX = 3;
 
         public Form1()
@@ -50,6 +50,26 @@ namespace DeckTracker
             }
 
             UpdateStatistics();
+        }
+
+        private void SelectRecordMatchTab(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(RECORD_MATCH_TAB_INDEX);
+        }
+
+        private void SelectStatisticsTab(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(STATISTICS_TAB_INDEX);
+        }
+
+        private void SelectEditBuildsTab(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(EDIT_BUILDS_TAB_INDEX);
+        }
+
+        private void SelectEditArchetypesTab(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(EDIT_ARCHETYPES_TAB_INDEX);
         }
     }
 }

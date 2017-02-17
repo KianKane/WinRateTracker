@@ -200,6 +200,17 @@
             lblTitleTab3.Text = "Edit My Builds";
             lblTitleTab3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblTitleTab4
+            // 
+            lblTitleTab4.Dock = System.Windows.Forms.DockStyle.Top;
+            lblTitleTab4.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblTitleTab4.Location = new System.Drawing.Point(0, 0);
+            lblTitleTab4.Name = "lblTitleTab4";
+            lblTitleTab4.Size = new System.Drawing.Size(616, 60);
+            lblTitleTab4.TabIndex = 1;
+            lblTitleTab4.Text = "Edit Archetypes";
+            lblTitleTab4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.recordMatchTab);
@@ -320,7 +331,7 @@
             this.lnkEditArchetypesTab1.TabIndex = 1;
             this.lnkEditArchetypesTab1.TabStop = true;
             this.lnkEditArchetypesTab1.Text = "Edit Archetypes";
-            this.lnkEditArchetypesTab1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEditArchetypesTab1_LinkClicked);
+            this.lnkEditArchetypesTab1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectEditArchetypesTab);
             // 
             // lnkEditBuildsTab1
             // 
@@ -331,7 +342,7 @@
             this.lnkEditBuildsTab1.TabIndex = 1;
             this.lnkEditBuildsTab1.TabStop = true;
             this.lnkEditBuildsTab1.Text = "Edit My Builds";
-            this.lnkEditBuildsTab1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEditBuildsTab1_LinkClicked);
+            this.lnkEditBuildsTab1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectEditBuildsTab);
             // 
             // statisticsTab
             // 
@@ -482,7 +493,7 @@
             this.lnkEditBuildsTab2.TabIndex = 5;
             this.lnkEditBuildsTab2.TabStop = true;
             this.lnkEditBuildsTab2.Text = "Edit My Builds";
-            this.lnkEditBuildsTab2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEditBuildsTab2_LinkClicked);
+            this.lnkEditBuildsTab2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectEditBuildsTab);
             // 
             // editBuildsTab
             // 
@@ -687,17 +698,6 @@
             this.idColumnArchetype.ReadOnly = true;
             this.idColumnArchetype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.idColumnArchetype.Visible = false;
-            // 
-            // lblTitleTab4
-            // 
-            lblTitleTab4.Dock = System.Windows.Forms.DockStyle.Top;
-            lblTitleTab4.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblTitleTab4.Location = new System.Drawing.Point(0, 0);
-            lblTitleTab4.Name = "lblTitleTab4";
-            lblTitleTab4.Size = new System.Drawing.Size(616, 60);
-            lblTitleTab4.TabIndex = 1;
-            lblTitleTab4.Text = "Edit Archetypes";
-            lblTitleTab4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buildsTableAdapter
             // 
