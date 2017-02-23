@@ -254,7 +254,7 @@
             this.btnStatistics.TabIndex = 4;
             this.btnStatistics.Text = "Statistics";
             this.btnStatistics.UseVisualStyleBackColor = true;
-            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
+            this.btnStatistics.Click += new System.EventHandler(this.SelectStatisticsTab);
             // 
             // btnDefeat
             // 
@@ -440,7 +440,7 @@
             this.btnRecordMatch.TabIndex = 9;
             this.btnRecordMatch.Text = "Record Match Results";
             this.btnRecordMatch.UseVisualStyleBackColor = true;
-            this.btnRecordMatch.Click += new System.EventHandler(this.btnRecordMatch_Click);
+            this.btnRecordMatch.Click += new System.EventHandler(this.SelectRecordMatchTab);
             // 
             // cboArchetypeTab2
             // 
@@ -482,7 +482,7 @@
             this.lnkEditArchetypesTab2.TabIndex = 4;
             this.lnkEditArchetypesTab2.TabStop = true;
             this.lnkEditArchetypesTab2.Text = "Edit Archetypes";
-            this.lnkEditArchetypesTab2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEditArchetypesTab2_LinkClicked);
+            this.lnkEditArchetypesTab2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectEditArchetypesTab);
             // 
             // lnkEditBuildsTab2
             // 
