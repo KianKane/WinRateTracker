@@ -6,7 +6,7 @@ namespace DeckTracker.View
     /// <summary>
     /// This partial class provides functionality to the elements in the statistics tab.
     /// </summary>
-    public partial class Form1
+    public partial class Home
     {
         /// <summary>
         /// Updates statistics whenever the selected archetype changes.

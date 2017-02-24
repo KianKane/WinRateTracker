@@ -7,7 +7,7 @@ namespace DeckTracker.View
     /// <summary>
     /// This partial class provides functionality to the elements in the edit archetypes tab.
     /// </summary>
-    public partial class Form1
+    public partial class Home
     {
         /// <summary>
         /// Adds a new archetype.

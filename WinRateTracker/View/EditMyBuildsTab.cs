@@ -7,7 +7,7 @@ namespace DeckTracker.View
     /// <summary>
     /// This partial class provides functionality to the elements in the edit my builds tab.
     /// </summary>
-    public partial class Form1
+    public partial class Home
     {
         /// <summary>
         /// Adds a new build.  If no archetypes exist this will show a message telling the user that they cannot create a build until archetypes exist.

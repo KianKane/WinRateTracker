@@ -6,7 +6,7 @@ namespace DeckTracker.View
     /// <summary>
     /// This partial class provides functionality to the elements in the record match tab.
     /// </summary>
-    public partial class Form1
+    public partial class Home
     {
         /// <summary>
         /// Records a victory.

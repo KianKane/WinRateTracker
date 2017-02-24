@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DeckTracker.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -93,11 +96,11 @@
     <Compile Include="View\EditMyBuildsTab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.cs">
+    <Compile Include="View\Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
     </Compile>
     <Compile Include="Presenter\GameArchetypes\DuelystArchetypeInitializer.cs" />
     <Compile Include="Presenter\GameArchetypes\GwentArchetypeInitializer.cs" />
@@ -121,8 +124,8 @@
     <EmbeddedResource Include="View\Dialogs\BuildDialog.resx">
       <DependentUpon>BuildDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="View\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

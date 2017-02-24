@@ -10,14 +10,14 @@ namespace DeckTracker.View
     /// This window is split into partial classes for each tab, See "RecordMatchTab.cs", "StatisticsTab.cs", "EditMyBuildsTab.cs", and "EditArchetypesTab.cs".
     /// Shared functionality is stored in this file.
     /// </summary>
-    public partial class Form1 : Form
+    public partial class Home : Form
     {
         private const int RECORD_MATCH_TAB_INDEX = 0;
         private const int STATISTICS_TAB_INDEX = 1;
         private const int EDIT_BUILDS_TAB_INDEX = 2;
         private const int EDIT_ARCHETYPES_TAB_INDEX = 3;
 
-        public Form1()
+        public Home()
         {
             InitializeComponent();
         }
