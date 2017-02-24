@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace DeckTracker.View.Dialogs
+namespace WinRateTracker.View.Dialogs
 {
     /// <summary>
     /// A dialog form that allows the user to select a game to initialize archetypes for.

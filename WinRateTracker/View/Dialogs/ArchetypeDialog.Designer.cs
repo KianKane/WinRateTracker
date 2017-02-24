@@ -1,4 +1,4 @@
-﻿namespace DeckTracker.View.Dialogs
+﻿namespace WinRateTracker.View.Dialogs
 {
     partial class ArchetypeDialog
     {

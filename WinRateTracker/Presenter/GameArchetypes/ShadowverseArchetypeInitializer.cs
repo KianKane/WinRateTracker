@@ -1,6 +1,6 @@
-﻿using DeckTracker.Model.DatabaseDataSetTableAdapters;
+﻿using WinRateTracker.Model.DatabaseDataSetTableAdapters;
 
-namespace DeckTracker.Presenter.GameArchetypes
+namespace WinRateTracker.Presenter.GameArchetypes
 {
     /// <summary>
     /// Initializes archetypes for the game Shadowverse.

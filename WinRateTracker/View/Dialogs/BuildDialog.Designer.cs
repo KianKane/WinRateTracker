@@ -1,4 +1,4 @@
-﻿namespace DeckTracker.View.Dialogs
+﻿namespace WinRateTracker.View.Dialogs
 {
     partial class BuildDialog
     {
@@ -36,10 +36,10 @@
             this.txtNote = new System.Windows.Forms.TextBox();
             this.cboArchetype = new System.Windows.Forms.ComboBox();
             this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new DeckTracker.Model.DatabaseDataSet();
+            this.databaseDataSet = new WinRateTracker.Model.DatabaseDataSet();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.archetypesTableAdapter = new DeckTracker.Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
+            this.archetypesTableAdapter = new WinRateTracker.Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
             lblName = new System.Windows.Forms.Label();
             lblArchetype = new System.Windows.Forms.Label();
             lblNote = new System.Windows.Forms.Label();

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using DeckTracker.View;
+using WinRateTracker.View;
 
-namespace DeckTracker
+namespace WinRateTracker
 {
     static class Program
     {

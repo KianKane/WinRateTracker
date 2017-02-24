@@ -1,4 +1,4 @@
-﻿namespace DeckTracker.View
+﻿namespace WinRateTracker.View
 {
     partial class Home
     {
@@ -46,7 +46,7 @@
             this.btnVictory = new System.Windows.Forms.Button();
             this.cboArchetypeTab1 = new System.Windows.Forms.ComboBox();
             this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new DeckTracker.Model.DatabaseDataSet();
+            this.databaseDataSet = new WinRateTracker.Model.DatabaseDataSet();
             this.cboBuildTab1 = new System.Windows.Forms.ComboBox();
             this.buildsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lnkEditArchetypesTab1 = new System.Windows.Forms.LinkLabel();
@@ -80,10 +80,10 @@
             this.nameColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buildsTableAdapter = new DeckTracker.Model.DatabaseDataSetTableAdapters.BuildsTableAdapter();
-            this.archetypesTableAdapter = new DeckTracker.Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
-            this.matchesTableAdapter = new DeckTracker.Model.DatabaseDataSetTableAdapters.MatchesTableAdapter();
-            this.archetypesTableAdapter1 = new DeckTracker.Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
+            this.buildsTableAdapter = new WinRateTracker.Model.DatabaseDataSetTableAdapters.BuildsTableAdapter();
+            this.archetypesTableAdapter = new WinRateTracker.Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
+            this.matchesTableAdapter = new WinRateTracker.Model.DatabaseDataSetTableAdapters.MatchesTableAdapter();
+            this.archetypesTableAdapter1 = new WinRateTracker.Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
             lblVersusTab1 = new System.Windows.Forms.Label();
             lblTitleTab1 = new System.Windows.Forms.Label();
             lblLosses = new System.Windows.Forms.Label();

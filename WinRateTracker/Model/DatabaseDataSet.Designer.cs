@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace DeckTracker.Model {
+namespace WinRateTracker.Model {
     
     
     /// <summary>
@@ -1641,7 +1641,7 @@ namespace DeckTracker.Model {
         }
     }
 }
-namespace DeckTracker.Model.DatabaseDataSetTableAdapters {
+namespace WinRateTracker.Model.DatabaseDataSetTableAdapters {
     
     
     /// <summary>
@@ -1804,7 +1804,7 @@ SELECT archetypeID, name, note FROM Archetypes WHERE (archetypeID = @archetypeID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DeckTracker.Properties.Settings.Default.DatabaseConnectionString;
+            this._connection.ConnectionString = global::WinRateTracker.Properties.Settings.Default.DatabaseConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2277,7 +2277,7 @@ SELECT matchID, archetypeID, victory, buildID FROM Matches WHERE (matchID = @mat
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DeckTracker.Properties.Settings.Default.DatabaseConnectionString;
+            this._connection.ConnectionString = global::WinRateTracker.Properties.Settings.Default.DatabaseConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2776,7 +2776,7 @@ SELECT buildID, name, note, archetypeID FROM Builds WHERE (buildID = @buildID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DeckTracker.Properties.Settings.Default.DatabaseConnectionString;
+            this._connection.ConnectionString = global::WinRateTracker.Properties.Settings.Default.DatabaseConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

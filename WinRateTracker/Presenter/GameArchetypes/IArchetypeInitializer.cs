@@ -1,6 +1,6 @@
-﻿using DeckTracker.Model.DatabaseDataSetTableAdapters;
+﻿using WinRateTracker.Model.DatabaseDataSetTableAdapters;
 
-namespace DeckTracker.Presenter.GameArchetypes
+namespace WinRateTracker.Presenter.GameArchetypes
 {
     /// <summary>
     /// Defines how an archetype initializer is to be interacted with.

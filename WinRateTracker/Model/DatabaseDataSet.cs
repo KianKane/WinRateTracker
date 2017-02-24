@@ -1,4 +1,4 @@
-﻿namespace DeckTracker.Model
+﻿namespace WinRateTracker.Model
 {
 
 
@@ -9,7 +9,7 @@
 
 
 
-namespace DeckTracker.Model.DatabaseDataSetTableAdapters
+namespace WinRateTracker.Model.DatabaseDataSetTableAdapters
 {
 
 
