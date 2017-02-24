@@ -1,7 +1,8 @@
 ﻿namespace WinRateTracker.Model
 {
-    interface IModel
+    public interface IModel
     {
+        DatabaseDataSet GetDataSet();
         void InsertBuild(string name, string note, int archetypeID);
         void UpdateBuild(int buildID, string name, string note, int archetypeID);
         void DeleteBuild(int buildID);

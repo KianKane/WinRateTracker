@@ -27,6 +27,11 @@ namespace WinRateTracker.Model
             archetypesTableAdapter.ClearBeforeFill = true;
         }
 
+        public DatabaseDataSet GetDataSet()
+        {
+            return dataSet;
+        }
+
         public void InsertBuild(string name, string note, int archetypeID)
         {
             buildsTableAdapter.InsertQuery(name, note, archetypeID);
@@ -88,6 +93,7 @@ namespace WinRateTracker.Model
             buildsTableAdapter.Fill(dataSet.Builds);
             matchesTableAdapter.Fill(dataSet.Matches);
             archetypesTableAdapter.Fill(dataSet.Archetypes);
+            dataSet.AcceptChanges();
         }
     }
 }
