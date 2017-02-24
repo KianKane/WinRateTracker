@@ -51,9 +51,7 @@ namespace WinRateTracker.View
 
             if (MessageBox.Show("Are you sure you want to record this result?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                matchesTableAdapter.RecordMatchQuery(build, archetype, victory);
-                matchesTableAdapter.Fill(databaseDataSet.Matches);
-                databaseDataSet.AcceptChanges();
+                model.RecordMatch(build, archetype, victory);
 
                 UpdateStatistics();
             }

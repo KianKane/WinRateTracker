@@ -25,9 +25,7 @@ namespace WinRateTracker.View
             BuildDialog dialog = new BuildDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                buildsTableAdapter.InsertQuery(dialog.txtName.Text, dialog.txtNote.Text, (int)dialog.cboArchetype.SelectedValue);
-                buildsTableAdapter.Fill(databaseDataSet.Builds);
-                databaseDataSet.AcceptChanges();
+                model.InsertBuild(dialog.txtName.Text, dialog.txtNote.Text, (int)dialog.cboArchetype.SelectedValue);
             }
         }
 
@@ -51,9 +49,7 @@ namespace WinRateTracker.View
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                buildsTableAdapter.UpdateQuery(dialog.txtName.Text, dialog.txtNote.Text, (int)dialog.cboArchetype.SelectedValue, id);
-                buildsTableAdapter.Fill(databaseDataSet.Builds);
-                databaseDataSet.AcceptChanges();
+                model.UpdateBuild(id, dialog.txtName.Text, dialog.txtNote.Text, (int)dialog.cboArchetype.SelectedValue);
             }
         }
 
@@ -69,10 +65,7 @@ namespace WinRateTracker.View
             {
                 int id = (int)dgvBuilds.CurrentRow.Cells["idColumnBuild"].Value;
 
-                buildsTableAdapter.DeleteQuery(id);
-                buildsTableAdapter.Fill(databaseDataSet.Builds);
-                matchesTableAdapter.Fill(databaseDataSet.Matches);
-                databaseDataSet.AcceptChanges();
+                model.DeleteBuild(id);
             }
         }
     }

@@ -17,9 +17,7 @@ namespace WinRateTracker.View
             ArchetypeDialog dialog = new ArchetypeDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                archetypesTableAdapter.InsertQuery(dialog.txtName.Text, dialog.txtNote.Text);
-                archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
-                databaseDataSet.AcceptChanges();
+                model.InsertArchetype(dialog.txtName.Text, dialog.txtNote.Text);
             }
         }
 
@@ -42,9 +40,7 @@ namespace WinRateTracker.View
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                archetypesTableAdapter.UpdateQuery(dialog.txtName.Text, dialog.txtNote.Text, id);
-                archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
-                databaseDataSet.AcceptChanges();
+                model.UpdateArchetype(id, dialog.txtName.Text, dialog.txtNote.Text);
             }
         }
 
@@ -60,11 +56,7 @@ namespace WinRateTracker.View
             {
                 int id = (int)dgvArchetypes.CurrentRow.Cells["idColumnArchetype"].Value;
 
-                archetypesTableAdapter.DeleteQuery(id);
-                archetypesTableAdapter.Fill(databaseDataSet.Archetypes);
-                buildsTableAdapter.Fill(databaseDataSet.Builds);
-                matchesTableAdapter.Fill(databaseDataSet.Matches);
-                databaseDataSet.AcceptChanges();
+                model.DeleteArchetype(id);
             }
         }
     }

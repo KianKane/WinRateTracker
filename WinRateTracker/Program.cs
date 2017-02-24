@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using WinRateTracker.Model;
 using WinRateTracker.View;
 
 namespace WinRateTracker
@@ -14,7 +15,8 @@ namespace WinRateTracker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Home());
+            IModel model = new Model.Model();
+            Application.Run(new Home(model));
         }
     }
 }

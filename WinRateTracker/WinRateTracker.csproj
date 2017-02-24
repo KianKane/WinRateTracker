@@ -72,6 +72,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\Model.cs" />
     <Compile Include="View\Dialogs\ArchetypeDialog.cs">
       <SubType>Form</SubType>
     </Compile>

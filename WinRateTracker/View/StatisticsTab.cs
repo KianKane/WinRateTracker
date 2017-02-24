@@ -62,32 +62,19 @@ namespace WinRateTracker.View
                 return;
             }
 
-            int build = (int)cboBuildTab2.SelectedValue;
-            int archetype = (int)cboArchetypeTab2.SelectedValue;
+            int? build = (int)cboBuildTab2.SelectedValue;
+            int? archetype = (int)cboArchetypeTab2.SelectedValue;
 
             int wins;
             int losses;
 
-            if (chkAllBuilds.Checked && chkAllArchetypes.Checked)
-            {
-                wins = (int)matchesTableAdapter.CountMatchesAllQuery(true);
-                losses = (int)matchesTableAdapter.CountMatchesAllQuery(false);
-            }
-            else if (chkAllBuilds.Checked && !chkAllArchetypes.Checked)
-            {
-                wins = (int)matchesTableAdapter.CountMatchesAllBuildsQuery(archetype, true);
-                losses = (int)matchesTableAdapter.CountMatchesAllBuildsQuery(archetype, false);
-            }
-            else if (!chkAllBuilds.Checked && chkAllArchetypes.Checked)
-            {
-                wins = (int)matchesTableAdapter.CountMatchesAllArchetypesQuery(build, true);
-                losses = (int)matchesTableAdapter.CountMatchesAllArchetypesQuery(build, false);
-            }
-            else
-            {
-                wins = (int)matchesTableAdapter.CountMatchesQuery(build, archetype, true);
-                losses = (int)matchesTableAdapter.CountMatchesQuery(build, archetype, false);
-            }
+            if (!chkAllBuilds.Checked)
+                build = null;
+            if (!chkAllArchetypes.Checked)
+                archetype = null;
+
+            wins = model.CountMatches(build, archetype, true);
+            losses = model.CountMatches(build, archetype, false);
 
             lblWinsValue.Text = wins.ToString();
             lblLossesValue.Text = losses.ToString();
