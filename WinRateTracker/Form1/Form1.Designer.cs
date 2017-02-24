@@ -46,7 +46,7 @@
             this.btnVictory = new System.Windows.Forms.Button();
             this.cboArchetypeTab1 = new System.Windows.Forms.ComboBox();
             this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new DeckTracker.Database.DatabaseDataSet();
+            this.databaseDataSet = new DeckTracker.Model.DatabaseDataSet();
             this.cboBuildTab1 = new System.Windows.Forms.ComboBox();
             this.buildsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lnkEditArchetypesTab1 = new System.Windows.Forms.LinkLabel();
@@ -80,10 +80,10 @@
             this.nameColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idColumnArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buildsTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.BuildsTableAdapter();
-            this.archetypesTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
-            this.matchesTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.MatchesTableAdapter();
-            this.archetypesTableAdapter1 = new DeckTracker.Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
+            this.buildsTableAdapter = new DeckTracker.Model.DatabaseDataSetTableAdapters.BuildsTableAdapter();
+            this.archetypesTableAdapter = new DeckTracker.Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
+            this.matchesTableAdapter = new DeckTracker.Model.DatabaseDataSetTableAdapters.MatchesTableAdapter();
+            this.archetypesTableAdapter1 = new DeckTracker.Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
             lblVersusTab1 = new System.Windows.Forms.Label();
             lblTitleTab1 = new System.Windows.Forms.Label();
             lblLosses = new System.Windows.Forms.Label();
@@ -775,12 +775,12 @@
         private System.Windows.Forms.Label lblWinsValue;
         private System.Windows.Forms.Label lblLossesValue;
         private System.Windows.Forms.Label lblWinRateValue;
-        private Database.DatabaseDataSet databaseDataSet;
+        private Model.DatabaseDataSet databaseDataSet;
         private System.Windows.Forms.BindingSource buildsBindingSource;
-        private Database.DatabaseDataSetTableAdapters.BuildsTableAdapter buildsTableAdapter;
+        private Model.DatabaseDataSetTableAdapters.BuildsTableAdapter buildsTableAdapter;
         private System.Windows.Forms.BindingSource archetypesBindingSource;
-        private Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
-        private Database.DatabaseDataSetTableAdapters.MatchesTableAdapter matchesTableAdapter;
+        private Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
+        private Model.DatabaseDataSetTableAdapters.MatchesTableAdapter matchesTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumnBuild;
         private System.Windows.Forms.DataGridViewComboBoxColumn archetypeColumnBuild;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteColumnBuild;
@@ -790,7 +790,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumnArchetype;
         private System.Windows.Forms.CheckBox chkAllBuilds;
         private System.Windows.Forms.CheckBox chkAllArchetypes;
-        private Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter1;
+        private Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter1;
     }
 }
 

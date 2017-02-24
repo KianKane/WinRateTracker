@@ -1,4 +1,4 @@
-﻿using DeckTracker.Database.DatabaseDataSetTableAdapters;
+﻿using DeckTracker.Model.DatabaseDataSetTableAdapters;
 
 namespace DeckTracker.GameArchetypes
 {

@@ -36,10 +36,10 @@
             this.txtNote = new System.Windows.Forms.TextBox();
             this.cboArchetype = new System.Windows.Forms.ComboBox();
             this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new DeckTracker.Database.DatabaseDataSet();
+            this.databaseDataSet = new DeckTracker.Model.DatabaseDataSet();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.archetypesTableAdapter = new DeckTracker.Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
+            this.archetypesTableAdapter = new DeckTracker.Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
             lblName = new System.Windows.Forms.Label();
             lblArchetype = new System.Windows.Forms.Label();
             lblNote = new System.Windows.Forms.Label();
@@ -168,8 +168,8 @@
         public System.Windows.Forms.TextBox txtName;
         public System.Windows.Forms.TextBox txtNote;
         public System.Windows.Forms.ComboBox cboArchetype;
-        private Database.DatabaseDataSet databaseDataSet;
+        private Model.DatabaseDataSet databaseDataSet;
         private System.Windows.Forms.BindingSource archetypesBindingSource;
-        private Database.DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
+        private Model.DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
     }
 }
