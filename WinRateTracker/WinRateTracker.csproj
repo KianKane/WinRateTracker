@@ -69,59 +69,59 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ArchetypeDialog.cs">
+    <Compile Include="View\Dialogs\ArchetypeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ArchetypeDialog.Designer.cs">
+    <Compile Include="View\Dialogs\ArchetypeDialog.Designer.cs">
       <DependentUpon>ArchetypeDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ArchetypeSetupDialog.cs">
+    <Compile Include="View\Dialogs\ArchetypeSetupDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ArchetypeSetupDialog.Designer.cs">
+    <Compile Include="View\Dialogs\ArchetypeSetupDialog.Designer.cs">
       <DependentUpon>ArchetypeSetupDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\BuildDialog.cs">
+    <Compile Include="View\Dialogs\BuildDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\BuildDialog.Designer.cs">
+    <Compile Include="View\Dialogs\BuildDialog.Designer.cs">
       <DependentUpon>BuildDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1\EditArchetypesTab.cs">
+    <Compile Include="View\EditArchetypesTab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1\EditMyBuildsTab.cs">
+    <Compile Include="View\EditMyBuildsTab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1\Form1.cs">
+    <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1\Form1.Designer.cs">
+    <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameArchetypes\DuelystArchetypeInitializer.cs" />
-    <Compile Include="GameArchetypes\GwentArchetypeInitializer.cs" />
-    <Compile Include="GameArchetypes\HearthstoneArchetypeInitializer.cs" />
-    <Compile Include="GameArchetypes\IArchetypeInitializer.cs" />
-    <Compile Include="GameArchetypes\ShadowverseArchetypeInitializer.cs" />
+    <Compile Include="Presenter\GameArchetypes\DuelystArchetypeInitializer.cs" />
+    <Compile Include="Presenter\GameArchetypes\GwentArchetypeInitializer.cs" />
+    <Compile Include="Presenter\GameArchetypes\HearthstoneArchetypeInitializer.cs" />
+    <Compile Include="Presenter\GameArchetypes\IArchetypeInitializer.cs" />
+    <Compile Include="Presenter\GameArchetypes\ShadowverseArchetypeInitializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Form1\RecordMatchTab.cs">
+    <Compile Include="View\RecordMatchTab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1\StatisticsTab.cs">
+    <Compile Include="View\StatisticsTab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <EmbeddedResource Include="Dialogs\ArchetypeDialog.resx">
+    <EmbeddedResource Include="View\Dialogs\ArchetypeDialog.resx">
       <DependentUpon>ArchetypeDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ArchetypeSetupDialog.resx">
+    <EmbeddedResource Include="View\Dialogs\ArchetypeSetupDialog.resx">
       <DependentUpon>ArchetypeSetupDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\BuildDialog.resx">
+    <EmbeddedResource Include="View\Dialogs\BuildDialog.resx">
       <DependentUpon>BuildDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1\Form1.resx">
+    <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -178,10 +178,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Presenter\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

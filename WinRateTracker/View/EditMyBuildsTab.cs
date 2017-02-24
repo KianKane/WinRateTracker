@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using DeckTracker.View.Dialogs;
 
-namespace DeckTracker
+namespace DeckTracker.View
 {
     /// <summary>
     /// This partial class provides functionality to the elements in the edit my builds tab.

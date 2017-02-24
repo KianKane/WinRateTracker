@@ -1,4 +1,4 @@
-﻿namespace DeckTracker.Dialogs
+﻿namespace DeckTracker.View.Dialogs
 {
     partial class ArchetypeSetupDialog
     {

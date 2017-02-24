@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using DeckTracker.Dialogs;
-using DeckTracker.GameArchetypes;
+using DeckTracker.View.Dialogs;
+using DeckTracker.Presenter.GameArchetypes;
 
-namespace DeckTracker
+namespace DeckTracker.View
 {
     /// <summary>
     /// The primary window for the application.

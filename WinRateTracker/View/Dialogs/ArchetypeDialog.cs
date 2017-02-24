@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace DeckTracker
+namespace DeckTracker.View.Dialogs
 {
     /// <summary>
     /// A dialog form used for the creation/modification of archetypes.

@@ -1,6 +1,6 @@
 ﻿using DeckTracker.Model.DatabaseDataSetTableAdapters;
 
-namespace DeckTracker.GameArchetypes
+namespace DeckTracker.Presenter.GameArchetypes
 {
     /// <summary>
     /// Initializes archetypes for the game Hearthstone.

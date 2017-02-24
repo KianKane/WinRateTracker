@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace DeckTracker
+namespace DeckTracker.View
 {
     /// <summary>
     /// This partial class provides functionality to the elements in the statistics tab.
