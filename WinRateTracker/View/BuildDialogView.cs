@@ -67,9 +67,14 @@ namespace WinRateTracker.View.Dialogs
             archetypesBindingSource.DataSource = Model.Model.Instance.GetDataSet().Archetypes;
             archetypesBindingSource.ResetBindings(false);
             if (editing)
+            {
+                cboArchetype.Enabled = false;
                 new UpdateBuildPresenter(this);
+            }
             else
+            {
                 new NewBuildPresenter(this);
+            }
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)

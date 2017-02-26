@@ -4,7 +4,7 @@
     {
         DatabaseDataSet GetDataSet();
         void InsertBuild(string name, string note, int archetypeID);
-        void UpdateBuild(int buildID, string name, string note, int archetypeID);
+        void UpdateBuild(int buildID, string name, string note);
         void DeleteBuild(int buildID);
         void InsertArchetype(string name, string note);
         void UpdateArchetype(int archetypeID, string name, string note);

@@ -24,14 +24,13 @@ namespace WinRateTracker.Presenter
         {
             string buildName = view.BuildName.Trim();
             string buildNote = view.BuildNote.Trim();
-            int archetypeID = view.ArchetypeID;
             if (string.IsNullOrWhiteSpace(buildName))
             {
                 view.Message("Invalid Name", "You must enter a name for the archetype.");
             }
             else
             {
-                model.UpdateBuild(view.BuildID, buildName, buildNote, archetypeID);
+                model.UpdateBuild(view.BuildID, buildName, buildNote);
                 view.CloseDialog();
             }
         }

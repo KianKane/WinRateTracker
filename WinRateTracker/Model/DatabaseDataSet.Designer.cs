@@ -2802,12 +2802,10 @@ SELECT buildID, name, note, archetypeID FROM Builds WHERE (buildID = @buildID)";
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "UPDATE Builds SET name = @newName, note = @newNote, archetypeID = @archetypeID WH" +
-                "ERE buildID = @id";
+            this._commandCollection[3].CommandText = "UPDATE Builds SET name = @newName, note = @newNote WHERE buildID = @id";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@newName", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@newNote", global::System.Data.SqlDbType.NVarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@archetypeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "archetypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "buildID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -3058,7 +3056,7 @@ SELECT buildID, name, note, archetypeID FROM Builds WHERE (buildID = @buildID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateQuery(string newName, string newNote, int archetypeID, int id) {
+        public virtual int UpdateQuery(string newName, string newNote, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             if ((newName == null)) {
                 throw new global::System.ArgumentNullException("newName");
@@ -3072,8 +3070,7 @@ SELECT buildID, name, note, archetypeID FROM Builds WHERE (buildID = @buildID)";
             else {
                 command.Parameters[1].Value = ((string)(newNote));
             }
-            command.Parameters[2].Value = ((int)(archetypeID));
-            command.Parameters[3].Value = ((int)(id));
+            command.Parameters[2].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

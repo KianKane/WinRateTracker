@@ -55,9 +55,9 @@ namespace WinRateTracker.Model
             buildsTableAdapter.Fill(dataSet.Builds);
         }
 
-        public void UpdateBuild(int buildID, string name, string note, int archetypeID)
+        public void UpdateBuild(int buildID, string name, string note)
         {
-            buildsTableAdapter.UpdateQuery(name, note, archetypeID, buildID);
+            buildsTableAdapter.UpdateQuery(name, note, buildID);
             buildsTableAdapter.Fill(dataSet.Builds);
         }
 
@@ -97,15 +97,14 @@ namespace WinRateTracker.Model
         public int CountMatches(int? buildID, int? archetypeID, bool victory)
         {
             int matches = 0;
-
-            if (buildID != null && archetypeID != null)
-                matches = (int)matchesTableAdapter.CountMatchesQuery((int)buildID, (int)archetypeID, victory);
-            else if (archetypeID != null)
+            if (buildID == null && archetypeID == null)
+                matchesTableAdapter.CountMatchesAllQuery(victory);
+            else if (buildID == null)
                 matchesTableAdapter.CountMatchesAllBuildsQuery((int)archetypeID, victory);
-            else if (buildID != null)
+            else if (archetypeID == null)
                 matchesTableAdapter.CountMatchesAllArchetypesQuery((int)buildID, victory);
             else
-                matchesTableAdapter.CountMatchesAllQuery(victory);
+                matches = (int)matchesTableAdapter.CountMatchesQuery((int)buildID, (int)archetypeID, victory);
             return matches;
         }
 
