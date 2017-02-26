@@ -15,8 +15,7 @@ namespace WinRateTracker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            IModel model = new Model.Model();
-            Application.Run(new Home(model));
+            Application.Run(new HomeView());
         }
     }
 }

@@ -1,15 +1,28 @@
 ﻿using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace WinRateTracker.Model
 {
     class Model : IModel
     {
+        private static Model _instance;
+        public static Model Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new Model();
+                return _instance;
+            }
+        }
+
         DatabaseDataSet dataSet;
         DatabaseDataSetTableAdapters.BuildsTableAdapter buildsTableAdapter;
         DatabaseDataSetTableAdapters.MatchesTableAdapter matchesTableAdapter;
         DatabaseDataSetTableAdapters.ArchetypesTableAdapter archetypesTableAdapter;
 
-        public Model()
+        private Model()
         {
             dataSet = new DatabaseDataSet();
             dataSet.BeginInit();
@@ -25,6 +38,10 @@ namespace WinRateTracker.Model
 
             archetypesTableAdapter = new DatabaseDataSetTableAdapters.ArchetypesTableAdapter();
             archetypesTableAdapter.ClearBeforeFill = true;
+
+            buildsTableAdapter.Fill(dataSet.Builds);
+            matchesTableAdapter.Fill(dataSet.Matches);
+            archetypesTableAdapter.Fill(dataSet.Archetypes);
         }
 
         public DatabaseDataSet GetDataSet()
@@ -35,48 +52,52 @@ namespace WinRateTracker.Model
         public void InsertBuild(string name, string note, int archetypeID)
         {
             buildsTableAdapter.InsertQuery(name, note, archetypeID);
-            FillDataSet();
+            buildsTableAdapter.Fill(dataSet.Builds);
         }
 
         public void UpdateBuild(int buildID, string name, string note, int archetypeID)
         {
             buildsTableAdapter.UpdateQuery(name, note, archetypeID, buildID);
-            FillDataSet();
+            buildsTableAdapter.Fill(dataSet.Builds);
         }
 
         public void DeleteBuild(int buildID)
         {
             buildsTableAdapter.DeleteQuery(buildID);
-            FillDataSet();
+            buildsTableAdapter.Fill(dataSet.Builds);
+            matchesTableAdapter.Fill(dataSet.Matches);
         }
 
         public void InsertArchetype(string name, string note)
         {
             archetypesTableAdapter.InsertQuery(name, note);
-            FillDataSet();
+            archetypesTableAdapter.Fill(dataSet.Archetypes);
         }
 
         public void UpdateArchetype(int archetypeID, string name, string note)
         {
             archetypesTableAdapter.UpdateQuery(name, note, archetypeID);
-            FillDataSet();
+            archetypesTableAdapter.Fill(dataSet.Archetypes);
         }
 
         public void DeleteArchetype(int archetypeID)
         {
             archetypesTableAdapter.DeleteQuery(archetypeID);
-            FillDataSet();
+            buildsTableAdapter.Fill(dataSet.Builds);
+            matchesTableAdapter.Fill(dataSet.Matches);
+            archetypesTableAdapter.Fill(dataSet.Archetypes);
         }
 
         public void RecordMatch(int buildID, int archetypeID, bool victory)
         {
             matchesTableAdapter.RecordMatchQuery(buildID, archetypeID, victory);
-            FillDataSet();
+            matchesTableAdapter.Fill(dataSet.Matches);
         }
 
         public int CountMatches(int? buildID, int? archetypeID, bool victory)
         {
             int matches = 0;
+
             if (buildID != null && archetypeID != null)
                 matches = (int)matchesTableAdapter.CountMatchesQuery((int)buildID, (int)archetypeID, victory);
             else if (archetypeID != null)
@@ -88,12 +109,54 @@ namespace WinRateTracker.Model
             return matches;
         }
 
-        private void FillDataSet()
+        public string GetArchetypeName(int archetypeID)
         {
-            buildsTableAdapter.Fill(dataSet.Builds);
-            matchesTableAdapter.Fill(dataSet.Matches);
-            archetypesTableAdapter.Fill(dataSet.Archetypes);
-            dataSet.AcceptChanges();
+            DataRow[] rows = dataSet.Archetypes.Select("archetypeID = " + archetypeID);
+            if (rows.Length == 0)
+                return "";
+            DataRow row = rows[0];
+            return row["name"].ToString();
+        }
+
+        public string GetArchetypeNote(int archetypeID)
+        {
+            DataRow[] rows = dataSet.Archetypes.Select("archetypeID = " + archetypeID);
+            if (rows.Length == 0)
+                return "";
+            DataRow row = rows[0];
+            return row["note"].ToString() ?? "";
+        }
+
+        public string GetBuildName(int buildID)
+        {
+            DataRow[] rows = dataSet.Builds.Select("buildID = " + buildID);
+            if (rows.Length == 0)
+                return "";
+            DataRow row = rows[0];
+            return row["name"].ToString();
+        }
+
+        public string GetBuildNote(int buildID)
+        {
+            DataRow[] rows = dataSet.Builds.Select("buildID = " + buildID);
+            if (rows.Length == 0)
+                return "";
+            DataRow row = rows[0];
+            return row["note"].ToString() ?? "";
+        }
+
+        public int GetBuildArchetypeID(int buildID)
+        {
+            DataRow[] rows = dataSet.Builds.Select("buildID = " + buildID);
+            if (rows.Length == 0)
+                return -1;
+            DataRow row = rows[0];
+            return (int)row["archetypeID"];
+        }
+
+        public int GetArchetypeCount()
+        {
+            return dataSet.Archetypes.Count;
         }
     }
 }

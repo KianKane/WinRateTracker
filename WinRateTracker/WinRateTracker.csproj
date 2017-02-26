@@ -74,60 +74,55 @@
     </Compile>
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\Model.cs" />
-    <Compile Include="View\Dialogs\ArchetypeDialog.cs">
+    <Compile Include="Presenter\HomePresenter.cs" />
+    <Compile Include="Presenter\NewArchetypePresenter.cs" />
+    <Compile Include="Presenter\NewBuildPresenter.cs" />
+    <Compile Include="Presenter\UpdateArchetypePresenter.cs" />
+    <Compile Include="Presenter\UpdateBuildPresenter.cs" />
+    <Compile Include="View\ArchetypeDialogView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Dialogs\ArchetypeDialog.Designer.cs">
-      <DependentUpon>ArchetypeDialog.cs</DependentUpon>
+    <Compile Include="View\ArchetypeDialogView.Designer.cs">
+      <DependentUpon>ArchetypeDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\ArchetypeSetupDialog.cs">
+    <Compile Include="View\SetupDialogView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Dialogs\ArchetypeSetupDialog.Designer.cs">
-      <DependentUpon>ArchetypeSetupDialog.cs</DependentUpon>
+    <Compile Include="View\SetupDialogView.Designer.cs">
+      <DependentUpon>SetupDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\BuildDialog.cs">
+    <Compile Include="View\BuildDialogView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Dialogs\BuildDialog.Designer.cs">
-      <DependentUpon>BuildDialog.cs</DependentUpon>
+    <Compile Include="View\BuildDialogView.Designer.cs">
+      <DependentUpon>BuildDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\EditArchetypesTab.cs">
+    <Compile Include="View\HomeView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\EditMyBuildsTab.cs">
-      <SubType>Form</SubType>
+    <Compile Include="View\HomeView.Designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Home.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Home.Designer.cs">
-      <DependentUpon>Home.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presenter\GameArchetypes\DuelystArchetypeInitializer.cs" />
-    <Compile Include="Presenter\GameArchetypes\GwentArchetypeInitializer.cs" />
-    <Compile Include="Presenter\GameArchetypes\HearthstoneArchetypeInitializer.cs" />
-    <Compile Include="Presenter\GameArchetypes\IArchetypeInitializer.cs" />
-    <Compile Include="Presenter\GameArchetypes\ShadowverseArchetypeInitializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\RecordMatchTab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\StatisticsTab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <EmbeddedResource Include="View\Dialogs\ArchetypeDialog.resx">
-      <DependentUpon>ArchetypeDialog.cs</DependentUpon>
+    <Compile Include="View\IDialogView.cs" />
+    <Compile Include="View\IHomeView.cs" />
+    <Compile Include="View\INewArchetypeView.cs" />
+    <Compile Include="View\INewBuildView.cs" />
+    <Compile Include="View\IUpdateArchetypeView.cs" />
+    <Compile Include="View\IUpdateBuildView.cs" />
+    <Compile Include="View\IView.cs" />
+    <EmbeddedResource Include="View\ArchetypeDialogView.resx">
+      <DependentUpon>ArchetypeDialogView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Dialogs\ArchetypeSetupDialog.resx">
-      <DependentUpon>ArchetypeSetupDialog.cs</DependentUpon>
+    <EmbeddedResource Include="View\SetupDialogView.resx">
+      <DependentUpon>SetupDialogView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Dialogs\BuildDialog.resx">
-      <DependentUpon>BuildDialog.cs</DependentUpon>
+    <EmbeddedResource Include="View\BuildDialogView.resx">
+      <DependentUpon>BuildDialogView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Home.resx">
-      <DependentUpon>Home.cs</DependentUpon>
+    <EmbeddedResource Include="View\HomeView.resx">
+      <DependentUpon>HomeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
