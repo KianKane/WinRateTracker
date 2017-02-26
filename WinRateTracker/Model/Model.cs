@@ -98,11 +98,11 @@ namespace WinRateTracker.Model
         {
             int matches = 0;
             if (buildID == null && archetypeID == null)
-                matchesTableAdapter.CountMatchesAllQuery(victory);
+                matches = (int)matchesTableAdapter.CountMatchesAllQuery(victory);
             else if (buildID == null)
-                matchesTableAdapter.CountMatchesAllBuildsQuery((int)archetypeID, victory);
+                matches = (int)matchesTableAdapter.CountMatchesAllBuildsQuery((int)archetypeID, victory);
             else if (archetypeID == null)
-                matchesTableAdapter.CountMatchesAllArchetypesQuery((int)buildID, victory);
+                matches = (int)matchesTableAdapter.CountMatchesAllArchetypesQuery((int)buildID, victory);
             else
                 matches = (int)matchesTableAdapter.CountMatchesQuery((int)buildID, (int)archetypeID, victory);
             return matches;
