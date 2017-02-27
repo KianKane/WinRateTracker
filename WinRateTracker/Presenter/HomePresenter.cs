@@ -24,6 +24,8 @@ namespace WinRateTracker.Presenter
             view.NewArchetype += NewArchetype;
             view.UpdateArchetype += UpdateArchetype;
             view.DeleteArchetype += DeleteArchetype;
+            if (model.GetArchetypeCount() == 0)
+                view.ShowSetupDialog();
         }
 
         private void RecordVictory()

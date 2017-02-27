@@ -76,6 +76,12 @@ namespace WinRateTracker.View
             get { return chkAllArchetypes.Checked;  }
         }
 
+        public void ShowSetupDialog()
+        {
+            SetupDialogView dialog = new SetupDialogView();
+            dialog.ShowDialog();
+        }
+
         public void ShowNewBuildDialog()
         {
             BuildDialogView dialog = new BuildDialogView(false);

@@ -37,6 +37,25 @@
             lblMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // lblGame
+            // 
+            lblGame.AutoSize = true;
+            lblGame.Location = new System.Drawing.Point(93, 43);
+            lblGame.Name = "lblGame";
+            lblGame.Size = new System.Drawing.Size(38, 13);
+            lblGame.TabIndex = 7;
+            lblGame.Text = "Game:";
+            // 
+            // lblMessage
+            // 
+            lblMessage.AutoSize = true;
+            lblMessage.Location = new System.Drawing.Point(8, 9);
+            lblMessage.Name = "lblMessage";
+            lblMessage.Size = new System.Drawing.Size(395, 13);
+            lblMessage.TabIndex = 8;
+            lblMessage.Text = "Would you like to automatically setup archetypes from one of the following games?" +
+    "";
+            // 
             // btnCancel
             // 
             this.btnCancel.AutoSize = true;
@@ -59,40 +78,16 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
-            // lblGame
-            // 
-            lblGame.AutoSize = true;
-            lblGame.Location = new System.Drawing.Point(93, 43);
-            lblGame.Name = "lblGame";
-            lblGame.Size = new System.Drawing.Size(38, 13);
-            lblGame.TabIndex = 7;
-            lblGame.Text = "Game:";
-            // 
-            // lblMessage
-            // 
-            lblMessage.AutoSize = true;
-            lblMessage.Location = new System.Drawing.Point(8, 9);
-            lblMessage.Name = "lblMessage";
-            lblMessage.Size = new System.Drawing.Size(395, 13);
-            lblMessage.TabIndex = 8;
-            lblMessage.Text = "Would you like to automatically setup archetypes from one of the following games?" +
-    "";
-            // 
             // cboGame
             // 
             this.cboGame.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGame.FormattingEnabled = true;
-            this.cboGame.Items.AddRange(new object[] {
-            "Hearthstone",
-            "Duelyst",
-            "Gwent",
-            "Shadowverse"});
             this.cboGame.Location = new System.Drawing.Point(137, 40);
             this.cboGame.Name = "cboGame";
             this.cboGame.Size = new System.Drawing.Size(196, 21);
             this.cboGame.TabIndex = 2;
             // 
-            // ArchetypeSetupDialog
+            // SetupDialogView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -102,7 +97,7 @@
             this.Controls.Add(lblGame);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
-            this.Name = "ArchetypeSetupDialog";
+            this.Name = "SetupDialogView";
             this.Text = "First Time Setup";
             this.ResumeLayout(false);
             this.PerformLayout();

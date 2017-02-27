@@ -24,6 +24,7 @@ namespace WinRateTracker.View
         int? SelectedArchetypeID { get; }
         bool AllBuilds { get; }
         bool AllArchetypes { get; }
+        void ShowSetupDialog();
         void ShowNewBuildDialog();
         void ShowUpdateBuildDialog();
         void ShowNewArchetypeDialog();
