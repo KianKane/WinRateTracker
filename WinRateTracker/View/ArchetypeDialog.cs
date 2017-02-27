@@ -6,43 +6,33 @@ using WinRateTracker.Presenter;
 namespace WinRateTracker.View.Dialogs
 {
     /// <summary>
-    /// A dialog form used for the creation/modification of builds.
+    /// A dialog form used for the creation/modification of archetypes.
     /// </summary>
-    public partial class BuildDialogView : Form, INewBuildView, IUpdateBuildView
+    public partial class ArchetypeDialog : Form, INewArchetypeView, IUpdateArchetypeView
     {
-        public event Action InsertBuild;
-        public event Action UpdateBuild;
+        public event Action InsertArchetype;
+        public event Action UpdateArchetype;
 
         public void CloseDialog()
         {
             this.DialogResult = DialogResult.OK;
         }
 
-        public int BuildID
+        public int ArchetypeID
         {
-            get { return buildID; }
+            get { return archetypeID; }
         }
 
-        public string BuildName
+        public string ArchetypeName
         {
             get { return txtName.Text; }
             set { txtName.Text = value; }
         }
 
-        public string BuildNote
+        public string ArchetypeNote
         {
             get { return txtNote.Text; }
             set { txtNote.Text = value; }
-        }
-
-        public string ArchetypeName
-        {
-            set { cboArchetype.Text = value; }
-        }
-
-        public int ArchetypeID
-        {
-            get { return (int)cboArchetype.SelectedValue; }
         }
 
         public void Message(string title, string message)
@@ -56,33 +46,25 @@ namespace WinRateTracker.View.Dialogs
         }
 
         private bool editing;
-        private int buildID;
+        private int archetypeID;
 
-        public BuildDialogView(bool editing, int buildID = -1)
+        public ArchetypeDialog(bool editing, int archetypeID = -1)
         {
             InitializeComponent();
             this.editing = editing;
-            this.buildID = buildID;
-            archetypesBindingSource.DataMember = "Archetypes";
-            archetypesBindingSource.DataSource = Model.Model.Instance.GetDataSet().Archetypes;
-            archetypesBindingSource.ResetBindings(false);
+            this.archetypeID = archetypeID;
             if (editing)
-            {
-                cboArchetype.Enabled = false;
-                new UpdateBuildPresenter(this);
-            }
+                new UpdateArchetypePresenter(this);
             else
-            {
-                new NewBuildPresenter(this);
-            }
+                new NewArchetypePresenter(this);
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             if (editing)
-                UpdateBuild?.Invoke();
+                UpdateArchetype?.Invoke();
             else
-                InsertBuild?.Invoke();
+                InsertArchetype?.Invoke();
         }
 
         /// <summary>

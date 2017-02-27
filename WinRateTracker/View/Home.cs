@@ -12,7 +12,7 @@ namespace WinRateTracker.View
     /// This window is split into partial classes for each tab, See "RecordMatchTab.cs", "StatisticsTab.cs", "EditMyBuildsTab.cs", and "EditArchetypesTab.cs".
     /// Shared functionality is stored in this file.
     /// </summary>
-    public partial class HomeView : Form, IHomeView
+    public partial class Home : Form, IHomeView
     {
         private const int RECORD_MATCH_TAB_INDEX = 0;
         private const int STATISTICS_TAB_INDEX = 1;
@@ -84,25 +84,25 @@ namespace WinRateTracker.View
 
         public void ShowNewBuildDialog()
         {
-            BuildDialogView dialog = new BuildDialogView(false);
+            BuildDialog dialog = new BuildDialog(false);
             dialog.ShowDialog();
         }
 
         public void ShowUpdateBuildDialog()
         {
-            BuildDialogView dialog = new BuildDialogView(true, (int)SelectedBuildID);
+            BuildDialog dialog = new BuildDialog(true, (int)SelectedBuildID);
             dialog.ShowDialog();
         }
 
         public void ShowNewArchetypeDialog()
         {
-            ArchetypeDialogView dialog = new ArchetypeDialogView(false);
+            ArchetypeDialog dialog = new ArchetypeDialog(false);
             dialog.ShowDialog();
         }
 
         public void ShowUpdateArchetypeDialog()
         {
-            ArchetypeDialogView dialog = new ArchetypeDialogView(true, (int)SelectedArchetypeID);
+            ArchetypeDialog dialog = new ArchetypeDialog(true, (int)SelectedArchetypeID);
             dialog.ShowDialog();
         }
 
@@ -117,7 +117,7 @@ namespace WinRateTracker.View
             return MessageBox.Show(message, title, MessageBoxButtons.YesNo) == DialogResult.Yes;
         }
 
-        public HomeView()
+        public Home()
         {
             InitializeComponent();
 

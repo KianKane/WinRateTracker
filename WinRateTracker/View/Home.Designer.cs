@@ -1,6 +1,6 @@
 ﻿namespace WinRateTracker.View
 {
-    partial class HomeView
+    partial class Home
     {
         /// <summary>
         /// Required designer variable.

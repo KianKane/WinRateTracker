@@ -1,6 +1,6 @@
 ﻿namespace WinRateTracker.View.Dialogs
 {
-    partial class ArchetypeDialogView
+    partial class BuildDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label lblName;
+            System.Windows.Forms.Label lblArchetype;
             System.Windows.Forms.Label lblNote;
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtNote = new System.Windows.Forms.TextBox();
+            this.cboArchetype = new System.Windows.Forms.ComboBox();
+            this.archetypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             lblName = new System.Windows.Forms.Label();
+            lblArchetype = new System.Windows.Forms.Label();
             lblNote = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblName
@@ -47,6 +53,24 @@
             lblName.TabIndex = 0;
             lblName.Text = "Name:";
             // 
+            // lblArchetype
+            // 
+            lblArchetype.AutoSize = true;
+            lblArchetype.Location = new System.Drawing.Point(15, 44);
+            lblArchetype.Name = "lblArchetype";
+            lblArchetype.Size = new System.Drawing.Size(35, 13);
+            lblArchetype.TabIndex = 0;
+            lblArchetype.Text = "Class:";
+            // 
+            // lblNote
+            // 
+            lblNote.AutoSize = true;
+            lblNote.Location = new System.Drawing.Point(17, 71);
+            lblNote.Name = "lblNote";
+            lblNote.Size = new System.Drawing.Size(33, 13);
+            lblNote.TabIndex = 0;
+            lblNote.Text = "Note:";
+            // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(56, 15);
@@ -57,25 +81,28 @@
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(56, 41);
+            this.txtNote.Location = new System.Drawing.Point(56, 68);
             this.txtNote.MaxLength = 200;
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(216, 47);
             this.txtNote.TabIndex = 2;
             // 
-            // lblNote
+            // cboArchetype
             // 
-            lblNote.AutoSize = true;
-            lblNote.Location = new System.Drawing.Point(17, 44);
-            lblNote.Name = "lblNote";
-            lblNote.Size = new System.Drawing.Size(33, 13);
-            lblNote.TabIndex = 0;
-            lblNote.Text = "Note:";
+            this.cboArchetype.DataSource = this.archetypesBindingSource;
+            this.cboArchetype.DisplayMember = "name";
+            this.cboArchetype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboArchetype.FormattingEnabled = true;
+            this.cboArchetype.Location = new System.Drawing.Point(56, 41);
+            this.cboArchetype.Name = "cboArchetype";
+            this.cboArchetype.Size = new System.Drawing.Size(135, 21);
+            this.cboArchetype.TabIndex = 1;
+            this.cboArchetype.ValueMember = "archetypeID";
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(56, 94);
+            this.btnConfirm.Location = new System.Drawing.Point(56, 121);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
             this.btnConfirm.TabIndex = 3;
@@ -85,7 +112,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(137, 94);
+            this.btnCancel.Location = new System.Drawing.Point(137, 121);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
@@ -93,21 +120,24 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // ArchetypeDialog
+            // BuildDialogView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 121);
+            this.ClientSize = new System.Drawing.Size(284, 152);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.cboArchetype);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.txtName);
             this.Controls.Add(lblNote);
+            this.Controls.Add(lblArchetype);
             this.Controls.Add(lblName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "ArchetypeDialog";
-            this.Text = "Archetype Dialog";
+            this.Name = "BuildDialogView";
+            this.Text = "Build Dialog";
+            ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,5 +148,7 @@
         private System.Windows.Forms.Button btnCancel;
         public System.Windows.Forms.TextBox txtName;
         public System.Windows.Forms.TextBox txtNote;
+        public System.Windows.Forms.ComboBox cboArchetype;
+        private System.Windows.Forms.BindingSource archetypesBindingSource;
     }
 }

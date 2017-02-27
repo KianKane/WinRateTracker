@@ -6,33 +6,43 @@ using WinRateTracker.Presenter;
 namespace WinRateTracker.View.Dialogs
 {
     /// <summary>
-    /// A dialog form used for the creation/modification of archetypes.
+    /// A dialog form used for the creation/modification of builds.
     /// </summary>
-    public partial class ArchetypeDialogView : Form, INewArchetypeView, IUpdateArchetypeView
+    public partial class BuildDialog : Form, INewBuildView, IUpdateBuildView
     {
-        public event Action InsertArchetype;
-        public event Action UpdateArchetype;
+        public event Action InsertBuild;
+        public event Action UpdateBuild;
 
         public void CloseDialog()
         {
             this.DialogResult = DialogResult.OK;
         }
 
-        public int ArchetypeID
+        public int BuildID
         {
-            get { return archetypeID; }
+            get { return buildID; }
         }
 
-        public string ArchetypeName
+        public string BuildName
         {
             get { return txtName.Text; }
             set { txtName.Text = value; }
         }
 
-        public string ArchetypeNote
+        public string BuildNote
         {
             get { return txtNote.Text; }
             set { txtNote.Text = value; }
+        }
+
+        public string ArchetypeName
+        {
+            set { cboArchetype.Text = value; }
+        }
+
+        public int ArchetypeID
+        {
+            get { return (int)cboArchetype.SelectedValue; }
         }
 
         public void Message(string title, string message)
@@ -46,25 +56,33 @@ namespace WinRateTracker.View.Dialogs
         }
 
         private bool editing;
-        private int archetypeID;
+        private int buildID;
 
-        public ArchetypeDialogView(bool editing, int archetypeID = -1)
+        public BuildDialog(bool editing, int buildID = -1)
         {
             InitializeComponent();
             this.editing = editing;
-            this.archetypeID = archetypeID;
+            this.buildID = buildID;
+            archetypesBindingSource.DataMember = "Archetypes";
+            archetypesBindingSource.DataSource = Model.Model.Instance.GetDataSet().Archetypes;
+            archetypesBindingSource.ResetBindings(false);
             if (editing)
-                new UpdateArchetypePresenter(this);
+            {
+                cboArchetype.Enabled = false;
+                new UpdateBuildPresenter(this);
+            }
             else
-                new NewArchetypePresenter(this);
+            {
+                new NewBuildPresenter(this);
+            }
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             if (editing)
-                UpdateArchetype?.Invoke();
+                UpdateBuild?.Invoke();
             else
-                InsertArchetype?.Invoke();
+                InsertBuild?.Invoke();
         }
 
         /// <summary>
