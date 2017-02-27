@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using WinRateTracker.View.Dialogs;
-using WinRateTracker.Model;
 using WinRateTracker.Presenter;
 using System.Data;
 
@@ -9,16 +8,10 @@ namespace WinRateTracker.View
 {
     /// <summary>
     /// The primary window for the application.
-    /// This window is split into partial classes for each tab, See "RecordMatchTab.cs", "StatisticsTab.cs", "EditMyBuildsTab.cs", and "EditArchetypesTab.cs".
-    /// Shared functionality is stored in this file.
     /// </summary>
     public partial class Home : Form, IHomeView
     {
-        private const int RECORD_MATCH_TAB_INDEX = 0;
-        private const int STATISTICS_TAB_INDEX = 1;
-        private const int EDIT_BUILDS_TAB_INDEX = 2;
-        private const int EDIT_ARCHETYPES_TAB_INDEX = 3;
-
+        // Events
         public event Action RecordVictory;
         public event Action RecordDefeat;
         public event Action UpdateStatistics;
@@ -29,21 +22,47 @@ namespace WinRateTracker.View
         public event Action UpdateArchetype;
         public event Action DeleteArchetype;
 
+        // Tab indexes
+        private const int RECORD_MATCH_TAB = 0;
+        private const int STATISTICS_TAB = 1;
+        private const int EDIT_BUILDS_TAB = 2;
+        private const int EDIT_ARCHETYPES_TAB = 3;
+
+        /// <summary> Constructor. </summary>
+        public Home()
+        {
+            InitializeComponent();
+            new HomePresenter(this); // Create controlling presenter
+            // Set up data bindings (This is the only time where it is okay for this class to access the model directly)
+            buildsBindingSource.DataMember = "Builds";
+            buildsBindingSource.DataSource = Model.Model.Instance.GetDataSet().Builds;
+            buildsBindingSource.ResetBindings(false);
+            archetypesBindingSource.DataMember = "Archetypes";
+            archetypesBindingSource.DataSource = Model.Model.Instance.GetDataSet().Archetypes;
+            archetypesBindingSource.ResetBindings(false);
+            dgvBuilds.AutoGenerateColumns = true;
+            dgvArchetypes.AutoGenerateColumns = true;
+        }
+
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public string WinRate
         {
             set { lblWinRateValue.Text = value; }
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public string Wins
         {
             set { lblWinsValue.Text = value; }
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public string Losses
         {
             set { lblLossesValue.Text = value; }
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public int? SelectedBuildID
         {
             get
@@ -55,6 +74,7 @@ namespace WinRateTracker.View
             }
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public int? SelectedArchetypeID
         {
             get
@@ -66,196 +86,165 @@ namespace WinRateTracker.View
             }
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public bool AllBuilds
         {
             get { return chkAllBuilds.Checked; }
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public bool AllArchetypes
         {
             get { return chkAllArchetypes.Checked;  }
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public void ShowSetupDialog()
         {
-            SetupDialogView dialog = new SetupDialogView();
+            SetupDialog dialog = new SetupDialog();
             dialog.ShowDialog();
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public void ShowNewBuildDialog()
         {
             BuildDialog dialog = new BuildDialog(false);
             dialog.ShowDialog();
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public void ShowUpdateBuildDialog()
         {
             BuildDialog dialog = new BuildDialog(true, (int)SelectedBuildID);
             dialog.ShowDialog();
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public void ShowNewArchetypeDialog()
         {
             ArchetypeDialog dialog = new ArchetypeDialog(false);
             dialog.ShowDialog();
         }
 
+        /// <summary> Interface realization property.  See interface for documentation. </summary>
         public void ShowUpdateArchetypeDialog()
         {
             ArchetypeDialog dialog = new ArchetypeDialog(true, (int)SelectedArchetypeID);
             dialog.ShowDialog();
         }
 
-
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public void Message(string title, string message)
         {
             MessageBox.Show(message, title);
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public bool Prompt(string title, string message)
         {
             return MessageBox.Show(message, title, MessageBoxButtons.YesNo) == DialogResult.Yes;
         }
 
-        public Home()
-        {
-            InitializeComponent();
-
-            new HomePresenter(this);
-
-            buildsBindingSource.DataMember = "Builds";
-            buildsBindingSource.DataSource = Model.Model.Instance.GetDataSet().Builds;
-            buildsBindingSource.ResetBindings(false);
-            archetypesBindingSource.DataMember = "Archetypes";
-            archetypesBindingSource.DataSource = Model.Model.Instance.GetDataSet().Archetypes;
-            archetypesBindingSource.ResetBindings(false);
-            dgvBuilds.AutoGenerateColumns = true;
-            dgvArchetypes.AutoGenerateColumns = true;
-        }
-
         /// <summary> Navigates to the record match tab. </summary>
         private void SelectRecordMatchTab(object sender, EventArgs e)
         {
-            tabControl.SelectTab(RECORD_MATCH_TAB_INDEX);
+            tabControl.SelectTab(RECORD_MATCH_TAB);
         }
 
         /// <summary> Navigates to the statistics tab. </summary>
         private void SelectStatisticsTab(object sender, EventArgs e)
         {
-            tabControl.SelectTab(STATISTICS_TAB_INDEX);
+            tabControl.SelectTab(STATISTICS_TAB);
         }
 
         /// <summary> Navigates to the edit builds tab. </summary>
         private void SelectEditBuildsTab(object sender, EventArgs e)
         {
-            tabControl.SelectTab(EDIT_BUILDS_TAB_INDEX);
+            tabControl.SelectTab(EDIT_BUILDS_TAB);
         }
 
         /// <summary> Navigates to the edit archetypes tab. </summary>
         private void SelectEditArchetypesTab(object sender, EventArgs e)
         {
-            tabControl.SelectTab(EDIT_ARCHETYPES_TAB_INDEX);
+            tabControl.SelectTab(EDIT_ARCHETYPES_TAB);
         }
 
+        /// <summary> Request a statistics update when the user navigates to the statistics tab. </summary>
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl.SelectedIndex == STATISTICS_TAB_INDEX)
+            if (tabControl.SelectedIndex == STATISTICS_TAB)
                 UpdateStatistics?.Invoke();
         }
 
-        /// <summary>
-        /// Records a victory.
-        /// </summary>
+        /// <summary> Executes when the record victory button is clicked. </summary>
         private void btnVictory_Click(object sender, EventArgs e)
         {
             RecordVictory?.Invoke();
         }
 
-        /// <summary>
-        /// Records a defeat.
-        /// </summary>
+        /// <summary> Executes when the record defeat button is clicked. </summary>
         private void btnDefeat_Click(object sender, EventArgs e)
         {
             RecordDefeat?.Invoke();
         }
 
+        /// <summary> Executes when the selected build on the statistic page changes. </summary>
         private void cboBuildTab2_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateStatistics?.Invoke();
         }
 
+        /// <summary> Executes when the selected archetype on the statistic page changes. </summary>
         private void cboArchetypeTab2_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateStatistics?.Invoke();
         }
 
-        /// <summary>
-        /// Disables/Enables the build combobox and updates statistics
-        /// </summary>
+        /// <summary> Disables/Enables the build combobox and requests a statistics update. </summary>
         private void chkAllBuilds_CheckedChanged(object sender, EventArgs e)
         {
             cboBuildTab2.Enabled = !((CheckBox)sender).Checked;
             UpdateStatistics?.Invoke();
         }
 
-        /// <summary>
-        /// Disables/Enables the archetype combobox and updates statistics
-        /// </summary>
+        /// <summary> Disables/Enables the archetype combobox and requests a statistics update. </summary>
         private void chkAllArchetypes_CheckedChanged(object sender, EventArgs e)
         {
             cboArchetypeTab2.Enabled = !((CheckBox)sender).Checked;
             UpdateStatistics?.Invoke();
         }
 
-        /// <summary>
-        /// Adds a new build.  If no archetypes exist this will show a message telling the user that they cannot create a build until archetypes exist.
-        /// 
-        /// NOTE: Could move the user into the edit archetypes tab if no archetypes exist?
-        /// </summary>
+        /// <summary> Executes when the add build button is clicked. </summary>
         private void btnAddBuild_Click(object sender, EventArgs e)
         {
             NewBuild?.Invoke();
         }
 
-        /// <summary>
-        /// Edits an existing build if a build is selected.
-        /// 
-        /// NOTE: Could there be a better way to retrieve the current data?
-        /// </summary>
+        /// <summary> Executes when the edit build button is clicked. </summary>
         private void btnEditBuild_Click(object sender, EventArgs e)
         {
             UpdateBuild?.Invoke();
         }
 
-        /// <summary>
-        /// Deletes an existing build if a build is selected.  Always prompts the user informing them that associated matches will also be deleted.
-        /// </summary>
+        /// <summary> Executes when the delete build button is clicked. </summary>
         private void btnDeleteBuild_Click(object sender, EventArgs e)
         {
             DeleteBuild?.Invoke();
         }
 
-        /// <summary>
-        /// Adds a new archetype.
-        /// </summary>
+        /// <summary> Executes when the add archetype button is clicked. </summary>
         private void btnAddArchetype_Click(object sender, EventArgs e)
         {
             NewArchetype?.Invoke();
         }
 
-        /// <summary>
-        /// Edits an existing archetype if an archetype is selected.
-        /// 
-        /// NOTE: Could there be a better way to retrieve the current data?
-        /// </summary>
+        /// <summary> Executes when the edit archetype button is clicked. </summary>
         private void btnEditArchetype_Click(object sender, EventArgs e)
         {
             UpdateArchetype?.Invoke();
         }
 
-        /// <summary>
-        /// Deletes an existing archetype if an archetype is selected.  Always prompts the user informing them that associated matches and builds will also be deleted.
-        /// </summary>
+        /// <summary> Executes when the delete archetype button is clicked. </summary>
         private void btnDeleteArchetype_Click(object sender, EventArgs e)
         {
             DeleteArchetype?.Invoke();

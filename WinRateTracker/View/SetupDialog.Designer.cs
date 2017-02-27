@@ -1,6 +1,6 @@
 ﻿namespace WinRateTracker.View.Dialogs
 {
-    partial class SetupDialogView
+    partial class SetupDialog
     {
         /// <summary>
         /// Required designer variable.
