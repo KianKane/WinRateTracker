@@ -9,6 +9,7 @@ namespace WinRateTracker.Presenter
     public class SetupPresenter
     {
         private ISetupDialogView view;
+        private IMessenger messenger;
         private IModel model;
         private string[] gameOptions;
 
@@ -16,13 +17,17 @@ namespace WinRateTracker.Presenter
         /// Constructor.
         /// </summary>
         /// <param name="view"> The ISetupDialogView instance controlled by this presenter. </param>
+        /// <param name="messenger"> The messenger that this presenter uses.  If this is left blank then the presenter will use Messenger.Instance. </param>
         /// <param name="model"> The model that this presenter uses.  If this is left blank then the presenter will use Model.Model.Instance. </param>
-        public SetupPresenter(ISetupDialogView view, IModel model = null)
+        public SetupPresenter(ISetupDialogView view, IMessenger messenger = null, IModel model = null)
         {
             this.view = view;
             if (model == null)
                 model = Model.Model.Instance;
             this.model = model;
+            if (messenger == null)
+                messenger = Messenger.Instance;
+            this.messenger = messenger;
             view.Confirm += Confirm;
             view.Cancel += Cancel;
             // Set up available game options.

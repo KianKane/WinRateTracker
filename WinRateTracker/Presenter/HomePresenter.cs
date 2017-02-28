@@ -9,19 +9,24 @@ namespace WinRateTracker.Presenter
     public class HomePresenter
     {
         private IHomeView view;
+        private IMessenger messenger;
         private IModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="view"> The IHomeView instance controlled by this presenter. </param>
+        /// <param name="messenger"> The messenger that this presenter uses.  If this is left blank then the presenter will use Messenger.Instance. </param>
         /// <param name="model"> The model that this presenter uses.  If this is left blank then the presenter will use Model.Model.Instance. </param>
-        public HomePresenter(IHomeView view, IModel model = null)
+        public HomePresenter(IHomeView view, IMessenger messenger = null, IModel model = null)
         {
             this.view = view;
             if (model == null)
                 model = Model.Model.Instance;
             this.model = model;
+            if (messenger == null)
+                messenger = Messenger.Instance;
+            this.messenger = messenger;
             // Subscribe to view events.
             view.RecordVictory += RecordVictory;
             view.RecordDefeat += RecordDefeat;
@@ -41,10 +46,10 @@ namespace WinRateTracker.Presenter
         private void RecordVictory()
         {
             if (view.SelectedBuildID == null)
-                view.Message("Unable to record match", "No build is currently selected.");
+                messenger.Message("Unable to record match", "No build is currently selected.");
             else if (view.SelectedArchetypeID == null)
-                view.Message("Unable to record match", "No archetype is currently selected.");
-            else if (view.Prompt("Confirmation", "Are you sure you want to record this victory?"))
+                messenger.Message("Unable to record match", "No archetype is currently selected.");
+            else if (messenger.Prompt("Confirmation", "Are you sure you want to record this victory?"))
                 model.RecordMatch((int)view.SelectedBuildID, (int)view.SelectedArchetypeID, true);
         }
 
@@ -52,10 +57,10 @@ namespace WinRateTracker.Presenter
         private void RecordDefeat()
         {
             if (view.SelectedBuildID == null)
-                view.Message("Unable to record match", "No build is currently selected.");
+                messenger.Message("Unable to record match", "No build is currently selected.");
             else if (view.SelectedArchetypeID == null)
-                view.Message("Unable to record match", "No archetype is currently selected.");
-            else if (view.Prompt("Confirmation", "Are you sure you want to record this defeat?"))
+                messenger.Message("Unable to record match", "No archetype is currently selected.");
+            else if (messenger.Prompt("Confirmation", "Are you sure you want to record this defeat?"))
                 model.RecordMatch((int)view.SelectedBuildID, (int)view.SelectedArchetypeID, false);
         }
 
@@ -87,7 +92,7 @@ namespace WinRateTracker.Presenter
         private void NewBuild()
         {
             if (model.GetArchetypeCount() == 0) // If there are no archetypes then the user cannot create a build.
-                view.Message("Unable to create build", "You must have at least one archetype before creating a build.");
+                messenger.Message("Unable to create build", "You must have at least one archetype before creating a build.");
             else
                 view.ShowNewBuildDialog();
         }
@@ -96,7 +101,7 @@ namespace WinRateTracker.Presenter
         private void UpdateBuild()
         {
             if (view.SelectedBuildID == null) // If there is no build selected then the user cannot modify it.
-                view.Message("Unable to update build", "No build is currently selected.");
+                messenger.Message("Unable to update build", "No build is currently selected.");
             else
                 view.ShowUpdateBuildDialog();
         }
@@ -105,8 +110,8 @@ namespace WinRateTracker.Presenter
         private void DeleteBuild()
         {
             if (view.SelectedBuildID == null) // If there is no build selected then the user cannot delete it.
-                view.Message("Unable to delete build", "No build is currently selected.");
-            else if (view.Prompt("Confirmation", "Deleting this build will also delete all associated match information.  Are you sure you want to continue?"))
+                messenger.Message("Unable to delete build", "No build is currently selected.");
+            else if (messenger.Prompt("Confirmation", "Deleting this build will also delete all associated match information.  Are you sure you want to continue?"))
                 model.DeleteBuild((int)view.SelectedBuildID);
         }
 
@@ -120,7 +125,7 @@ namespace WinRateTracker.Presenter
         private void UpdateArchetype()
         {
             if (view.SelectedArchetypeID == null) // If there is no archetype selected then the user cannot modify it.
-                view.Message("Unable to update archetype", "No archetype is currently selected.");
+                messenger.Message("Unable to update archetype", "No archetype is currently selected.");
             else
                 view.ShowUpdateArchetypeDialog();
         }
@@ -129,8 +134,8 @@ namespace WinRateTracker.Presenter
         private void DeleteArchetype()
         {
             if (view.SelectedArchetypeID == null) // If there is no archetype selected then the user cannot delete it.
-                view.Message("Unable to delete archetype", "No archetype is currently selected.");
-            else if (view.Prompt("Confirmation", "Deleting this archetype will also delete all associated build and match information.  Are you sure you want to continue?"))
+                messenger.Message("Unable to delete archetype", "No archetype is currently selected.");
+            else if (messenger.Prompt("Confirmation", "Deleting this archetype will also delete all associated build and match information.  Are you sure you want to continue?"))
                 model.DeleteArchetype((int)view.SelectedArchetypeID);
         }
     }

@@ -133,18 +133,6 @@ namespace WinRateTracker.View
             dialog.ShowDialog();
         }
 
-        /// <summary> Interface realization method.  See interface for documentation. </summary>
-        public void Message(string title, string message)
-        {
-            MessageBox.Show(message, title);
-        }
-
-        /// <summary> Interface realization method.  See interface for documentation. </summary>
-        public bool Prompt(string title, string message)
-        {
-            return MessageBox.Show(message, title, MessageBoxButtons.YesNo) == DialogResult.Yes;
-        }
-
         /// <summary> Navigates to the record match tab. </summary>
         private void SelectRecordMatchTab(object sender, EventArgs e)
         {

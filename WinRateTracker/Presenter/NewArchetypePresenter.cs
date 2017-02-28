@@ -9,19 +9,24 @@ namespace WinRateTracker.Presenter
     public class NewArchetypePresenter
     {
         private INewArchetypeView view;
+        private IMessenger messenger;
         private IModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="view"> The INewArchetypeView instance controlled by this presenter. </param>
+        /// <param name="messenger"> The messenger that this presenter uses.  If this is left blank then the presenter will use Messenger.Instance. </param>
         /// <param name="model"> The model that this presenter uses.  If this is left blank then the presenter will use Model.Model.Instance. </param>
-        public NewArchetypePresenter(INewArchetypeView view, IModel model = null)
+        public NewArchetypePresenter(INewArchetypeView view, IMessenger messenger = null, IModel model = null)
         {
             this.view = view;
             if (model == null)
                 model = Model.Model.Instance;
             this.model = model;
+            if (messenger == null)
+                messenger = Messenger.Instance;
+            this.messenger = messenger;
             view.Confirm += Confirm;
             view.Cancel += Cancel;
         }
@@ -33,7 +38,7 @@ namespace WinRateTracker.Presenter
             string archetypeNote = view.ArchetypeNote.Trim();
             if (string.IsNullOrWhiteSpace(archetypeName))
             {
-                view.Message("Invalid Name", "You must enter a name for the archetype.");
+                messenger.Message("Invalid Name", "You must enter a name for the archetype.");
             }
             else
             {

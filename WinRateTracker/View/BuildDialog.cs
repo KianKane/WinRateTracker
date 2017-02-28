@@ -77,18 +77,6 @@ namespace WinRateTracker.View.Dialogs
             this.DialogResult = DialogResult.OK;
         }
 
-        /// <summary> Interface realization method.  See interface for documentation. </summary>
-        public void Message(string title, string message)
-        {
-            MessageBox.Show(message, title);
-        }
-
-        /// <summary> Interface realization method.  See interface for documentation. </summary>
-        public bool Prompt(string title, string message)
-        {
-            return MessageBox.Show(message, title, MessageBoxButtons.YesNo) == DialogResult.Yes;
-        }
-
         /// <summary> Executes when the confirm button is clicked. </summary>
         private void btnConfirm_Click(object sender, EventArgs e)
         {

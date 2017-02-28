@@ -86,7 +86,9 @@
     <Compile Include="View\ArchetypeDialog.Designer.cs">
       <DependentUpon>ArchetypeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\IMessenger.cs" />
     <Compile Include="View\ISetupDialogView.cs" />
+    <Compile Include="View\Messenger.cs" />
     <Compile Include="View\SetupDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,7 +115,6 @@
     <Compile Include="View\INewBuildView.cs" />
     <Compile Include="View\IUpdateArchetypeView.cs" />
     <Compile Include="View\IUpdateBuildView.cs" />
-    <Compile Include="View\IView.cs" />
     <EmbeddedResource Include="View\ArchetypeDialog.resx">
       <DependentUpon>ArchetypeDialog.cs</DependentUpon>
     </EmbeddedResource>

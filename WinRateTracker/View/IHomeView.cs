@@ -5,7 +5,7 @@ namespace WinRateTracker.View
     /// <summary>
     /// This interface defines the outward facing interaction contract for the application home page.
     /// </summary>
-    public interface IHomeView : IView
+    public interface IHomeView
     {
         /// <summary> This event fires when the user wants to record a victory. </summary>
         event Action RecordVictory;
