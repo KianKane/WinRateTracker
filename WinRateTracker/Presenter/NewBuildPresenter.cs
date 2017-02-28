@@ -3,11 +3,19 @@ using WinRateTracker.View;
 
 namespace WinRateTracker.Presenter
 {
-    class NewBuildPresenter
+    /// <summary>
+    /// This presenter class is responsible for the logic behind the new build view.
+    /// </summary>
+    public class NewBuildPresenter
     {
         private INewBuildView view;
         private IModel model;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="view"> The INewBuildView instance controlled by this presenter. </param>
+        /// <param name="model"> The model that this presenter uses.  If this is left blank then the presenter will use Model.Model.Instance. </param>
         public NewBuildPresenter(INewBuildView view, IModel model = null)
         {
             this.view = view;
@@ -17,6 +25,11 @@ namespace WinRateTracker.Presenter
             view.InsertBuild += InsertBuild;
         }
 
+        /// <summary> 
+        /// Validate view input and insert a new build into the model if the input is valid. 
+        /// 
+        /// NOTE: ArchetypeID is not currently validated.  ArchetypeID must exist in the model.
+        /// </summary>
         private void InsertBuild()
         {
             string buildName = view.BuildName.Trim();

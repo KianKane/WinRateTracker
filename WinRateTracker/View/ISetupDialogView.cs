@@ -5,7 +5,7 @@ namespace WinRateTracker.View
     /// <summary>
     /// This interface defines the outward facing interaction contract for the initial archetype setup dialog view.
     /// </summary>
-    interface ISetupDialogView : IDialogView
+    public interface ISetupDialogView : IDialogView
     {
         /// <summary> This event fires when the user wants to set up archetypes. </summary>
         event Action SetupArchetypes;

@@ -5,7 +5,7 @@ namespace WinRateTracker.View
     /// <summary>
     /// This interface defines the outward facing interaction contract for the new archetype dialog view.
     /// </summary>
-    interface INewArchetypeView : IDialogView
+    public interface INewArchetypeView : IDialogView
     {
         /// <summary> This event fires when the user wants to insert the archetype. </summary>
         event Action InsertArchetype;

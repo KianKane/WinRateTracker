@@ -5,7 +5,7 @@ namespace WinRateTracker.View
     /// <summary>
     /// This interface defines the outward facing interaction contract for the update build dialog view.
     /// </summary>
-    interface IUpdateBuildView : IDialogView
+    public interface IUpdateBuildView : IDialogView
     {
         /// <summary> This event fires when the user wants to update the build. </summary>
         event Action UpdateBuild;

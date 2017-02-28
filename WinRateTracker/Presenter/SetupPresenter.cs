@@ -3,28 +3,38 @@ using WinRateTracker.View;
 
 namespace WinRateTracker.Presenter
 {
-    class SetupPresenter
+    /// <summary>
+    /// This presenter class is responsible for the logic behind the archetype initialization dialog view.
+    /// </summary>
+    public class SetupPresenter
     {
         private ISetupDialogView view;
         private IModel model;
         private string[] gameOptions;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="view"> The ISetupDialogView instance controlled by this presenter. </param>
+        /// <param name="model"> The model that this presenter uses.  If this is left blank then the presenter will use Model.Model.Instance. </param>
         public SetupPresenter(ISetupDialogView view, IModel model = null)
         {
             this.view = view;
             if (model == null)
                 model = Model.Model.Instance;
             this.model = model;
+            view.SetupArchetypes += SetupArchetypes;
+            // Set up available game options.
             gameOptions = new string[] { "Hearthstone", "Duelyst", "Gwent", "Shadowverse" };
             view.GameOptions = gameOptions;
-            view.SetupArchetypes += SetupArchetypes;
         }
 
+        /// <summary> Set up archetypes based on the selected game index. </summary>
         private void SetupArchetypes()
         {
             switch (view.SelectedGame)
             {
-                case 0:
+                case 0: // Hearthstone.
                     model.InsertArchetype("Mage", "Jaina Proudmoore");
                     model.InsertArchetype("Hunter", "Rexxar");
                     model.InsertArchetype("Paladin", "Uther Lightbringer");
@@ -36,7 +46,7 @@ namespace WinRateTracker.Presenter
                     model.InsertArchetype("Rogue", "Valeera Sanguinar");
                     break;
 
-                case 1:
+                case 1: // Duelyst.
                     model.InsertArchetype("Lyonar", "");
                     model.InsertArchetype("Songhai", "");
                     model.InsertArchetype("Vetruvian", "");
@@ -45,7 +55,7 @@ namespace WinRateTracker.Presenter
                     model.InsertArchetype("Vanar", "");
                     break;
 
-                case 2:
+                case 2: // Gwent.
                     model.InsertArchetype("Nilfgaard", "");
                     model.InsertArchetype("Monsters", "");
                     model.InsertArchetype("Skellige", "");
@@ -53,7 +63,7 @@ namespace WinRateTracker.Presenter
                     model.InsertArchetype("Scoia'tael", "");
                     break;
 
-                case 3:
+                case 3: // Shadowverse.
                     model.InsertArchetype("Forestcraft", "Arisa");
                     model.InsertArchetype("Swordcraft", "Erika");
                     model.InsertArchetype("Runecraft", "Isabelle");

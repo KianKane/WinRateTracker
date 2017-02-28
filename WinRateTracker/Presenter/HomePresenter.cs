@@ -1,20 +1,28 @@
-﻿using System;
-using WinRateTracker.Model;
+﻿using WinRateTracker.Model;
 using WinRateTracker.View;
 
 namespace WinRateTracker.Presenter
 {
-    class HomePresenter
+    /// <summary>
+    /// This presenter class is responsible for the logic behind the home view.
+    /// </summary>
+    public class HomePresenter
     {
         private IHomeView view;
         private IModel model;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="view"> The IHomeView instance controlled by this presenter. </param>
+        /// <param name="model"> The model that this presenter uses.  If this is left blank then the presenter will use Model.Model.Instance. </param>
         public HomePresenter(IHomeView view, IModel model = null)
         {
             this.view = view;
             if (model == null)
                 model = Model.Model.Instance;
             this.model = model;
+            // Subscribe to view events.
             view.RecordVictory += RecordVictory;
             view.RecordDefeat += RecordDefeat;
             view.UpdateStatistics += UpdateStatistics;
@@ -24,10 +32,12 @@ namespace WinRateTracker.Presenter
             view.NewArchetype += NewArchetype;
             view.UpdateArchetype += UpdateArchetype;
             view.DeleteArchetype += DeleteArchetype;
+            // If there are no archetypes then show the setup dialog.
             if (model.GetArchetypeCount() == 0)
                 view.ShowSetupDialog();
         }
 
+        /// <summary> Record a victory using the currently selected build and archetype ID. </summary>
         private void RecordVictory()
         {
             if (view.SelectedBuildID == null)
@@ -38,6 +48,7 @@ namespace WinRateTracker.Presenter
                 model.RecordMatch((int)view.SelectedBuildID, (int)view.SelectedArchetypeID, true);
         }
 
+        /// <summary> Record a defeat using the currently selected build and archetype. </summary>
         private void RecordDefeat()
         {
             if (view.SelectedBuildID == null)
@@ -48,66 +59,76 @@ namespace WinRateTracker.Presenter
                 model.RecordMatch((int)view.SelectedBuildID, (int)view.SelectedArchetypeID, false);
         }
 
+        /// <summary>
+        /// Update statistics display based on the currently selected build and archetype.
+        /// </summary>
         private void UpdateStatistics()
         {
+            // Retrieve IDs.
             int? buildID = view.SelectedBuildID;
             int? archetypeID = view.SelectedArchetypeID;
-
+            // Set IDs to null if the relevant "all" box is checked. (Model interprets a null ID to mean "all")
             if (view.AllBuilds)
                 buildID = null;
             if (view.AllArchetypes)
                 archetypeID = null;
-
+            // Get win and loss count from model.
             int wins = model.CountMatches(buildID, archetypeID, true);
             int losses = model.CountMatches(buildID, archetypeID, false);
-
+            // Calculate win rate.
             double winRate = (double)wins / (losses > 0 ? losses : 1);
-
-            view.WinRate = winRate.ToString("F2");
+            // Set view displays.
+            view.WinRate = winRate.ToString("F2"); // The win rate is rounded to two decimal places.
             view.Wins = wins.ToString();
             view.Losses = losses.ToString();
         }
 
+        /// <summary> Creates a new build. </summary>
         private void NewBuild()
         {
-            if (model.GetArchetypeCount() == 0)
+            if (model.GetArchetypeCount() == 0) // If there are no archetypes then the user cannot create a build.
                 view.Message("Unable to create build", "You must have at least one archetype before creating a build.");
             else
                 view.ShowNewBuildDialog();
         }
 
+        /// <summary> Modifies the currently selected build. </summary>
         private void UpdateBuild()
         {
-            if (view.SelectedBuildID == null)
+            if (view.SelectedBuildID == null) // If there is no build selected then the user cannot modify it.
                 view.Message("Unable to update build", "No build is currently selected.");
             else
                 view.ShowUpdateBuildDialog();
         }
 
+        /// <summary> Deletes the currently selected build after confirming with the user. </summary>
         private void DeleteBuild()
         {
-            if (view.SelectedBuildID == null)
+            if (view.SelectedBuildID == null) // If there is no build selected then the user cannot delete it.
                 view.Message("Unable to delete build", "No build is currently selected.");
             else if (view.Prompt("Confirmation", "Deleting this build will also delete all associated match information.  Are you sure you want to continue?"))
                 model.DeleteBuild((int)view.SelectedBuildID);
         }
 
+        /// <summary> Creates a new archetype. </summary>
         private void NewArchetype()
         {
             view.ShowNewArchetypeDialog();
         }
 
+        /// <summary> Modifies the currently selected archetype. </summary>
         private void UpdateArchetype()
         {
-            if (view.SelectedArchetypeID == null)
+            if (view.SelectedArchetypeID == null) // If there is no archetype selected then the user cannot modify it.
                 view.Message("Unable to update archetype", "No archetype is currently selected.");
             else
                 view.ShowUpdateArchetypeDialog();
         }
 
+        /// <summary> Deletes the currently selected archetype after confirming with the user. </summary>
         private void DeleteArchetype()
         {
-            if (view.SelectedArchetypeID == null)
+            if (view.SelectedArchetypeID == null) // If there is no archetype selected then the user cannot delete it.
                 view.Message("Unable to delete archetype", "No archetype is currently selected.");
             else if (view.Prompt("Confirmation", "Deleting this archetype will also delete all associated build and match information.  Are you sure you want to continue?"))
                 model.DeleteArchetype((int)view.SelectedArchetypeID);

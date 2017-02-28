@@ -3,7 +3,7 @@
     /// <summary>
     /// This interface defines messaging capabilities that all views must implement.
     /// </summary>
-    interface IView
+    public interface IView
     {
         /// <summary> Display a message to the user. </summary>
         /// <param name="title"> The title of the message. </param>

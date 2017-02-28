@@ -5,7 +5,7 @@ namespace WinRateTracker.View
     /// <summary>
     /// This interface defines the outward facing interaction contract for the new build dialog view.
     /// </summary>
-    interface INewBuildView : IDialogView
+    public interface INewBuildView : IDialogView
     {
         /// <summary> This event fires when the user wants to insert the build. </summary>
         event Action InsertBuild;
