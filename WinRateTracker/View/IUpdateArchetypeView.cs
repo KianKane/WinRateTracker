@@ -7,9 +7,6 @@ namespace WinRateTracker.View
     /// </summary>
     public interface IUpdateArchetypeView : IDialogView
     {
-        /// <summary> This event fires when the user wants to update the archetype. </summary>
-        event Action UpdateArchetype;
-
         /// <summary> Used to get the ID of the archetype to be modified. </summary>
         int ArchetypeID { get; }
 

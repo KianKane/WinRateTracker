@@ -22,7 +22,8 @@ namespace WinRateTracker.Presenter
             if (model == null)
                 model = Model.Model.Instance;
             this.model = model;
-            view.UpdateBuild += UpdateBuild;
+            view.Confirm += Confirm;
+            view.Cancel += Cancel;
             // Set up the view with the name, note, and archetype of the build to be modified.
             view.BuildName = model.GetBuildName(view.BuildID);
             view.BuildNote = model.GetBuildNote(view.BuildID);
@@ -30,7 +31,7 @@ namespace WinRateTracker.Presenter
         }
 
         /// <summary>  Validate view input and update the selected build in the model if the input is valid. </summary>
-        private void UpdateBuild()
+        private void Confirm()
         {
             string buildName = view.BuildName.Trim();
             string buildNote = view.BuildNote.Trim();
@@ -43,6 +44,12 @@ namespace WinRateTracker.Presenter
                 model.UpdateBuild(view.BuildID, buildName, buildNote);
                 view.CloseDialog();
             }
+        }
+
+        /// <summary> Close the dialog without updating the build. </summary>
+        private void Cancel()
+        {
+            view.CloseDialog();
         }
     }
 }

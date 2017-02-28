@@ -9,7 +9,8 @@ namespace WinRateTracker.View.Dialogs
     /// </summary>
     public partial class SetupDialog : Form, ISetupDialogView
     {
-        public event Action SetupArchetypes;
+        public event Action Confirm;
+        public event Action Cancel;
 
         /// <summary> Constructor. </summary>
         public SetupDialog()
@@ -58,13 +59,13 @@ namespace WinRateTracker.View.Dialogs
         /// <summary> Executes when the confirm button is clicked. </summary>
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            SetupArchetypes?.Invoke();
+            Confirm?.Invoke();
         }
 
         /// <summary> Executes when the cancel button is clicked. </summary>
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            Cancel?.Invoke();
         }
     }
 }

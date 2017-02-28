@@ -23,14 +23,15 @@ namespace WinRateTracker.Presenter
             if (model == null)
                 model = Model.Model.Instance;
             this.model = model;
-            view.SetupArchetypes += SetupArchetypes;
+            view.Confirm += Confirm;
+            view.Cancel += Cancel;
             // Set up available game options.
             gameOptions = new string[] { "Hearthstone", "Duelyst", "Gwent", "Shadowverse" };
             view.GameOptions = gameOptions;
         }
 
         /// <summary> Set up archetypes based on the selected game index. </summary>
-        private void SetupArchetypes()
+        private void Confirm()
         {
             switch (view.SelectedGame)
             {
@@ -73,6 +74,12 @@ namespace WinRateTracker.Presenter
                     model.InsertArchetype("Havencraft", "Eris");
                     break;
             }
+            view.CloseDialog();
+        }
+
+        /// <summary> Close the dialog without initializing any archetypes. </summary>
+        private void Cancel()
+        {
             view.CloseDialog();
         }
     }

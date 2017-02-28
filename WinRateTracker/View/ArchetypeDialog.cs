@@ -10,8 +10,8 @@ namespace WinRateTracker.View.Dialogs
     /// </summary>
     public partial class ArchetypeDialog : Form, INewArchetypeView, IUpdateArchetypeView
     {
-        public event Action InsertArchetype;
-        public event Action UpdateArchetype;
+        public event Action Confirm;
+        public event Action Cancel;
 
         private bool editing; // If this variable is TRUE then this is an update archetype dialog, otherwise it is a new archetype dialog.
         private int archetypeID; // The ID of the archetype being modified by this dialog. (Unused if this dialog is in new archetype mode)
@@ -71,17 +71,13 @@ namespace WinRateTracker.View.Dialogs
         /// <summary> Executes when the confirm button is clicked. </summary>
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            // Invoke different events based on whether this dialog is in edit or create mode.
-            if (editing)
-                UpdateArchetype?.Invoke();
-            else
-                InsertArchetype?.Invoke();
+            Confirm?.Invoke();
         }
 
         /// <summary> Executes when the cancel button is clicked. </summary>
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            Cancel?.Invoke();
         }
     }
 }

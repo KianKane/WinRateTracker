@@ -7,9 +7,6 @@ namespace WinRateTracker.View
     /// </summary>
     public interface INewBuildView : IDialogView
     {
-        /// <summary> This event fires when the user wants to insert the build. </summary>
-        event Action InsertBuild;
-
         /// <summary> Used to get the new build name. </summary>
         string BuildName { get; }
 

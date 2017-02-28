@@ -7,9 +7,6 @@ namespace WinRateTracker.View
     /// </summary>
     public interface ISetupDialogView : IDialogView
     {
-        /// <summary> This event fires when the user wants to set up archetypes. </summary>
-        event Action SetupArchetypes;
-
         /// <summary> Used to set the avaliable game options for the user to choose from. </summary>
         string[] GameOptions { set; }
 

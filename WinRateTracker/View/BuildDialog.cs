@@ -10,8 +10,8 @@ namespace WinRateTracker.View.Dialogs
     /// </summary>
     public partial class BuildDialog : Form, INewBuildView, IUpdateBuildView
     {
-        public event Action InsertBuild;
-        public event Action UpdateBuild;
+        public event Action Confirm;
+        public event Action Cancel;
 
         private bool editing; // If this variable is TRUE then this is an update build dialog, otherwise it is a new build dialog.
         private int buildID; // The ID of the build being modified by this dialog. (Unused if this dialog is in new build mode)
@@ -92,17 +92,13 @@ namespace WinRateTracker.View.Dialogs
         /// <summary> Executes when the confirm button is clicked. </summary>
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            // Invoke different events based on whether this dialog is in edit or create mode.
-            if (editing)
-                UpdateBuild?.Invoke();
-            else
-                InsertBuild?.Invoke();
+            Confirm?.Invoke();
         }
 
         /// <summary> Executes when the cancel button is clicked. </summary>
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            Cancel?.Invoke();
         }
     }
 }

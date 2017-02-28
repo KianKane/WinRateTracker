@@ -22,11 +22,12 @@ namespace WinRateTracker.Presenter
             if (model == null)
                 model = Model.Model.Instance;
             this.model = model;
-            view.InsertArchetype += InsertArchetype;
+            view.Confirm += Confirm;
+            view.Cancel += Cancel;
         }
 
         /// <summary> Validate view input and insert a new archetype into the model if the input is valid. </summary>
-        private void InsertArchetype()
+        private void Confirm()
         {
             string archetypeName = view.ArchetypeName.Trim();
             string archetypeNote = view.ArchetypeNote.Trim();
@@ -39,6 +40,12 @@ namespace WinRateTracker.Presenter
                 model.InsertArchetype(archetypeName, archetypeNote);
                 view.CloseDialog();
             }
+        }
+
+        /// <summary> Close the dialog without creating a new archetype. </summary>
+        private void Cancel()
+        {
+            view.CloseDialog();
         }
     }
 }

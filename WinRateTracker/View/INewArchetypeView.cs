@@ -7,9 +7,6 @@ namespace WinRateTracker.View
     /// </summary>
     public interface INewArchetypeView : IDialogView
     {
-        /// <summary> This event fires when the user wants to insert the archetype. </summary>
-        event Action InsertArchetype;
-
         /// <summary> Used to get the new archetype name. </summary>
         string ArchetypeName { get; }
 

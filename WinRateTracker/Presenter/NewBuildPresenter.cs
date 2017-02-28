@@ -22,7 +22,8 @@ namespace WinRateTracker.Presenter
             if (model == null)
                 model = Model.Model.Instance;
             this.model = model;
-            view.InsertBuild += InsertBuild;
+            view.Confirm += Confirm;
+            view.Cancel += Cancel;
         }
 
         /// <summary> 
@@ -30,7 +31,7 @@ namespace WinRateTracker.Presenter
         /// 
         /// NOTE: ArchetypeID is not currently validated.  ArchetypeID must exist in the model.
         /// </summary>
-        private void InsertBuild()
+        private void Confirm()
         {
             string buildName = view.BuildName.Trim();
             string buildNote = view.BuildNote.Trim();
@@ -44,6 +45,12 @@ namespace WinRateTracker.Presenter
                 model.InsertBuild(buildName, buildNote, archetypeID);
                 view.CloseDialog();
             }
+        }
+
+        /// <summary> Close the dialog without creating a new build. </summary>
+        private void Cancel()
+        {
+            view.CloseDialog();
         }
     }
 }

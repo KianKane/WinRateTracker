@@ -7,9 +7,6 @@ namespace WinRateTracker.View
     /// </summary>
     public interface IUpdateBuildView : IDialogView
     {
-        /// <summary> This event fires when the user wants to update the build. </summary>
-        event Action UpdateBuild;
-
         /// <summary> Used to get the modified build name and set the build name display text to the initial value. </summary>
         string BuildName { get; set; }
 
