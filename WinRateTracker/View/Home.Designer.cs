@@ -72,6 +72,11 @@
             this.btnEditArchetype = new System.Windows.Forms.Button();
             this.btnDeleteArchetype = new System.Windows.Forms.Button();
             this.dgvArchetypes = new System.Windows.Forms.DataGridView();
+            this.buildName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buildNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buildArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.archetypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.archetypeNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             lblVersusTab1 = new System.Windows.Forms.Label();
             lblTitleTab1 = new System.Windows.Forms.Label();
             lblLosses = new System.Windows.Forms.Label();
@@ -522,6 +527,10 @@
             this.dgvBuilds.AutoGenerateColumns = false;
             this.dgvBuilds.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBuilds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvBuilds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.buildName,
+            this.buildNote,
+            this.buildArchetype});
             this.dgvBuilds.DataSource = this.buildsBindingSource;
             this.dgvBuilds.Location = new System.Drawing.Point(8, 63);
             this.dgvBuilds.MultiSelect = false;
@@ -586,6 +595,9 @@
             this.dgvArchetypes.AutoGenerateColumns = false;
             this.dgvArchetypes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvArchetypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvArchetypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.archetypeName,
+            this.archetypeNote});
             this.dgvArchetypes.DataSource = this.archetypesBindingSource;
             this.dgvArchetypes.Location = new System.Drawing.Point(8, 63);
             this.dgvArchetypes.MultiSelect = false;
@@ -596,7 +608,37 @@
             this.dgvArchetypes.Size = new System.Drawing.Size(600, 309);
             this.dgvArchetypes.TabIndex = 4;
             // 
-            // HomeView
+            // buildName
+            // 
+            this.buildName.HeaderText = "Build Name";
+            this.buildName.Name = "buildName";
+            this.buildName.ReadOnly = true;
+            // 
+            // buildNote
+            // 
+            this.buildNote.HeaderText = "Note";
+            this.buildNote.Name = "buildNote";
+            this.buildNote.ReadOnly = true;
+            // 
+            // buildArchetype
+            // 
+            this.buildArchetype.HeaderText = "Archetype";
+            this.buildArchetype.Name = "buildArchetype";
+            this.buildArchetype.ReadOnly = true;
+            // 
+            // archetypeName
+            // 
+            this.archetypeName.HeaderText = "Archetype Name";
+            this.archetypeName.Name = "archetypeName";
+            this.archetypeName.ReadOnly = true;
+            // 
+            // archetypeNote
+            // 
+            this.archetypeNote.HeaderText = "Archetype Note";
+            this.archetypeNote.Name = "archetypeNote";
+            this.archetypeNote.ReadOnly = true;
+            // 
+            // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -604,7 +646,7 @@
             this.Controls.Add(this.tabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "HomeView";
+            this.Name = "Home";
             this.Text = "Win Rate Tracker";
             this.tabControl.ResumeLayout(false);
             this.recordMatchTab.ResumeLayout(false);
@@ -658,6 +700,11 @@
         private System.Windows.Forms.BindingSource archetypesBindingSource;
         private System.Windows.Forms.CheckBox chkAllBuilds;
         private System.Windows.Forms.CheckBox chkAllArchetypes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn buildName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn buildNote;
+        private System.Windows.Forms.DataGridViewTextBoxColumn buildArchetype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn archetypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn archetypeNote;
     }
 }
 

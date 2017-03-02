@@ -40,8 +40,17 @@ namespace WinRateTracker.View
             archetypesBindingSource.DataMember = "Archetypes";
             archetypesBindingSource.DataSource = Model.Model.Instance.GetDataSet().Archetypes;
             archetypesBindingSource.ResetBindings(false);
-            dgvBuilds.AutoGenerateColumns = true;
-            dgvArchetypes.AutoGenerateColumns = true;
+            // Set up data grid view column bindings
+            dgvBuilds.Columns[0].Name = "Builds";                   // Build name column
+            dgvBuilds.Columns[0].DataPropertyName = "name";
+            dgvBuilds.Columns[1].Name = "Builds";                   // Build note column
+            dgvBuilds.Columns[1].DataPropertyName = "note";
+            dgvBuilds.Columns[2].Name = "Archetypes";               // Build archetype name column
+            dgvBuilds.Columns[2].DataPropertyName = "name";
+            dgvArchetypes.Columns[0].Name = "Archetypes";           // Archetype name column
+            dgvArchetypes.Columns[0].DataPropertyName = "name";
+            dgvArchetypes.Columns[1].Name = "Archetypes";           // Archetype note column
+            dgvArchetypes.Columns[1].DataPropertyName = "note";
         }
 
         /// <summary> Interface realization property.  See interface for documentation. </summary>
