@@ -3,8 +3,12 @@ using WinRateTracker.Model;
 
 namespace WinRateTrackerTests.TestDoubles
 {
+    /// <summary>
+    /// This class acts as a mock model.  Instead of connecting to a database it simply stores lists of Builds, Matches and Archetypes.
+    /// </summary>
     class ModelMock : IModel
     {
+        /// <summary> Stores the information for a single build. </summary>
         public struct Build
         {
             public int id;
@@ -21,6 +25,7 @@ namespace WinRateTrackerTests.TestDoubles
             }
         }
 
+        /// <summary> Stores the information for a single match. </summary>
         public struct Match
         {
             public int id;
@@ -37,6 +42,7 @@ namespace WinRateTrackerTests.TestDoubles
             }
         }
 
+        /// <summary> Stores the information for a single archetype. </summary>
         public struct Archetype
         {
             public int id;
@@ -51,10 +57,13 @@ namespace WinRateTrackerTests.TestDoubles
             }
         }
 
+        // Lists are public so they can be checked at any point by test classes.
         public List<Build> builds;
         public List<Match> matches;
         public List<Archetype> archetypes;
 
+        // ID counters are used to create unique IDS.  these must be incremented every time they are used.
+        // NOTE: Could replace these with properties that incrememnt themselves automatically.
         private int nextBuildID;
         private int nextMatchID;
         private int nextArchetypeID;
@@ -78,11 +87,13 @@ namespace WinRateTrackerTests.TestDoubles
             return null;
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public void InsertBuild(string name, string note, int archetypeID)
         {
             builds.Add(new Build(nextBuildID++, name, note, archetypeID));
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public void UpdateBuild(int buildID, string name, string note)
         {
             for (int i = 0; i < builds.Count; i++)
@@ -95,6 +106,7 @@ namespace WinRateTrackerTests.TestDoubles
             }
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public void DeleteBuild(int buildID)
         {
             for (int i = 0; i < builds.Count; i++)
@@ -107,11 +119,13 @@ namespace WinRateTrackerTests.TestDoubles
             }
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public void InsertArchetype(string name, string note)
         {
             archetypes.Add(new Archetype(nextArchetypeID++, name, note));
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public void UpdateArchetype(int archetypeID, string name, string note)
         {
             for (int i = 0; i < archetypes.Count; i++)
@@ -124,6 +138,7 @@ namespace WinRateTrackerTests.TestDoubles
             }
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public void DeleteArchetype(int archetypeID)
         {
             for (int i = 0; i < archetypes.Count; i++)
@@ -136,11 +151,13 @@ namespace WinRateTrackerTests.TestDoubles
             }
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public void RecordMatch(int buildID, int archetypeID, bool victory)
         {
             matches.Add(new Match(nextMatchID++, buildID, archetypeID, victory));
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public int CountMatches(int? buildID, int? archetypeID, bool victory)
         {
             int count = 0;
@@ -154,6 +171,7 @@ namespace WinRateTrackerTests.TestDoubles
             return count;
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public string GetArchetypeName(int archetypeID)
         {
             for (int i = 0; i < archetypes.Count; i++)
@@ -166,6 +184,7 @@ namespace WinRateTrackerTests.TestDoubles
             return null;
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public string GetArchetypeNote(int archetypeID)
         {
             for (int i = 0; i < archetypes.Count; i++)
@@ -178,6 +197,7 @@ namespace WinRateTrackerTests.TestDoubles
             return null;
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public string GetBuildName(int buildID)
         {
             for (int i = 0; i < builds.Count; i++)
@@ -190,6 +210,7 @@ namespace WinRateTrackerTests.TestDoubles
             return null;
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public string GetBuildNote(int buildID)
         {
             for (int i = 0; i < builds.Count; i++)
@@ -202,6 +223,7 @@ namespace WinRateTrackerTests.TestDoubles
             return null;
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public int GetBuildArchetypeID(int buildID)
         {
             for (int i = 0; i < builds.Count; i++)
@@ -214,6 +236,7 @@ namespace WinRateTrackerTests.TestDoubles
             return -1;
         }
 
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public int GetArchetypeCount()
         {
             return archetypes.Count;
