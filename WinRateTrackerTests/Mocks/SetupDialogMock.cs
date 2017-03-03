@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using WinRateTracker.View;
 
 namespace WinRateTrackerTests.Mocks

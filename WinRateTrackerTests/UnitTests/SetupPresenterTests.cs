@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WinRateTracker.Model;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WinRateTracker.Presenter;
-using WinRateTracker.View;
 using WinRateTrackerTests.Mocks;
 
 namespace WinRateTrackerTests.UnitTests
