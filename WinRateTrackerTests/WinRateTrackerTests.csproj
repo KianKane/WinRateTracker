@@ -54,7 +54,6 @@
     <Compile Include="Mocks\ModelMock.cs" />
     <Compile Include="Mocks\SetupDialogMock.cs" />
     <Compile Include="UnitTests\SetupPresenterTests.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
