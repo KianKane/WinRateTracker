@@ -7,13 +7,13 @@ namespace WinRateTrackerTests.UnitTests
     [TestClass]
     public class SetupPresenterTests
     {
-        MessengerMock messenger;
+        MessengerStub messenger;
         ModelMock model;
 
         [TestInitialize]
         public void Initialize()
         {
-            messenger = new MessengerMock();
+            messenger = new MessengerStub();
             model = new ModelMock();
         }
 
