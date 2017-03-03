@@ -1,6 +1,6 @@
 ﻿using WinRateTracker.View;
 
-namespace WinRateTrackerTests.Mocks
+namespace WinRateTrackerTests.TestDoubles
 {
     class MessengerMock : IMessenger
     {

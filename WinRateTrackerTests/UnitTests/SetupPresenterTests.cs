@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WinRateTracker.Presenter;
-using WinRateTrackerTests.Mocks;
+using WinRateTrackerTests.TestDoubles;
 
 namespace WinRateTrackerTests.UnitTests
 {

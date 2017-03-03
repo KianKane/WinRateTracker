@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using WinRateTracker.Model;
 
-namespace WinRateTrackerTests.Mocks
+namespace WinRateTrackerTests.TestDoubles
 {
     class ModelMock : IModel
     {
