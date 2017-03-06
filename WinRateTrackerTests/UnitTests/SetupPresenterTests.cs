@@ -22,7 +22,7 @@ namespace WinRateTrackerTests.UnitTests
         {
             SetupDialogMock view = new SetupDialogMock();
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
-            
+
             Assert.IsNotNull(presenter);
             Assert.AreEqual(view.GameOptions?[0], "Hearthstone");
             Assert.AreEqual(view.GameOptions?[1], "Duelyst");
