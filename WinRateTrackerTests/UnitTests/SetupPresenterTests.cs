@@ -11,14 +11,14 @@ namespace WinRateTrackerTests.UnitTests
     public class SetupPresenterTests
     {
         // Test doubles
-        MessengerStub messenger;
+        MessengerMock messenger;
         ModelMock model;
 
         /// <summary> Runs before each test. </summary>
         [TestInitialize]
         public void Initialize()
         {
-            messenger = new MessengerStub();
+            messenger = new MessengerMock();
             model = new ModelMock();
         }
 
@@ -32,7 +32,7 @@ namespace WinRateTrackerTests.UnitTests
 
         /// <summary>
         /// Tests the constructor.
-        /// Ensures that the presenter is properly created
+        /// Ensures that the presenter is properly created.
         /// Ensures that the presenter initializes the views game options to contain the correct values. 
         /// </summary>
         [TestMethod]
