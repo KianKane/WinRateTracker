@@ -173,15 +173,118 @@ namespace WinRateTrackerTests.UnitTests
         }
         #endregion
 
+        #region HomePresenter_UpdateStatistics()
         /// <summary>
         /// Tests the update statistics event method.
+        /// Ensures that the win rate is correctly calculated.
+        /// Ensures that only relevant matches are counted.
         /// </summary>
         [TestMethod]
-        public void HomePresenter_UpdateStatistics()
+        public void HomePresenter_UpdateStatistics_Typical()
         {
+            for (int i = 0; i < 75; i++) { model.RecordMatch(1, 1, true); } // Record 75 victories.
+            for (int i = 0; i < 25; i++) { model.RecordMatch(1, 1, false); } // Record 25 defeats.
+            for (int i = 0; i < 50; i++) { model.RecordMatch(1, 2, true); } // Record 50 irrelevant victories. (against a different archetype.  Ensures that only relevant matches are counted.)
+            for (int i = 0; i < 30; i++) { model.RecordMatch(2, 1, false); } // Record 30 irrelevant defeats. (using a different build.  Ensures that only relevant matches are counted.)
             HomeMock view = new HomeMock();
             HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedBuildID = 1;
+            view.SelectedArchetypeID = 1;
+            view.UpdateStatistics_Invoke();
+            Assert.AreEqual("3.00", view.WinRate);
+            Assert.AreEqual("75", view.Wins);
+            Assert.AreEqual("25", view.Losses);
         }
+
+        /// <summary>
+        /// Tests the update statistics event method.
+        /// Ensures that the win rate is correctly calculated.
+        /// Ensures that only relevant matches are counted.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_UpdateStatistics_AllBuilds()
+        {
+            for (int i = 0; i < 75; i++) { model.RecordMatch(1, 1, true); } // Record 75 victories.
+            for (int i = 0; i < 25; i++) { model.RecordMatch(1, 1, false); } // Record 25 defeats.
+            for (int i = 0; i < 50; i++) { model.RecordMatch(1, 2, true); } // Record 50 irrelevant victories. (against a different archetype.  Ensures that only relevant matches are counted.)
+            for (int i = 0; i < 30; i++) { model.RecordMatch(2, 1, false); } // Record 30 defeats with an alternative build.
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedBuildID = 1;
+            view.AllBuilds = true;
+            view.SelectedArchetypeID = 1;
+            view.UpdateStatistics_Invoke();
+            Assert.AreEqual("1.36", view.WinRate);
+            Assert.AreEqual("75", view.Wins);
+            Assert.AreEqual("55", view.Losses);
+        }
+
+        /// <summary>
+        /// Tests the update statistics event method.
+        /// Ensures that the win rate is correctly calculated.
+        /// Ensures that only relevant matches are counted.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_UpdateStatistics_AllArchetypes()
+        {
+            for (int i = 0; i < 75; i++) { model.RecordMatch(1, 1, true); } // Record 75 victories.
+            for (int i = 0; i < 25; i++) { model.RecordMatch(1, 1, false); } // Record 25 defeats.
+            for (int i = 0; i < 50; i++) { model.RecordMatch(1, 2, true); } // Record 50 victories against an alternative archetype.
+            for (int i = 0; i < 30; i++) { model.RecordMatch(2, 1, false); } // Record 30 irrelevant defeats. (using a different build.  Ensures that only relevant matches are counted.)
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedBuildID = 1;
+            view.SelectedArchetypeID = 1;
+            view.AllArchetypes = true;
+            view.UpdateStatistics_Invoke();
+            Assert.AreEqual("5.00", view.WinRate);
+            Assert.AreEqual("125", view.Wins);
+            Assert.AreEqual("25", view.Losses);
+        }
+
+        /// <summary>
+        /// Tests the update statistics event method.
+        /// Ensures that the win rate is correctly calculated.
+        /// Ensures that all matches are counted.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_UpdateStatistics_AllMatches()
+        {
+            for (int i = 0; i < 75; i++) { model.RecordMatch(1, 1, true); } // Record 75 victories.
+            for (int i = 0; i < 25; i++) { model.RecordMatch(1, 1, false); } // Record 25 defeats.
+            for (int i = 0; i < 50; i++) { model.RecordMatch(1, 2, true); } // Record 50 victories against an alternative archetype.
+            for (int i = 0; i < 30; i++) { model.RecordMatch(2, 1, false); } // Record 30 defeats using an alternative build.
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedBuildID = 1;
+            view.AllBuilds = true;
+            view.SelectedArchetypeID = 1;
+            view.AllArchetypes = true;
+            view.UpdateStatistics_Invoke();
+            Assert.AreEqual("2.27", view.WinRate);
+            Assert.AreEqual("125", view.Wins);
+            Assert.AreEqual("55", view.Losses);
+        }
+
+        /// <summary>
+        /// Tests the update statistics event method.
+        /// Ensures that the win rate is correctly calculated.
+        /// Ensures that the presenter works correctly when there are no losses. (Presenter should act as if there is one loss when there is zero to avoid division by zero.)
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_UpdateStatistics_DivideByZero()
+        {
+            for (int i = 0; i < 8; i++) { model.RecordMatch(1, 1, true); } // Record 8 victories.
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedBuildID = 1;
+            view.SelectedArchetypeID = 1;
+            view.UpdateStatistics_Invoke();
+            Assert.AreEqual("8.00", view.WinRate);
+            Assert.AreEqual("8", view.Wins);
+            Assert.AreEqual("0", view.Losses);
+        }
+        #endregion
 
         /// <summary>
         /// Tests the new build event method.
