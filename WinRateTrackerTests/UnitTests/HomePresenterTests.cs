@@ -117,15 +117,61 @@ namespace WinRateTrackerTests.UnitTests
         }
         #endregion
 
+        #region HomePresenter_RecordDefeat
         /// <summary>
         /// Tests the record defeat event method.
+        /// Ensures that the user is prompted for confirmation.
+        /// Ensures that a match is added.
         /// </summary>
         [TestMethod]
-        public void HomePresenter_RecordDefeat()
+        public void HomePresenter_RecordDefeat_Typical()
         {
             HomeMock view = new HomeMock();
             HomePresenter presenter = new HomePresenter(view, messenger, model);
+            int countBefore = model.matches.Count;
+            view.SelectedBuildID = 1;
+            view.SelectedArchetypeID = 1;
+            view.RecordDefeat_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Confirmation", "Are you sure you want to record this defeat?", true), messenger.Messages.Peek());
+            Assert.AreEqual(countBefore + 1, model.matches.Count);
         }
+
+        /// <summary>
+        /// Tests the record defeat event method.
+        /// Ensures that the user is told that the action was a falure.
+        /// Ensures that no new match is added.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_RecordDefeat_NoBuild()
+        {
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            int countBefore = model.matches.Count;
+            view.SelectedBuildID = null;
+            view.SelectedArchetypeID = 1;
+            view.RecordDefeat_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Unable to record match", "No build is currently selected.", false), messenger.Messages.Peek());
+            Assert.AreEqual(countBefore, model.matches.Count);
+        }
+
+        /// <summary>
+        /// Tests the record defeat event method.
+        /// Ensures that the user is told that the action was a falure.
+        /// Ensures that no new match is added.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_RecordDefeat_NoArchetype()
+        {
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            int countBefore = model.matches.Count;
+            view.SelectedBuildID = 1;
+            view.SelectedArchetypeID = null;
+            view.RecordDefeat_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Unable to record match", "No archetype is currently selected.", false), messenger.Messages.Peek());
+            Assert.AreEqual(countBefore, model.matches.Count);
+        }
+        #endregion
 
         /// <summary>
         /// Tests the update statistics event method.
