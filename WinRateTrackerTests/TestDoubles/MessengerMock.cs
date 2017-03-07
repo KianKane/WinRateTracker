@@ -23,18 +23,18 @@ namespace WinRateTrackerTests.TestDoubles
             }
         }
 
-        private List<MessageRecord> messages; // Stores the messages sent from this messenger.
+        private Stack<MessageRecord> messages; // Stores the messages sent from this messenger.
         private bool accept; // When this is true the messenger will assume the user accepts all prompts.  When this is false the messenger will assume the user declines all prompts.
 
         /// <summary> Constructor. </summary>
         public MessengerMock()
         {
-            messages = new List<MessageRecord>();
+            messages = new Stack<MessageRecord>();
             accept = true;
         }
 
         /// <summary> This property allows testing classes to view the messages shown by this class. </summary>
-        public List<MessageRecord> Messages
+        public Stack<MessageRecord> Messages
         {
             get { return messages; }
         }
@@ -49,14 +49,14 @@ namespace WinRateTrackerTests.TestDoubles
         /// <summary> Interface realization method.  See interface for documentation. </summary>
         public void Message(string title, string message)
         {
-            messages.Add(new MessageRecord(title, message, false));
+            messages.Push(new MessageRecord(title, message, false));
         }
 
         /// <summary> Interface realization method.  See interface for documentation. </summary>
         /// <returns> Returns value of Accept property to fake user interaction. </returns>
         public bool Prompt(string title, string message)
         {
-            messages.Add(new MessageRecord(title, message, true));
+            messages.Push(new MessageRecord(title, message, true));
             return Accept;
         }
     }
