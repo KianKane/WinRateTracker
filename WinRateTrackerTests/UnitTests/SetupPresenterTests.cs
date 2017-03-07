@@ -42,10 +42,10 @@ namespace WinRateTrackerTests.UnitTests
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
             Assert.IsNotNull(presenter);
             Assert.IsTrue(view.GameOptions.Length == 4);
-            Assert.AreEqual(view.GameOptions?[0], "Hearthstone");
-            Assert.AreEqual(view.GameOptions?[1], "Duelyst");
-            Assert.AreEqual(view.GameOptions?[2], "Gwent");
-            Assert.AreEqual(view.GameOptions?[3], "Shadowverse");
+            Assert.AreEqual("Hearthstone", view.GameOptions?[0]);
+            Assert.AreEqual("Duelyst", view.GameOptions?[1]);
+            Assert.AreEqual("Gwent", view.GameOptions?[2]);
+            Assert.AreEqual("Shadowverse", view.GameOptions?[3]);
         }
 
         #region SetupPresenter_Confirm
@@ -61,25 +61,25 @@ namespace WinRateTrackerTests.UnitTests
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
             view.SelectedGame = 0;
             view.Confirm_Invoke();
-            Assert.AreEqual(model.archetypes.Count, 9);
-            Assert.AreEqual(model.archetypes?[0].name, "Mage");
-            Assert.AreEqual(model.archetypes?[0].note, "Jaina Proudmoore");
-            Assert.AreEqual(model.archetypes?[1].name, "Hunter");
-            Assert.AreEqual(model.archetypes?[1].note, "Rexxar");
-            Assert.AreEqual(model.archetypes?[2].name, "Paladin");
-            Assert.AreEqual(model.archetypes?[2].note, "Uther Lightbringer");
-            Assert.AreEqual(model.archetypes?[3].name, "Warrior");
-            Assert.AreEqual(model.archetypes?[3].note, "Garrosh Hellscream");
-            Assert.AreEqual(model.archetypes?[4].name, "Druid");
-            Assert.AreEqual(model.archetypes?[4].note, "Malfurion Stormrage");
-            Assert.AreEqual(model.archetypes?[5].name, "Warlock");
-            Assert.AreEqual(model.archetypes?[5].note, "Gul'dan");
-            Assert.AreEqual(model.archetypes?[6].name, "Shaman");
-            Assert.AreEqual(model.archetypes?[6].note, "Thrall");
-            Assert.AreEqual(model.archetypes?[7].name, "Priest");
-            Assert.AreEqual(model.archetypes?[7].note, "Anduin Wrynn");
-            Assert.AreEqual(model.archetypes?[8].name, "Rogue");
-            Assert.AreEqual(model.archetypes?[8].note, "Valeera Sanguinar");
+            Assert.AreEqual(9, model.archetypes.Count);
+            Assert.AreEqual("Mage", model.archetypes?[0].name);
+            Assert.AreEqual("Jaina Proudmoore", model.archetypes?[0].note);
+            Assert.AreEqual("Hunter", model.archetypes?[1].name);
+            Assert.AreEqual("Rexxar", model.archetypes?[1].note);
+            Assert.AreEqual("Paladin", model.archetypes?[2].name);
+            Assert.AreEqual("Uther Lightbringer", model.archetypes?[2].note);
+            Assert.AreEqual("Warrior", model.archetypes?[3].name);
+            Assert.AreEqual("Garrosh Hellscream", model.archetypes?[3].note);
+            Assert.AreEqual("Druid", model.archetypes?[4].name);
+            Assert.AreEqual("Malfurion Stormrage", model.archetypes?[4].note);
+            Assert.AreEqual("Warlock", model.archetypes?[5].name);
+            Assert.AreEqual("Gul'dan", model.archetypes?[5].note);
+            Assert.AreEqual("Shaman", model.archetypes?[6].name);
+            Assert.AreEqual("Thrall", model.archetypes?[6].note);
+            Assert.AreEqual("Priest", model.archetypes?[7].name);
+            Assert.AreEqual("Anduin Wrynn", model.archetypes?[7].note);
+            Assert.AreEqual("Rogue", model.archetypes?[8].name);
+            Assert.AreEqual("Valeera Sanguinar", model.archetypes?[8].note);
             Assert.IsTrue(view.Closed);
         }
 
@@ -95,13 +95,13 @@ namespace WinRateTrackerTests.UnitTests
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
             view.SelectedGame = 1;
             view.Confirm_Invoke();
-            Assert.AreEqual(model.archetypes.Count, 6);
-            Assert.AreEqual(model.archetypes?[0].name, "Lyonar");
-            Assert.AreEqual(model.archetypes?[1].name, "Songhai");
-            Assert.AreEqual(model.archetypes?[2].name, "Vetruvian");
-            Assert.AreEqual(model.archetypes?[3].name, "Abyssian");
-            Assert.AreEqual(model.archetypes?[4].name, "Magmar");
-            Assert.AreEqual(model.archetypes?[5].name, "Vanar");
+            Assert.AreEqual(6, model.archetypes.Count);
+            Assert.AreEqual("Lyonar", model.archetypes?[0].name);
+            Assert.AreEqual("Songhai", model.archetypes?[1].name);
+            Assert.AreEqual("Vetruvian", model.archetypes?[2].name);
+            Assert.AreEqual("Abyssian", model.archetypes?[3].name);
+            Assert.AreEqual("Magmar", model.archetypes?[4].name);
+            Assert.AreEqual("Vanar", model.archetypes?[5].name);
             Assert.IsTrue(view.Closed);
         }
 
@@ -117,12 +117,12 @@ namespace WinRateTrackerTests.UnitTests
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
             view.SelectedGame = 2;
             view.Confirm_Invoke();
-            Assert.AreEqual(model.archetypes.Count, 5);
-            Assert.AreEqual(model.archetypes?[0].name, "Nilfgaard");
-            Assert.AreEqual(model.archetypes?[1].name, "Monsters");
-            Assert.AreEqual(model.archetypes?[2].name, "Skellige");
-            Assert.AreEqual(model.archetypes?[3].name, "Northern Realms");
-            Assert.AreEqual(model.archetypes?[4].name, "Scoia'tael");
+            Assert.AreEqual(5, model.archetypes.Count);
+            Assert.AreEqual("Nilfgaard", model.archetypes?[0].name);
+            Assert.AreEqual("Monsters", model.archetypes?[1].name);
+            Assert.AreEqual("Skellige", model.archetypes?[2].name);
+            Assert.AreEqual("Northern Realms", model.archetypes?[3].name);
+            Assert.AreEqual("Scoia'tael", model.archetypes?[4].name);
             Assert.IsTrue(view.Closed);
         }
 
@@ -138,21 +138,21 @@ namespace WinRateTrackerTests.UnitTests
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
             view.SelectedGame = 3;
             view.Confirm_Invoke();
-            Assert.AreEqual(model.archetypes.Count, 7);
-            Assert.AreEqual(model.archetypes?[0].name, "Forestcraft");
-            Assert.AreEqual(model.archetypes?[0].note, "Arisa");
-            Assert.AreEqual(model.archetypes?[1].name, "Swordcraft");
-            Assert.AreEqual(model.archetypes?[1].note, "Erika");
-            Assert.AreEqual(model.archetypes?[2].name, "Runecraft");
-            Assert.AreEqual(model.archetypes?[2].note, "Isabelle");
-            Assert.AreEqual(model.archetypes?[3].name, "Dragoncraft");
-            Assert.AreEqual(model.archetypes?[3].note, "Rowan");
-            Assert.AreEqual(model.archetypes?[4].name, "Shadowcraft");
-            Assert.AreEqual(model.archetypes?[4].note, "Luna");
-            Assert.AreEqual(model.archetypes?[5].name, "Bloodcraft");
-            Assert.AreEqual(model.archetypes?[5].note, "Urias");
-            Assert.AreEqual(model.archetypes?[6].name, "Havencraft");
-            Assert.AreEqual(model.archetypes?[6].note, "Eris");
+            Assert.AreEqual(7, model.archetypes.Count);
+            Assert.AreEqual("Forestcraft", model.archetypes?[0].name);
+            Assert.AreEqual("Arisa", model.archetypes?[0].note);
+            Assert.AreEqual("Swordcraft", model.archetypes?[1].name);
+            Assert.AreEqual("Erika", model.archetypes?[1].note);
+            Assert.AreEqual("Runecraft", model.archetypes?[2].name);
+            Assert.AreEqual("Isabelle", model.archetypes?[2].note);
+            Assert.AreEqual("Dragoncraft", model.archetypes?[3].name);
+            Assert.AreEqual("Rowan", model.archetypes?[3].note);
+            Assert.AreEqual("Shadowcraft", model.archetypes?[4].name);
+            Assert.AreEqual("Luna", model.archetypes?[4].note);
+            Assert.AreEqual("Bloodcraft", model.archetypes?[5].name);
+            Assert.AreEqual("Urias", model.archetypes?[5].note);
+            Assert.AreEqual("Havencraft", model.archetypes?[6].name);
+            Assert.AreEqual("Eris", model.archetypes?[6].note);
             Assert.IsTrue(view.Closed);
         }
 
@@ -169,7 +169,7 @@ namespace WinRateTrackerTests.UnitTests
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
             view.SelectedGame = -1;
             view.Confirm_Invoke();
-            Assert.AreEqual(model.archetypes.Count, 0);
+            Assert.AreEqual(0, model.archetypes.Count);
             Assert.IsTrue(view.Closed);
         }
 
@@ -186,7 +186,7 @@ namespace WinRateTrackerTests.UnitTests
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
             view.SelectedGame = 4;
             view.Confirm_Invoke();
-            Assert.AreEqual(model.archetypes.Count, 0);
+            Assert.AreEqual(0, model.archetypes.Count);
             Assert.IsTrue(view.Closed);
         }
 
@@ -203,7 +203,7 @@ namespace WinRateTrackerTests.UnitTests
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
             view.SelectedGame = int.MinValue;
             view.Confirm_Invoke();
-            Assert.AreEqual(model.archetypes.Count, 0);
+            Assert.AreEqual(0, model.archetypes.Count);
             Assert.IsTrue(view.Closed);
         }
 
@@ -220,7 +220,7 @@ namespace WinRateTrackerTests.UnitTests
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
             view.SelectedGame = int.MaxValue;
             view.Confirm_Invoke();
-            Assert.AreEqual(model.archetypes.Count, 0);
+            Assert.AreEqual(0, model.archetypes.Count);
             Assert.IsTrue(view.Closed);
         }
         #endregion
@@ -237,7 +237,7 @@ namespace WinRateTrackerTests.UnitTests
             SetupPresenter presenter = new SetupPresenter(view, messenger, model);
             Assert.IsTrue(!view.Closed);
             view.Cancel_Invoke();
-            Assert.IsTrue(model.archetypes.Count == 0);
+            Assert.AreEqual(0, model.archetypes.Count);
             Assert.IsTrue(view.Closed);
         }
     }
