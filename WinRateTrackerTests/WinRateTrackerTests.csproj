@@ -50,9 +50,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TestDoubles\HomeMock.cs" />
     <Compile Include="TestDoubles\MessengerMock.cs" />
     <Compile Include="TestDoubles\ModelMock.cs" />
     <Compile Include="TestDoubles\SetupDialogMock.cs" />
+    <Compile Include="UnitTests\HomePresenterTests.cs" />
     <Compile Include="UnitTests\SetupPresenterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
