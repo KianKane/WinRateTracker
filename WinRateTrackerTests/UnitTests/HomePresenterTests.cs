@@ -60,7 +60,6 @@ namespace WinRateTrackerTests.UnitTests
             Assert.IsFalse(view.SetupDialogShown);
         }
         #endregion
-
         #region HomePresenter_RecordVictory
         /// <summary>
         /// Tests the record victory event method.
@@ -116,7 +115,6 @@ namespace WinRateTrackerTests.UnitTests
             Assert.AreEqual(countBefore, model.matches.Count);
         }
         #endregion
-
         #region HomePresenter_RecordDefeat
         /// <summary>
         /// Tests the record defeat event method.
@@ -172,8 +170,7 @@ namespace WinRateTrackerTests.UnitTests
             Assert.AreEqual(countBefore, model.matches.Count);
         }
         #endregion
-
-        #region HomePresenter_UpdateStatistics()
+        #region HomePresenter_UpdateStatistics
         /// <summary>
         /// Tests the update statistics event method.
         /// Ensures that the win rate is correctly calculated.
@@ -285,65 +282,233 @@ namespace WinRateTrackerTests.UnitTests
             Assert.AreEqual("0", view.Losses);
         }
         #endregion
+        #region HomePresenter_NewBuild
+        /// <summary>
+        /// Tests the new build event method.
+        /// Ensures no messages are shown.
+        /// Ensures that the new build dialog is shown.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_NewBuild_ArchetypesExist()
+        {
+            model.InsertArchetype("Sample Archetype 1", "Sample Note");
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.NewBuild_Invoke();
+            Assert.AreEqual(0, messenger.Messages.Count); // Ensure no messages were shown
+            Assert.IsTrue(view.NewBuildDialogShown);
+        }
 
         /// <summary>
         /// Tests the new build event method.
+        /// Ensures that a warning is shown.
+        /// Ensures that the new build dialog is not shown.
         /// </summary>
         [TestMethod]
-        public void HomePresenter_NewBuild()
+        public void HomePresenter_NewBuild_NoArchetypesExist()
         {
             HomeMock view = new HomeMock();
             HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.NewBuild_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Unable to create build", "You must have at least one archetype before creating a build.", false), messenger.Messages.Peek());
+            Assert.IsFalse(view.NewBuildDialogShown);
+        }
+        #endregion
+        #region HomePresenter_UpdateBuild
+        /// <summary>
+        /// Tests the update build event method.
+        /// Ensures that no messages are shown.
+        /// Ensures that the modify build dialog is shown.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_UpdateBuild_BuildSelected()
+        {
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedBuildID = 1;
+            view.UpdateBuild_Invoke();
+            Assert.AreEqual(0, messenger.Messages.Count); // Ensure no messages were shown
+            Assert.IsTrue(view.UpdateBuildDialogShown);
         }
 
         /// <summary>
         /// Tests the update build event method.
+        /// Ensures that a warning is shown.
+        /// Ensures that the modify build dialog is not shown.
         /// </summary>
         [TestMethod]
-        public void HomePresenter_UpdateBuild()
+        public void HomePresenter_UpdateBuild_NoBuildSelected()
         {
             HomeMock view = new HomeMock();
             HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedBuildID = null;
+            view.UpdateBuild_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Unable to update build", "No build is currently selected.", false), messenger.Messages.Peek());
+            Assert.IsFalse(view.UpdateBuildDialogShown);
+        }
+        #endregion
+        #region HomePresenter_DeleteBuild
+        /// <summary>
+        /// Tests the delete build event method.
+        /// Ensures that the user is prompted for confirmation.
+        /// Ensures that the build is deleted.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_DeleteBuild_BuildSelected()
+        {
+            model.InsertBuild("Sample Build 1", "Sample Note", 1);
+            int countBefore = model.builds.Count;
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedBuildID = 1;
+            messenger.Accept = true; // Accept the prompt
+            view.DeleteBuild_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Confirmation", "Deleting this build will also delete all associated match information.  Are you sure you want to continue?", true), messenger.Messages.Peek());
+            Assert.AreEqual(countBefore - 1, model.builds.Count);
         }
 
         /// <summary>
         /// Tests the delete build event method.
+        /// Ensures that the user is prompted for confirmation.
+        /// Ensures that the build is not deleted when the user refuses the prompt.
         /// </summary>
         [TestMethod]
-        public void HomePresenter_DeleteBuild()
+        public void HomePresenter_DeleteBuild_UserDeclines()
         {
+            model.InsertBuild("Sample Build 1", "Sample Note", 1);
+            int countBefore = model.builds.Count;
             HomeMock view = new HomeMock();
             HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedBuildID = 1;
+            messenger.Accept = false; // Refuse the prompt
+            view.DeleteBuild_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Confirmation", "Deleting this build will also delete all associated match information.  Are you sure you want to continue?", true), messenger.Messages.Peek());
+            Assert.AreEqual(countBefore, model.builds.Count);
         }
 
         /// <summary>
+        /// Tests the delete build event method.
+        /// Ensures that a warning is shown.
+        /// Ensures that no builds are deleted.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_DeleteBuild_NoBuildSelected()
+        {
+            model.InsertBuild("Sample Build 1", "Sample Note", 1);
+            int countBefore = model.builds.Count;
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedBuildID = null;
+            view.DeleteBuild_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Unable to delete build", "No build is currently selected.", false), messenger.Messages.Peek());
+            Assert.AreEqual(countBefore, model.builds.Count);
+        }
+        #endregion
+        #region HomePresenter_NewArchetype
+        /// <summary>
         /// Tests the new archetype event method.
+        /// Ensures that no messages are shown.
+        /// Ensures that the new archetype dialog is shown.
         /// </summary>
         [TestMethod]
         public void HomePresenter_NewArchetype()
         {
             HomeMock view = new HomeMock();
             HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.NewArchetype_Invoke();
+            Assert.AreEqual(0, messenger.Messages.Count); // Ensure no messages were shown
+            Assert.IsTrue(view.NewArchetypeDialogShown);
+        }
+        #endregion
+        #region HomePresenter_UpdateArchetype
+        /// <summary>
+        /// Tests the update archetype event method.
+        /// Ensures that no messages are shown.
+        /// Ensures that the modify archetyoe dialog is shown.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_UpdateArchetype_ArchetypeSelected()
+        {
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedArchetypeID = 1;
+            view.UpdateArchetype_Invoke();
+            Assert.AreEqual(0, messenger.Messages.Count); // Ensure no messages were shown
+            Assert.IsTrue(view.UpdateArchetypeDialogShown);
         }
 
         /// <summary>
         /// Tests the update archetype event method.
+        /// Ensures that a warning is shown.
+        /// Ensures that the modify archetype dialog is not shown.
         /// </summary>
         [TestMethod]
-        public void HomePresenter_UpdateArchetype()
+        public void HomePresenter_UpdateArchetype_NoArchetypeSelected()
         {
             HomeMock view = new HomeMock();
             HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedArchetypeID = null;
+            view.UpdateArchetype_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Unable to update archetype", "No archetype is currently selected.", false), messenger.Messages.Peek());
+            Assert.IsFalse(view.UpdateArchetypeDialogShown);
+        }
+        #endregion
+        #region HomePresenter_DeleteArchetype
+        /// <summary>
+        /// Tests the delete archetype event method.
+        /// Ensures that the user is prompted for confirmation.
+        /// Ensures that the archetype is deleted.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_DeleteArchetype_ArchetypeSelected()
+        {
+            model.InsertArchetype("Sample Archetype 1", "Sample Note");
+            int countBefore = model.archetypes.Count;
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedArchetypeID = 1;
+            messenger.Accept = true; // Accept the prompt
+            view.DeleteArchetype_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Confirmation", "Deleting this archetype will also delete all associated build and match information.  Are you sure you want to continue?", true), messenger.Messages.Peek());
+            Assert.AreEqual(countBefore - 1, model.archetypes.Count);
         }
 
         /// <summary>
         /// Tests the delete archetype event method.
+        /// Ensures that the user is prompted for confirmation.
+        /// Ensures that the archetype is not deleted when the user refuses the prompt.
         /// </summary>
         [TestMethod]
-        public void HomePresenter_DeleteArchetype()
+        public void HomePresenter_DeleteArchetype_UserDeclines()
         {
+            model.InsertArchetype("Sample Archetype 1", "Sample Note");
+            int countBefore = model.archetypes.Count;
             HomeMock view = new HomeMock();
             HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedArchetypeID = 1;
+            messenger.Accept = false; // Refuse the prompt
+            view.DeleteArchetype_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Confirmation", "Deleting this archetype will also delete all associated build and match information.  Are you sure you want to continue?", true), messenger.Messages.Peek());
+            Assert.AreEqual(countBefore, model.archetypes.Count);
         }
+
+        /// <summary>
+        /// Tests the delete archetype event method.
+        /// Ensures that a warning is shown.
+        /// Ensures that no archetype are deleted.
+        /// </summary>
+        [TestMethod]
+        public void HomePresenter_DeleteArchetype_NoArchetypeSelected()
+        {
+            model.InsertArchetype("Sample Archetype 1", "Sample Note");
+            int countBefore = model.archetypes.Count;
+            HomeMock view = new HomeMock();
+            HomePresenter presenter = new HomePresenter(view, messenger, model);
+            view.SelectedArchetypeID = null;
+            view.DeleteArchetype_Invoke();
+            Assert.AreEqual(new MessengerMock.MessageRecord("Unable to delete archetype", "No archetype is currently selected.", false), messenger.Messages.Peek());
+            Assert.AreEqual(countBefore, model.archetypes.Count);
+        }
+        #endregion
     }
 }
