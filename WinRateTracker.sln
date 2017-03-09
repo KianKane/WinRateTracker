@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRateTracker", "WinRateTracker\WinRateTracker.csproj", "{38F7A54D-9039-401A-BFC4-01068F4A4744}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRateTrackerTests", "WinRateTrackerTests\WinRateTrackerTests.csproj", "{9905EB84-1576-4B23-BE76-0C7A76B658BE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{38F7A54D-9039-401A-BFC4-01068F4A4744} = {38F7A54D-9039-401A-BFC4-01068F4A4744}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{38F7A54D-9039-401A-BFC4-01068F4A4744}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38F7A54D-9039-401A-BFC4-01068F4A4744}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38F7A54D-9039-401A-BFC4-01068F4A4744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9905EB84-1576-4B23-BE76-0C7A76B658BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9905EB84-1576-4B23-BE76-0C7A76B658BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9905EB84-1576-4B23-BE76-0C7A76B658BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9905EB84-1576-4B23-BE76-0C7A76B658BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

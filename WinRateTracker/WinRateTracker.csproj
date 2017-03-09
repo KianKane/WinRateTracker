@@ -80,6 +80,7 @@
     <Compile Include="Presenter\SetupPresenter.cs" />
     <Compile Include="Presenter\UpdateArchetypePresenter.cs" />
     <Compile Include="Presenter\UpdateBuildPresenter.cs" />
+    <Compile Include="Calculation\Statistics.cs" />
     <Compile Include="View\ArchetypeDialog.cs">
       <SubType>Form</SubType>
     </Compile>

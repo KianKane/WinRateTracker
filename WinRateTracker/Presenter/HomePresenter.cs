@@ -1,4 +1,5 @@
-﻿using WinRateTracker.Model;
+﻿using WinRateTracker.Calculation;
+using WinRateTracker.Model;
 using WinRateTracker.View;
 
 namespace WinRateTracker.Presenter
@@ -81,7 +82,7 @@ namespace WinRateTracker.Presenter
             int wins = model.CountMatches(buildID, archetypeID, true);
             int losses = model.CountMatches(buildID, archetypeID, false);
             // Calculate win rate.
-            double winRate = (double)wins / (losses > 0 ? losses : 1);
+            double winRate = Statistics.CalculateWinRate(wins, losses);
             // Set view displays.
             view.WinRate = winRate.ToString("F2"); // The win rate is rounded to two decimal places.
             view.Wins = wins.ToString();
