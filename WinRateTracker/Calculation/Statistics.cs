@@ -2,7 +2,7 @@
 
 namespace WinRateTracker.Calculation
 {
-    public class Statistics
+    public static class Statistics
     {
         public static double CalculateWinRate(int wins, int losses)
         {
