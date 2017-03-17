@@ -53,6 +53,16 @@
         /// <returns> The number of matches played meeting the requirements indicated by the parameters. </returns>
         int CountMatches(int? buildID, int? archetypeID, bool victory);
 
+        /// <summary> Checks whether an archetype with the given ID exists. </summary>
+        /// <param name="archetypeID"> The ID of the archetype to find. </param>
+        /// <returns> True if there exists an archetype with the given ID. </returns>
+        bool ArchetypeExists(int archetypeID);
+
+        /// <summary> Checks whether an build with the given ID exists. </summary>
+        /// <param name="buildID"> The ID of the build to find. </param>
+        /// <returns> True if there exists an build with the given ID. </returns>
+        bool BuildExists(int buildID);
+
         /// <summary> Gets and returns the name of the archetype with the passed ID. </summary>
         /// <param name="archetypeID"> The ID of the archetype to find. </param>
         /// <returns> The name of the archetype with the passed ID. </returns>

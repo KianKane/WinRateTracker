@@ -36,11 +36,8 @@ namespace WinRateTracker.Presenter
         {
             string archetypeName = view.ArchetypeName.Trim();
             string archetypeNote = view.ArchetypeNote.Trim();
-            if (string.IsNullOrWhiteSpace(archetypeName))
-            {
-                messenger.Message("Invalid Name", "You must enter a name for the archetype.");
-            }
-            else
+
+            if (IsValid_ArchetypeName(archetypeName) && IsValid_ArchetypeNote(archetypeNote))
             {
                 model.InsertArchetype(archetypeName, archetypeNote);
                 view.CloseDialog();
@@ -51,6 +48,33 @@ namespace WinRateTracker.Presenter
         private void Cancel()
         {
             view.CloseDialog();
+        }
+
+        /// <summary> Checks the validity of the given archetype name. </summary>
+        private bool IsValid_ArchetypeName(string archetypeName)
+        {
+            if (string.IsNullOrWhiteSpace(archetypeName)) // Archetype name cannot be empty.
+            {
+                messenger.Message("Invalid Name", "You must enter a name for the archetype.");
+                return false;
+            }
+            if (archetypeName.Length > 50) // Archetype name cannot be longer than 50 characters.
+            {
+                messenger.Message("Invalid Name", "The archetype name cannot contain more than 50 characters.");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary> Checks the validity of the given archetype note. </summary>
+        private bool IsValid_ArchetypeNote(string archetypeNote)
+        {
+            if (archetypeNote.Length > 200) // Archetype name cannot be longer than 50 characters.
+            {
+                messenger.Message("Invalid Note", "The archetype note cannot contain more than 200 characters.");
+                return false;
+            }
+            return true;
         }
     }
 }

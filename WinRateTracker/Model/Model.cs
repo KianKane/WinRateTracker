@@ -126,6 +126,20 @@ namespace WinRateTracker.Model
         }
 
         /// <summary> Interface realization method.  See interface for documentation. </summary>
+        public bool ArchetypeExists(int archetypeID)
+        {
+            DataRow[] rows = dataSet.Archetypes.Select("archetypeID = " + archetypeID);
+            return rows.Length > 0;
+        }
+
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
+        public bool BuildExists(int buildID)
+        {
+            DataRow[] rows = dataSet.Builds.Select("buildID = " + buildID);
+            return rows.Length > 0;
+        }
+
+        /// <summary> Interface realization method.  See interface for documentation. </summary>
         public string GetArchetypeName(int archetypeID)
         {
             DataRow[] rows = dataSet.Archetypes.Select("archetypeID = " + archetypeID);

@@ -39,13 +39,11 @@ namespace WinRateTracker.Presenter
         {
             string archetypeName = view.ArchetypeName.Trim();
             string archetypeNote = view.ArchetypeNote.Trim();
-            if (string.IsNullOrWhiteSpace(archetypeName))
+            int archetypeID = view.ArchetypeID;
+
+            if (IsValid_ArchetypeName(archetypeName) && IsValid_ArchetypeNote(archetypeNote) && IsValid_ArchetypeID(archetypeID))
             {
-                messenger.Message("Invalid Name", "You must enter a name for the archetype.");
-            }
-            else
-            {
-                model.UpdateArchetype(view.ArchetypeID, archetypeName, archetypeNote);
+                model.UpdateArchetype(archetypeID, archetypeName, archetypeNote);
                 view.CloseDialog();
             }
         }
@@ -54,6 +52,44 @@ namespace WinRateTracker.Presenter
         private void Cancel()
         {
             view.CloseDialog();
+        }
+
+        /// <summary> Checks the validity of the given archetype name. </summary>
+        private bool IsValid_ArchetypeName(string archetypeName)
+        {
+            if (string.IsNullOrWhiteSpace(archetypeName)) // Archetype name cannot be empty.
+            {
+                messenger.Message("Invalid Name", "You must enter a name for the archetype.");
+                return false;
+            }
+            if (archetypeName.Length > 50) // Archetype name cannot be longer than 50 characters.
+            {
+                messenger.Message("Invalid Name", "The archetype name cannot contain more than 50 characters.");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary> Checks the validity of the given archetype note. </summary>
+        private bool IsValid_ArchetypeNote(string archetypeNote)
+        {
+            if (archetypeNote.Length > 200) // Archetype name cannot be longer than 50 characters.
+            {
+                messenger.Message("Invalid Note", "The archetype note cannot contain more than 200 characters.");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary> Checks the validity of the given archetype id. </summary>
+        private bool IsValid_ArchetypeID(int archetypeID)
+        {
+            if (!model.ArchetypeExists(archetypeID)) // Archetype with the given ID must exist in the model.
+            {
+                messenger.Message("Invalid Archetype", "The chosen archetype does not exist.");
+                return false;
+            }
+            return true;
         }
     }
 }

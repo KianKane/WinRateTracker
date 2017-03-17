@@ -33,19 +33,14 @@ namespace WinRateTracker.Presenter
 
         /// <summary> 
         /// Validate view input and insert a new build into the model if the input is valid. 
-        /// 
-        /// NOTE: ArchetypeID is not currently validated.  ArchetypeID must exist in the model.
         /// </summary>
         private void Confirm()
         {
             string buildName = view.BuildName.Trim();
             string buildNote = view.BuildNote.Trim();
             int archetypeID = view.ArchetypeID;
-            if (string.IsNullOrWhiteSpace(buildName))
-            {
-                messenger.Message("Invalid Name", "You must enter a name for the build.");
-            }
-            else
+
+            if (IsValid_BuildName(buildName) && IsValid_BuildNote(buildNote) && IsValid_ArchetypeID(archetypeID))
             {
                 model.InsertBuild(buildName, buildNote, archetypeID);
                 view.CloseDialog();
@@ -56,6 +51,44 @@ namespace WinRateTracker.Presenter
         private void Cancel()
         {
             view.CloseDialog();
+        }
+
+        /// <summary> Checks the validity of the given build name. </summary>
+        private bool IsValid_BuildName(string buildName)
+        {
+            if (string.IsNullOrWhiteSpace(buildName)) // Build name cannot be empty.
+            {
+                messenger.Message("Invalid Name", "You must enter a name for the build.");
+                return false;
+            }
+            if (buildName.Length > 50) // Build name cannot be longer than 50 characters.
+            {
+                messenger.Message("Invalid Name", "The build name cannot contain more than 50 characters.");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary> Checks the validity of the given build note. </summary>
+        private bool IsValid_BuildNote(string buildNote)
+        {
+            if (buildNote.Length > 200) // Build note cannot be longer than 200 characters.
+            {
+                messenger.Message("Invalid Note", "The build note cannot contain more than 200 characters.");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary> Checks the validity of the given build name. </summary>
+        private bool IsValid_ArchetypeID(int archetypeID)
+        {
+            if (!model.ArchetypeExists(archetypeID)) // Build with the given ID must exist in the model.
+            {
+                messenger.Message("Invalid Build Archetype", "The chosen archetype does not exist.");
+                return false;
+            }
+            return true;
         }
     }
 }

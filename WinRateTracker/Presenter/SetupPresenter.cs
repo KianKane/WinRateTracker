@@ -38,54 +38,70 @@ namespace WinRateTracker.Presenter
         /// <summary> Set up archetypes based on the selected game index. </summary>
         private void Confirm()
         {
-            switch (view.SelectedGame)
+            int selectedGame = view.SelectedGame;
+
+            if (IsValid_SelectedGame(selectedGame))
             {
-                case 0: // Hearthstone.
-                    model.InsertArchetype("Mage", "Jaina Proudmoore");
-                    model.InsertArchetype("Hunter", "Rexxar");
-                    model.InsertArchetype("Paladin", "Uther Lightbringer");
-                    model.InsertArchetype("Warrior", "Garrosh Hellscream");
-                    model.InsertArchetype("Druid", "Malfurion Stormrage");
-                    model.InsertArchetype("Warlock", "Gul'dan");
-                    model.InsertArchetype("Shaman", "Thrall");
-                    model.InsertArchetype("Priest", "Anduin Wrynn");
-                    model.InsertArchetype("Rogue", "Valeera Sanguinar");
-                    break;
+                switch (selectedGame)
+                {
+                    case 0: // Hearthstone.
+                        model.InsertArchetype("Mage", "Jaina Proudmoore");
+                        model.InsertArchetype("Hunter", "Rexxar");
+                        model.InsertArchetype("Paladin", "Uther Lightbringer");
+                        model.InsertArchetype("Warrior", "Garrosh Hellscream");
+                        model.InsertArchetype("Druid", "Malfurion Stormrage");
+                        model.InsertArchetype("Warlock", "Gul'dan");
+                        model.InsertArchetype("Shaman", "Thrall");
+                        model.InsertArchetype("Priest", "Anduin Wrynn");
+                        model.InsertArchetype("Rogue", "Valeera Sanguinar");
+                        break;
 
-                case 1: // Duelyst.
-                    model.InsertArchetype("Lyonar", "");
-                    model.InsertArchetype("Songhai", "");
-                    model.InsertArchetype("Vetruvian", "");
-                    model.InsertArchetype("Abyssian", "");
-                    model.InsertArchetype("Magmar", "");
-                    model.InsertArchetype("Vanar", "");
-                    break;
+                    case 1: // Duelyst.
+                        model.InsertArchetype("Lyonar", "");
+                        model.InsertArchetype("Songhai", "");
+                        model.InsertArchetype("Vetruvian", "");
+                        model.InsertArchetype("Abyssian", "");
+                        model.InsertArchetype("Magmar", "");
+                        model.InsertArchetype("Vanar", "");
+                        break;
 
-                case 2: // Gwent.
-                    model.InsertArchetype("Nilfgaard", "");
-                    model.InsertArchetype("Monsters", "");
-                    model.InsertArchetype("Skellige", "");
-                    model.InsertArchetype("Northern Realms", "");
-                    model.InsertArchetype("Scoia'tael", "");
-                    break;
+                    case 2: // Gwent.
+                        model.InsertArchetype("Nilfgaard", "");
+                        model.InsertArchetype("Monsters", "");
+                        model.InsertArchetype("Skellige", "");
+                        model.InsertArchetype("Northern Realms", "");
+                        model.InsertArchetype("Scoia'tael", "");
+                        break;
 
-                case 3: // Shadowverse.
-                    model.InsertArchetype("Forestcraft", "Arisa");
-                    model.InsertArchetype("Swordcraft", "Erika");
-                    model.InsertArchetype("Runecraft", "Isabelle");
-                    model.InsertArchetype("Dragoncraft", "Rowan");
-                    model.InsertArchetype("Shadowcraft", "Luna");
-                    model.InsertArchetype("Bloodcraft", "Urias");
-                    model.InsertArchetype("Havencraft", "Eris");
-                    break;
+                    case 3: // Shadowverse.
+                        model.InsertArchetype("Forestcraft", "Arisa");
+                        model.InsertArchetype("Swordcraft", "Erika");
+                        model.InsertArchetype("Runecraft", "Isabelle");
+                        model.InsertArchetype("Dragoncraft", "Rowan");
+                        model.InsertArchetype("Shadowcraft", "Luna");
+                        model.InsertArchetype("Bloodcraft", "Urias");
+                        model.InsertArchetype("Havencraft", "Eris");
+                        break;
+                }
+                view.CloseDialog();
             }
-            view.CloseDialog();
         }
 
         /// <summary> Close the dialog without initializing any archetypes. </summary>
         private void Cancel()
         {
             view.CloseDialog();
+        }
+
+        /// <summary> Checks the validity of the given game selection. </summary>
+        private bool IsValid_SelectedGame(int selectedGame)
+        {
+            if (selectedGame < 0 || selectedGame >= gameOptions.Length) // Selected index must fall within the range of gameOptions.
+            {
+                messenger.Message("Invalid Game", "The selected game is not a valid option.");
+                return false;
+            }
+            return true;
         }
     }
 }

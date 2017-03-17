@@ -40,13 +40,11 @@ namespace WinRateTracker.Presenter
         {
             string buildName = view.BuildName.Trim();
             string buildNote = view.BuildNote.Trim();
-            if (string.IsNullOrWhiteSpace(buildName))
+            int buildID = view.BuildID;
+
+            if (IsValid_BuildName(buildName) && IsValid_BuildNote(buildNote) && IsValid_BuildID(buildID))
             {
-                messenger.Message("Invalid Name", "You must enter a name for the archetype.");
-            }
-            else
-            {
-                model.UpdateBuild(view.BuildID, buildName, buildNote);
+                model.UpdateBuild(buildID, buildName, buildNote);
                 view.CloseDialog();
             }
         }
@@ -55,6 +53,44 @@ namespace WinRateTracker.Presenter
         private void Cancel()
         {
             view.CloseDialog();
+        }
+
+        /// <summary> Checks the validity of the given build name. </summary>
+        private bool IsValid_BuildName(string buildName)
+        {
+            if (string.IsNullOrWhiteSpace(buildName)) // Build name cannot be empty.
+            {
+                messenger.Message("Invalid Name", "You must enter a name for the build.");
+                return false;
+            }
+            if (buildName.Length > 50) // Build name cannot be longer than 50 characters.
+            {
+                messenger.Message("Invalid Name", "The build name cannot contain more than 50 characters.");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary> Checks the validity of the given build note. </summary>
+        private bool IsValid_BuildNote(string buildNote)
+        {
+            if (buildNote.Length > 200) // Build note cannot be longer than 200 characters.
+            {
+                messenger.Message("Invalid Note", "The build note cannot contain more than 200 characters.");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary> Checks the validity of the given build id. </summary>
+        private bool IsValid_BuildID(int buildID)
+        {
+            if (!model.BuildExists(buildID)) // Build with the given ID must exist in the model.
+            {
+                messenger.Message("Invalid Build", "The chosen build does not exist.");
+                return false;
+            }
+            return true;
         }
     }
 }
