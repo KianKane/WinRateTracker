@@ -82,7 +82,19 @@ namespace WinRateTracker.Presenter
             int wins = model.CountMatches(buildID, archetypeID, true);
             int losses = model.CountMatches(buildID, archetypeID, false);
             // Calculate win rate.
-            double winRate = Statistics.CalculateWinRate(wins, losses);
+            double winRate = 0.00;
+            try
+            {
+                winRate = Statistics.CalculateWinRate(wins, losses);
+            }
+            catch (System.ArgumentOutOfRangeException e)
+            {
+                // If this error message is shown then something has gone horribly wrong most likely in the Model class or directly in the database.
+                // The argument out of range exception should only be thrown by the statistics class when a negative number of wins or losses are given.
+                // God knows what might cause this but on the off chance that it does occur, hopefully restarting the application will fix it...
+                messenger.Message("Error", "An error has occurred while attempting to calculate the win rate.  Please restart the application.");
+            }
+
             // Set view displays.
             view.WinRate = winRate.ToString("F2"); // The win rate is rounded to two decimal places.
             view.Wins = wins.ToString();
