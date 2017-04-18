@@ -30,9 +30,16 @@ namespace WinRateTracker.Presenter
             view.Confirm += Confirm;
             view.Cancel += Cancel;
             // Set up the view with the name, note, and archetype of the build to be modified.
-            view.BuildName = model.GetBuildName(view.BuildID);
-            view.BuildNote = model.GetBuildNote(view.BuildID);
-            view.ArchetypeName = model.GetArchetypeName(model.GetBuildArchetypeID(view.BuildID));
+            if (IsValid_BuildID(view.BuildID))
+            {
+                view.BuildName = model.GetBuildName(view.BuildID);
+                view.BuildNote = model.GetBuildNote(view.BuildID);
+                view.ArchetypeName = model.GetArchetypeName(model.GetBuildArchetypeID(view.BuildID));
+            }
+            else
+            {
+                view.CloseDialog();
+            }
         }
 
         /// <summary>  Validate view input and update the selected build in the model if the input is valid. </summary>

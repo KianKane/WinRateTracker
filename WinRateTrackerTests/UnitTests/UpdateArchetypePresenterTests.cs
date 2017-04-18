@@ -5,7 +5,7 @@ using WinRateTrackerTests.TestDoubles;
 namespace WinRateTrackerTests.UnitTests
 {
     /// <summary>
-    /// This class is responsible for unit testing the new archetype presenter.
+    /// This class is responsible for unit testing the update archetype presenter.
     /// </summary>
     [TestClass]
     public class UpdateArchetypePresenterTests
@@ -180,6 +180,8 @@ namespace WinRateTrackerTests.UnitTests
             UpdateArchetypeViewMock view = new UpdateArchetypeViewMock();
             view.ArchetypeID = model.archetypes[model.archetypes.Count - 1].id;
             UpdateArchetypePresenter presenter = new UpdateArchetypePresenter(view, messenger, model);
+            view.ArchetypeName = "Modified Name";
+            view.ArchetypeNote = "Modified Note";
             view.Cancel_Invoke();
             Assert.AreEqual("Sample Archetype", model.archetypes[model.archetypes.Count - 1].name);
             Assert.AreEqual("Sample Note", model.archetypes[model.archetypes.Count - 1].note);
