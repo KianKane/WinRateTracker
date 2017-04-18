@@ -50,18 +50,20 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TestDoubles\UpdateArchetypeViewMock.cs" />
     <Compile Include="UnitTests\StatisticsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDoubles\HomeViewMock.cs" />
     <Compile Include="TestDoubles\MessengerMock.cs" />
     <Compile Include="TestDoubles\ModelMock.cs" />
     <Compile Include="TestDoubles\NewArchetypeViewMock.cs" />
-    <Compile Include="TestDoubles\NewBuildViewMockcs.cs" />
+    <Compile Include="TestDoubles\NewBuildViewMocks.cs" />
     <Compile Include="TestDoubles\SetupDialogViewMock.cs" />
     <Compile Include="UnitTests\HomePresenterTests.cs" />
     <Compile Include="UnitTests\NewArchetypePresenterTests.cs" />
     <Compile Include="UnitTests\NewBuildPresenterTests.cs" />
     <Compile Include="UnitTests\SetupPresenterTests.cs" />
+    <Compile Include="UnitTests\UpdateArchetypePresenterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WinRateTracker\WinRateTracker.csproj">

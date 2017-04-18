@@ -30,8 +30,15 @@ namespace WinRateTracker.Presenter
             view.Confirm += Confirm;
             view.Cancel += Cancel;
             // Set up the view with the name and note of the archetype to be modified.
-            view.ArchetypeName = model.GetArchetypeName(view.ArchetypeID);
-            view.ArchetypeNote = model.GetArchetypeNote(view.ArchetypeID);
+            if (IsValid_ArchetypeID(view.ArchetypeID))
+            {
+                view.ArchetypeName = model.GetArchetypeName(view.ArchetypeID);
+                view.ArchetypeNote = model.GetArchetypeNote(view.ArchetypeID);
+            }
+            else
+            {
+                view.CloseDialog();
+            }
         }
 
         /// <summary>  Validate view input and update the selected archetype in the model if the input is valid. </summary>
