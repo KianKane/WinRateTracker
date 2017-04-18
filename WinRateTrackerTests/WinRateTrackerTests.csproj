@@ -56,9 +56,11 @@
     <Compile Include="TestDoubles\MessengerMock.cs" />
     <Compile Include="TestDoubles\ModelMock.cs" />
     <Compile Include="TestDoubles\NewArchetypeViewMock.cs" />
+    <Compile Include="TestDoubles\NewBuildViewMockcs.cs" />
     <Compile Include="TestDoubles\SetupDialogViewMock.cs" />
     <Compile Include="UnitTests\HomePresenterTests.cs" />
     <Compile Include="UnitTests\NewArchetypePresenterTests.cs" />
+    <Compile Include="UnitTests\NewBuildPresenterTests.cs" />
     <Compile Include="UnitTests\SetupPresenterTests.cs" />
   </ItemGroup>
   <ItemGroup>
