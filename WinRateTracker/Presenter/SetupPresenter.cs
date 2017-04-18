@@ -83,8 +83,8 @@ namespace WinRateTracker.Presenter
                         model.InsertArchetype("Havencraft", "Eris");
                         break;
                 }
-                view.CloseDialog();
             }
+            view.CloseDialog();
         }
 
         /// <summary> Close the dialog without initializing any archetypes. </summary>
