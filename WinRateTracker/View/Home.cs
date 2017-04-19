@@ -188,18 +188,6 @@ namespace WinRateTracker.View
             RecordDefeat?.Invoke();
         }
 
-        /// <summary> Executes when the selected build on the statistic page changes. </summary>
-        private void cboBuildTab2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateStatistics?.Invoke();
-        }
-
-        /// <summary> Executes when the selected archetype on the statistic page changes. </summary>
-        private void cboArchetypeTab2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateStatistics?.Invoke();
-        }
-
         /// <summary> Disables/Enables the build combobox and requests a statistics update. </summary>
         private void chkAllBuilds_CheckedChanged(object sender, EventArgs e)
         {
@@ -248,6 +236,18 @@ namespace WinRateTracker.View
         private void btnDeleteArchetype_Click(object sender, EventArgs e)
         {
             DeleteArchetype?.Invoke();
+        }
+
+        /// <summary> Executes when the selected build changes. </summary>
+        private void buildsBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            UpdateStatistics?.Invoke();
+        }
+
+        /// <summary> Executes when the selected build changes. </summary>
+        private void archetypesBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            UpdateStatistics?.Invoke();
         }
     }
 }
