@@ -31,12 +31,14 @@ namespace WinRateTracker.View.Dialogs
             }
             else
             {
+                // Set up data bindings (This is the only time where it is okay for this class to access the model directly)
+                archetypesBindingSource.DataMember = "Archetypes";
+                archetypesBindingSource.DataSource = Model.Model.Instance.GetDataSet().Archetypes;
+                cboArchetype.DataSource = archetypesBindingSource;
+                cboArchetype.DisplayMember = "name";
+                archetypesBindingSource.ResetBindings(false);
                 new NewBuildPresenter(this); // Create controlling presenter
             }
-            // Set up data bindings (This is the only time where it is okay for this class to access the model directly)
-            archetypesBindingSource.DataMember = "Archetypes";
-            archetypesBindingSource.DataSource = Model.Model.Instance.GetDataSet().Archetypes;
-            archetypesBindingSource.ResetBindings(false);
         }
 
         /// <summary> Interface realization property.  See interface for documentation. </summary>
@@ -62,7 +64,11 @@ namespace WinRateTracker.View.Dialogs
         /// <summary> Interface realization property.  See interface for documentation. </summary>
         public string ArchetypeName
         {
-            set { cboArchetype.Text = value; }
+            set
+            {
+                cboArchetype.Items.Add(value);
+                cboArchetype.Text = value;
+            }
         }
 
         /// <summary> Interface realization property.  See interface for documentation. </summary>

@@ -90,8 +90,6 @@
             // 
             // cboArchetype
             // 
-            this.cboArchetype.DataSource = this.archetypesBindingSource;
-            this.cboArchetype.DisplayMember = "name";
             this.cboArchetype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboArchetype.FormattingEnabled = true;
             this.cboArchetype.Location = new System.Drawing.Point(56, 41);
@@ -120,7 +118,7 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // BuildDialogView
+            // BuildDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -135,7 +133,7 @@
             this.Controls.Add(lblName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "BuildDialogView";
+            this.Name = "BuildDialog";
             this.Text = "Build Dialog";
             ((System.ComponentModel.ISupportInitialize)(this.archetypesBindingSource)).EndInit();
             this.ResumeLayout(false);
