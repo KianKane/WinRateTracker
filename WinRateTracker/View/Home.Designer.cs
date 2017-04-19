@@ -72,11 +72,11 @@
             this.btnEditArchetype = new System.Windows.Forms.Button();
             this.btnDeleteArchetype = new System.Windows.Forms.Button();
             this.dgvArchetypes = new System.Windows.Forms.DataGridView();
-            this.buildName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buildNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buildArchetype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.archetypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.archetypeNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buildName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buildNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buildArchetype = new System.Windows.Forms.DataGridViewComboBoxColumn();
             lblVersusTab1 = new System.Windows.Forms.Label();
             lblTitleTab1 = new System.Windows.Forms.Label();
             lblLosses = new System.Windows.Forms.Label();
@@ -608,6 +608,18 @@
             this.dgvArchetypes.Size = new System.Drawing.Size(600, 309);
             this.dgvArchetypes.TabIndex = 4;
             // 
+            // archetypeName
+            // 
+            this.archetypeName.HeaderText = "Archetype Name";
+            this.archetypeName.Name = "archetypeName";
+            this.archetypeName.ReadOnly = true;
+            // 
+            // archetypeNote
+            // 
+            this.archetypeNote.HeaderText = "Archetype Note";
+            this.archetypeNote.Name = "archetypeNote";
+            this.archetypeNote.ReadOnly = true;
+            // 
             // buildName
             // 
             this.buildName.HeaderText = "Build Name";
@@ -622,21 +634,12 @@
             // 
             // buildArchetype
             // 
+            this.buildArchetype.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.buildArchetype.HeaderText = "Archetype";
             this.buildArchetype.Name = "buildArchetype";
             this.buildArchetype.ReadOnly = true;
-            // 
-            // archetypeName
-            // 
-            this.archetypeName.HeaderText = "Archetype Name";
-            this.archetypeName.Name = "archetypeName";
-            this.archetypeName.ReadOnly = true;
-            // 
-            // archetypeNote
-            // 
-            this.archetypeNote.HeaderText = "Archetype Note";
-            this.archetypeNote.Name = "archetypeNote";
-            this.archetypeNote.ReadOnly = true;
+            this.buildArchetype.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.buildArchetype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Home
             // 
@@ -700,11 +703,11 @@
         private System.Windows.Forms.BindingSource archetypesBindingSource;
         private System.Windows.Forms.CheckBox chkAllBuilds;
         private System.Windows.Forms.CheckBox chkAllArchetypes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn buildName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn buildNote;
-        private System.Windows.Forms.DataGridViewTextBoxColumn buildArchetype;
         private System.Windows.Forms.DataGridViewTextBoxColumn archetypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn archetypeNote;
+        private System.Windows.Forms.DataGridViewTextBoxColumn buildName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn buildNote;
+        private System.Windows.Forms.DataGridViewComboBoxColumn buildArchetype;
     }
 }
 

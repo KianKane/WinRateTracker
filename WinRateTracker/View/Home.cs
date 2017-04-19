@@ -40,13 +40,16 @@ namespace WinRateTracker.View
             archetypesBindingSource.DataMember = "Archetypes";
             archetypesBindingSource.DataSource = Model.Model.Instance.GetDataSet().Archetypes;
             archetypesBindingSource.ResetBindings(false);
-            // Set up data grid view column bindings
+            // Set up data grid view column bikndings
             dgvBuilds.Columns[0].Name = "Builds";                   // Build name column
             dgvBuilds.Columns[0].DataPropertyName = "name";
             dgvBuilds.Columns[1].Name = "Builds";                   // Build note column
             dgvBuilds.Columns[1].DataPropertyName = "note";
-            dgvBuilds.Columns[2].Name = "Archetypes";               // Build archetype name column
-            dgvBuilds.Columns[2].DataPropertyName = "name";
+            dgvBuilds.Columns[2].Name = "Archetypes";               // Build archetype name column (Uses archetypeID as a foreign key to find the name of the archetype)
+            ((DataGridViewComboBoxColumn)dgvBuilds.Columns[2]).DataSource = archetypesBindingSource;
+            ((DataGridViewComboBoxColumn)dgvBuilds.Columns[2]).DataPropertyName = "archetypeID";
+            ((DataGridViewComboBoxColumn)dgvBuilds.Columns[2]).DisplayMember = "name";
+            ((DataGridViewComboBoxColumn)dgvBuilds.Columns[2]).ValueMember = "archetypeID";
             dgvArchetypes.Columns[0].Name = "Archetypes";           // Archetype name column
             dgvArchetypes.Columns[0].DataPropertyName = "name";
             dgvArchetypes.Columns[1].Name = "Archetypes";           // Archetype note column
